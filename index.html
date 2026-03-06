@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revenue Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f5f7;
+    --surface: #ffffff;
+    --surface-2: #f0f1f3;
+    --border: #e0e2e8;
+    --border-hover: #c8ccd4;
+    --text: #1a1d26;
+    --text-mid: #484d60;
+    --text-dim: #6b7084;
+    --pub: #2563eb;
+    --pub-soft: rgba(37,99,235,0.08);
+    --priv: #059669;
+    --priv-soft: rgba(5,150,105,0.08);
+    --partner: #d946ef;
+    --partner-soft: rgba(217,70,239,0.08);
+    --warn: #d97706;
+    --accent: #6366f1;
+    --radius: 10px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:400; min-height:100vh; line-height:1.5; }
+  .container { max-width:1140px; margin:0 auto; padding:0 1.5rem; }
+
+  /* Header */
+  header { padding:2rem 0 0.6rem; }
+  .header-row { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:0.5rem; }
+  header h1 { font-family:'Instrument Serif',serif; font-size:1.8rem; font-weight:400; letter-spacing:-0.02em; }
+  .updated { font-size:0.72rem; color:var(--text-dim); }
+
+  /* Tabs */
+  .tabs { display:flex; gap:0; margin:0.8rem 0 1rem; border-bottom:2px solid var(--border); }
+  .tab { padding:0.5rem 1.2rem; font-size:0.78rem; font-weight:500; color:var(--text-dim); background:none; border:none;
+    cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:all 0.15s; font-family:inherit; }
+  .tab:hover { color:var(--text-mid); }
+  .tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+
+  /* KPIs */
+  .kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:0.6rem; margin-bottom:0.8rem; }
+  .kpi { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:0.8rem 1rem; }
+  .kpi-value { font-family:'Instrument Serif',serif; font-size:1.5rem; line-height:1; }
+  .kpi-value.pub-c { color:var(--pub); }
+  .kpi-value.priv-c { color:var(--priv); }
+  .kpi-value.partner-c { color:var(--partner); }
+  .kpi-value.accent-c { color:var(--accent); }
+  .kpi-value.warn-c { color:var(--warn); }
+  .kpi-label { font-size:0.6rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim); margin-top:0.2rem; }
+  .kpi-sub { font-size:0.68rem; color:var(--text-mid); }
+
+  /* Charts */
+  .chart-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-bottom:0.6rem; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1rem 1.1rem; }
+  .card-full { grid-column:1/-1; }
+  .card-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; }
+  .card-title { font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim); }
+  .legend { display:flex; gap:0.7rem; font-size:0.65rem; color:var(--text-mid); }
+  .legend span::before { content:''; display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:4px; vertical-align:middle; }
+  .legend .l-pub::before { background:var(--pub); }
+  .legend .l-priv::before { background:var(--priv); }
+  .legend .l-partner::before { background:var(--partner); }
+  .chart-wrap { position:relative; height:220px; }
+
+  /* Table */
+  .table-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:1rem; }
+  .table-toolbar { padding:0.7rem 1rem; display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--border); }
+  .search-input { padding:0.35rem 0.7rem; border:1px solid var(--border); border-radius:6px; font-family:inherit; font-size:0.78rem;
+    outline:none; width:220px; transition:border-color 0.2s; }
+  .search-input:focus { border-color:var(--accent); }
+  .filter-pill { padding:0.3rem 0.7rem; border-radius:100px; border:1px solid var(--border); background:var(--surface);
+    color:var(--text-dim); font-family:inherit; font-size:0.7rem; font-weight:500; cursor:pointer; transition:all 0.15s; }
+  .filter-pill:hover { border-color:var(--border-hover); }
+  .filter-pill.fp-active { background:var(--accent); border-color:var(--accent); color:#fff; }
+  table { width:100%; border-collapse:collapse; }
+  th { text-align:left; padding:0.45rem 1rem; font-size:0.58rem; text-transform:uppercase; letter-spacing:0.1em;
+    color:var(--text-dim); border-bottom:1px solid var(--border); font-weight:500; background:var(--surface-2); cursor:pointer; }
+  th:hover { color:var(--text); }
+  th .sort-arrow { font-size:0.55rem; margin-left:3px; opacity:0.4; }
+  th.sorted .sort-arrow { opacity:1; color:var(--accent); }
+  td { padding:0.45rem 1rem; font-size:0.78rem; border-bottom:1px solid var(--border); color:var(--text-mid); font-variant-numeric:tabular-nums; }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:var(--surface-2); }
+  td:first-child { color:var(--text); font-weight:500; }
+  .sector-tag { display:inline-block; font-size:0.55rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
+    padding:0.1rem 0.35rem; border-radius:3px; }
+  .sector-tag.pub { background:var(--pub-soft); color:var(--pub); }
+  .sector-tag.priv { background:var(--priv-soft); color:var(--priv); }
+  .forecast-tag { display:inline-block; font-size:0.6rem; font-weight:500; padding:0.1rem 0.4rem; border-radius:3px; }
+  .forecast-tag.commit { background:#dcfce7; color:#166534; }
+  .forecast-tag.best-case { background:#fef3c7; color:#92400e; }
+  .forecast-tag.pipeline { background:#e0e7ff; color:#3730a3; }
+  .forecast-tag.closed { background:#d1fae5; color:#065f46; }
+
+  /* Section visibility */
+  .view { display:none; }
+  .view.active { display:block; }
+
+  footer { text-align:center; padding:0.8rem 0 1.5rem; color:var(--text-dim); font-size:0.65rem; opacity:0.5; }
+
+  @media(max-width:768px) {
+    .kpi-row { grid-template-columns:1fr 1fr; }
+    .chart-grid { grid-template-columns:1fr; }
+    .card-full { grid-column:auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="header-row">
+      <h1>Revenue Dashboard</h1>
+      <span class="updated" id="updated"></span>
+    </div>
+  </header>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-view="arr">Current ARR</button>
+    <button class="tab" data-view="pipeline">Pipeline</button>
+    <button class="tab" data-view="partners">Partners</button>
+    <button class="tab" data-view="deals">Deal Detail</button>
+  </div>
+
+  <!-- ============ ARR VIEW ============ -->
+  <div class="view active" id="view-arr">
+    <div class="kpi-row" id="arr-kpis"></div>
+    <div class="chart-grid">
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">ARR by Sector</span>
+        </div>
+        <div class="chart-wrap"><canvas id="arrSectorChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Top 10 Accounts by ARR</span>
+        </div>
+        <div class="chart-wrap"><canvas id="arrAccountChart"></canvas></div>
+      </div>
+      <div class="card card-full">
+        <div class="card-head">
+          <span class="card-title">ARR by Fiscal Period</span>
+          <div class="legend"><span class="l-pub">Public</span><span class="l-priv">Private</span></div>
+        </div>
+        <div class="chart-wrap"><canvas id="arrPeriodChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PIPELINE VIEW ============ -->
+  <div class="view" id="view-pipeline">
+    <div class="kpi-row" id="pipe-kpis"></div>
+    <div class="chart-grid">
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Pipeline by Stage</span>
+          <div class="legend"><span class="l-pub">Public</span><span class="l-priv">Private</span></div>
+        </div>
+        <div class="chart-wrap"><canvas id="pipeStageChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Pipeline by Forecast Category</span>
+        </div>
+        <div class="chart-wrap"><canvas id="pipeForecastChart"></canvas></div>
+      </div>
+      <div class="card card-full">
+        <div class="card-head">
+          <span class="card-title">Pipeline by Rep</span>
+          <div class="legend"><span class="l-pub">Public</span><span class="l-priv">Private</span></div>
+        </div>
+        <div class="chart-wrap"><canvas id="pipeOwnerChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PARTNERS VIEW ============ -->
+  <div class="view" id="view-partners">
+    <div class="kpi-row" id="partner-kpis"></div>
+    <div class="chart-grid">
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Pipeline by Partner</span>
+        </div>
+        <div class="chart-wrap"><canvas id="partnerBarChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Pipeline by Quarter</span>
+        </div>
+        <div class="chart-wrap"><canvas id="partnerQtrChart"></canvas></div>
+      </div>
+    </div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Opportunity</th><th>Partner</th><th>ARR</th><th>NRR</th><th>Prob %</th><th>Close Date</th><th>Quarter</th></tr></thead>
+        <tbody id="partnerTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============ DEALS VIEW ============ -->
+  <div class="view" id="view-deals">
+    <div class="table-card">
+      <div class="table-toolbar">
+        <input class="search-input" id="dealSearch" placeholder="Search opportunities..." />
+        <button class="filter-pill fp-active" data-filter="all">All</button>
+        <button class="filter-pill" data-filter="pipeline">Pipeline</button>
+        <button class="filter-pill" data-filter="arr">Current ARR</button>
+      </div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead id="dealHead"></thead>
+          <tbody id="dealTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Data refreshed from Salesforce · Shared link — no login required</footer>
+
+<script>
+// ===================================================================
+// GLOBALS
+// ===================================================================
+let D = null;
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const fmt = n => '$' + (n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? (n/1e3).toFixed(0)+'K' : n.toLocaleString());
+const fmtFull = n => '$' + n.toLocaleString();
+const PUB = '#2563eb', PRIV = '#059669', PARTNER = '#d946ef';
+const chartInstances = {};
+
+Chart.defaults.color = '#6b7084';
+Chart.defaults.borderColor = 'rgba(0,0,0,0.05)';
+Chart.defaults.font.family = "'DM Sans',sans-serif";
+Chart.defaults.font.size = 11;
+
+// ===================================================================
+// LOAD DATA
+// ===================================================================
+async function loadData() {
+  try {
+    const resp = await fetch('data/dashboard.json');
+    D = await resp.json();
+    $('#updated').textContent = 'Last refresh: ' + D.generated;
+    renderAll();
+  } catch(e) {
+    console.error('Failed to load data:', e);
+    document.body.innerHTML = '<div style="padding:4rem;text-align:center;color:#666;">Could not load data/dashboard.json<br>Make sure the file exists in the data/ folder.</div>';
+  }
+}
+
+// ===================================================================
+// TABS
+// ===================================================================
+$$('.tab').forEach(t => t.addEventListener('click', () => {
+  $$('.tab').forEach(x => x.classList.remove('active'));
+  $$('.view').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  $(`#view-${t.dataset.view}`).classList.add('active');
+  // Resize charts when switching tabs
+  Object.values(chartInstances).forEach(c => c.resize());
+}));
+
+// ===================================================================
+// HELPERS
+// ===================================================================
+function makeChart(id, config) {
+  if (chartInstances[id]) chartInstances[id].destroy();
+  chartInstances[id] = new Chart(document.getElementById(id), config);
+  return chartInstances[id];
+}
+
+function truncLabel(s, max=22) { return s.length > max ? s.slice(0,max)+'…' : s; }
+
+// ===================================================================
+// ARR VIEW
+// ===================================================================
+function renderARR() {
+  const a = D.arr;
+  const total = a.by_sector.Public.total_arr + a.by_sector.Private.total_arr;
+  const totalOpps = a.by_sector.Public.opp_count + a.by_sector.Private.opp_count;
+  const topAccount = a.by_parent[0];
+
+  $('#arr-kpis').innerHTML = `
+    <div class="kpi"><div class="kpi-value accent-c">${fmt(total)}</div><div class="kpi-label">Total Current ARR</div><div class="kpi-sub">${totalOpps} opportunities</div></div>
+    <div class="kpi"><div class="kpi-value pub-c">${fmt(a.by_sector.Public.total_arr)}</div><div class="kpi-label">Public Sector ARR</div><div class="kpi-sub">${a.by_sector.Public.opp_count} opps</div></div>
+    <div class="kpi"><div class="kpi-value priv-c">${fmt(a.by_sector.Private.total_arr)}</div><div class="kpi-label">Private Sector ARR</div><div class="kpi-sub">${a.by_sector.Private.opp_count} opps</div></div>
+    <div class="kpi"><div class="kpi-value warn-c">${fmt(topAccount.arr)}</div><div class="kpi-label">Largest Account</div><div class="kpi-sub">${truncLabel(topAccount.name, 28)}</div></div>
+  `;
+
+  // Sector donut
+  makeChart('arrSectorChart', {
+    type: 'doughnut',
+    data: {
+      labels: ['Public Sector', 'Private Sector'],
+      datasets: [{ data: [a.by_sector.Public.total_arr, a.by_sector.Private.total_arr],
+        backgroundColor: [PUB+'cc', PRIV+'cc'], borderWidth: 0, hoverOffset: 6 }]
+    },
+    options: { responsive:true, maintainAspectRatio:false, cutout:'60%',
+      plugins: { legend:{ position:'bottom', labels:{ padding:12, usePointStyle:true, pointStyleWidth:8, font:{size:11} } },
+        tooltip:{ callbacks:{ label: ctx => ' ' + ctx.label + ': ' + fmtFull(ctx.raw) } } } }
+  });
+
+  // Top accounts bar
+  const top10 = a.by_parent.slice(0,10);
+  makeChart('arrAccountChart', {
+    type: 'bar',
+    data: {
+      labels: top10.map(p => truncLabel(p.name, 20)),
+      datasets: [{ data: top10.map(p => p.arr),
+        backgroundColor: top10.map(p => p.sector==='Public' ? PUB+'77' : PRIV+'77'),
+        hoverBackgroundColor: top10.map(p => p.sector==='Public' ? PUB : PRIV),
+        borderRadius: 4, borderSkipped: false }]
+    },
+    options: { responsive:true, maintainAspectRatio:false, indexAxis:'y',
+      plugins: { legend:{display:false}, tooltip:{ callbacks:{ label:ctx => ' '+fmtFull(ctx.raw) } } },
+      scales: { x:{ ticks:{ callback:v => fmt(v) } } } }
+  });
+
+  // Period stacked bar
+  const periods = Object.keys(a.by_period);
+  makeChart('arrPeriodChart', {
+    type: 'bar',
+    data: {
+      labels: periods,
+      datasets: [
+        { label:'Public', data:periods.map(p => a.by_period[p].Public), backgroundColor:PUB+'88', borderRadius:3, borderSkipped:false },
+        { label:'Private', data:periods.map(p => a.by_period[p].Private), backgroundColor:PRIV+'88', borderRadius:3, borderSkipped:false },
+      ]
+    },
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{display:false}, tooltip:{ callbacks:{ label:ctx => ' '+ctx.dataset.label+': '+fmtFull(ctx.raw) } } },
+      scales: { x:{stacked:true}, y:{stacked:true, ticks:{ callback:v => fmt(v) } } } }
+  });
+}
+
+// ===================================================================
+// PIPELINE VIEW
+// ===================================================================
+function renderPipeline() {
+  const p = D.pipeline;
+  const totalARR = p.by_sector.Public.total_arr + p.by_sector.Private.total_arr;
+  const factored = (p.by_sector.Public.factored_arr||0) + (p.by_sector.Private.factored_arr||0);
+  const totalDeals = p.by_sector.Public.deal_count + p.by_sector.Private.deal_count;
+
+  $('#pipe-kpis').innerHTML = `
+    <div class="kpi"><div class="kpi-value accent-c">${fmt(totalARR)}</div><div class="kpi-label">Total Pipeline ARR</div><div class="kpi-sub">${totalDeals} deals</div></div>
+    <div class="kpi"><div class="kpi-value pub-c">${fmt(p.by_sector.Public.total_arr)}</div><div class="kpi-label">Public Pipeline</div><div class="kpi-sub">${factored ? 'Factored: '+fmt(factored) : ''}</div></div>
+    <div class="kpi"><div class="kpi-value priv-c">${fmt(p.by_sector.Private.total_arr)}</div><div class="kpi-label">Private Pipeline</div><div class="kpi-sub">${p.by_sector.Private.deal_count} deals</div></div>
+    <div class="kpi"><div class="kpi-value warn-c">${fmt(p.by_forecast.Commit ? (p.by_forecast.Commit.Public + p.by_forecast.Commit.Private) : 0)}</div><div class="kpi-label">Commit</div><div class="kpi-sub">forecast category</div></div>
+  `;
+
+  // Stage bar
+  const stages = Object.keys(p.by_stage);
+  makeChart('pipeStageChart', {
+    type: 'bar',
+    data: {
+      labels: stages,
+      datasets: [
+        { label:'Public', data:stages.map(s => p.by_stage[s].Public), backgroundColor:PUB+'88', borderRadius:3, borderSkipped:false },
+        { label:'Private', data:stages.map(s => p.by_stage[s].Private), backgroundColor:PRIV+'88', borderRadius:3, borderSkipped:false },
+      ]
+    },
+    options: { responsive:true, maintainAspectRatio:false, indexAxis:'y',
+      plugins: { legend:{display:false}, tooltip:{ callbacks:{ label:ctx => ' '+ctx.dataset.label+': '+fmtFull(ctx.raw) } } },
+      scales: { x:{ stacked:true, ticks:{ callback:v=>fmt(v) } }, y:{stacked:true} } }
+  });
+
+  // Forecast donut
+  const fcats = Object.keys(p.by_forecast);
+  const fcolors = { Pipeline:'#6366f1', 'Best Case':'#d97706', Commit:'#059669', Closed:'#10b981' };
+  makeChart('pipeForecastChart', {
+    type: 'doughnut',
+    data: {
+      labels: fcats,
+      datasets: [{ data: fcats.map(f => p.by_forecast[f].Public + p.by_forecast[f].Private),
+        backgroundColor: fcats.map(f => (fcolors[f]||'#888')+'cc'), borderWidth:0, hoverOffset:6 }]
+    },
+    options: { responsive:true, maintainAspectRatio:false, cutout:'60%',
+      plugins: { legend:{ position:'bottom', labels:{ padding:12, usePointStyle:true, pointStyleWidth:8, font:{size:11} } },
+        tooltip:{ callbacks:{ label:ctx => ' '+ctx.label+': '+fmtFull(ctx.raw) } } } }
+  });
+
+  // Owner bar
+  const owners = p.by_owner.slice(0,10);
+  makeChart('pipeOwnerChart', {
+    type: 'bar',
+    data: {
+      labels: owners.map(o => o.name),
+      datasets: [{ data: owners.map(o => o.arr),
+        backgroundColor: '#6366f166', hoverBackgroundColor: '#6366f1',
+        borderRadius: 4, borderSkipped: false }]
+    },
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{display:false}, tooltip:{ callbacks:{ label:ctx => ' '+fmtFull(ctx.raw)+' ('+owners[ctx.dataIndex].deals+' deals)' } } },
+      scales: { y:{ beginAtZero:true, ticks:{ callback:v=>fmt(v) } } } }
+  });
+}
+
+// ===================================================================
+// PARTNERS VIEW
+// ===================================================================
+function renderPartners() {
+  const pt = D.partners;
+  $('#partner-kpis').innerHTML = `
+    <div class="kpi"><div class="kpi-value partner-c">${fmt(pt.totals.arr)}</div><div class="kpi-label">Partner Pipeline ARR</div><div class="kpi-sub">${pt.totals.deal_count} deals</div></div>
+    <div class="kpi"><div class="kpi-value accent-c">${pt.totals.partner_count}</div><div class="kpi-label">Active Partners</div></div>
+    <div class="kpi"><div class="kpi-value warn-c">${fmt(pt.totals.nrr)}</div><div class="kpi-label">NRR (Services)</div></div>
+    <div class="kpi"><div class="kpi-value priv-c">${fmt(Math.round(pt.totals.arr / pt.totals.deal_count))}</div><div class="kpi-label">Avg Deal Size</div></div>
+  `;
+
+  // Partner bar
+  makeChart('partnerBarChart', {
+    type: 'bar',
+    data: {
+      labels: pt.by_partner.map(p => truncLabel(p.name, 18)),
+      datasets: [{ data: pt.by_partner.map(p => p.arr),
+        backgroundColor: PARTNER+'66', hoverBackgroundColor: PARTNER,
+        borderRadius: 4, borderSkipped: false }]
+    },
+    options: { responsive:true, maintainAspectRatio:false, indexAxis:'y',
+      plugins: { legend:{display:false}, tooltip:{ callbacks:{ label:ctx => ' '+fmtFull(ctx.raw) } } },
+      scales: { x:{ ticks:{ callback:v=>fmt(v) } } } }
+  });
+
+  // Quarter bar
+  const qtrs = Object.keys(pt.by_quarter);
+  makeChart('partnerQtrChart', {
+    type: 'bar',
+    data: {
+      labels: qtrs,
+      datasets: [
+        { label:'ARR', data:qtrs.map(q => pt.by_quarter[q].arr), backgroundColor:PARTNER+'88', borderRadius:4, borderSkipped:false },
+        { label:'NRR', data:qtrs.map(q => pt.by_quarter[q].nrr), backgroundColor:'#d9770688', borderRadius:4, borderSkipped:false },
+      ]
+    },
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{ position:'bottom', labels:{ padding:10, usePointStyle:true, pointStyleWidth:7, font:{size:10} } },
+        tooltip:{ callbacks:{ label:ctx => ' '+ctx.dataset.label+': '+fmtFull(ctx.raw) } } },
+      scales: { y:{ stacked:true, ticks:{ callback:v=>fmt(v) } }, x:{stacked:true} } }
+  });
+
+  // Partner table
+  $('#partnerTable').innerHTML = pt.deals
+    .sort((a,b) => b.arr - a.arr)
+    .map(d => `<tr>
+      <td>${truncLabel(d.opp,35)}</td>
+      <td style="font-size:0.72rem">${truncLabel(d.partner,22)}</td>
+      <td>${fmtFull(d.arr)}</td>
+      <td>${d.nrr ? fmtFull(d.nrr) : '—'}</td>
+      <td>${d.probability}%</td>
+      <td>${d.close_date}</td>
+      <td>${d.quarter}</td>
+    </tr>`).join('');
+}
+
+// ===================================================================
+// DEALS VIEW
+// ===================================================================
+let dealSource = 'all';
+let dealSearchTerm = '';
+let dealSort = { key: 'arr', dir: -1 };
+
+function getAllDeals() {
+  let deals = [];
+  if (dealSource === 'all' || dealSource === 'pipeline') {
+    deals = deals.concat(D.pipeline.deals.map(d => ({...d, source:'Pipeline'})));
+  }
+  if (dealSource === 'all' || dealSource === 'arr') {
+    deals = deals.concat(D.arr.deals.map(d => ({...d, source:'ARR'})));
+  }
+  return deals;
+}
+
+function renderDeals() {
+  const cols = [
+    { key:'opp', label:'Opportunity', fmt: v=>truncLabel(v,40) },
+    { key:'sector', label:'Sector', fmt: v=>`<span class="sector-tag ${v==='Public'?'pub':'priv'}">${v}</span>` },
+    { key:'source', label:'Source' },
+    { key:'arr', label:'ARR', fmt: v=>v?fmtFull(v):'—', numeric:true },
+    { key:'stage', label:'Stage' },
+    { key:'forecast', label:'Forecast', fmt: v=>{
+      if(!v) return '—';
+      const cls = v.toLowerCase().replace(/\s+/g,'-');
+      return `<span class="forecast-tag ${cls}">${v}</span>`;
+    }},
+    { key:'owner', label:'Owner' },
+    { key:'close_date', label:'Close Date' },
+    { key:'type', label:'Type', fmt: v=>v||'—' },
+  ];
+
+  $('#dealHead').innerHTML = '<tr>' + cols.map(c =>
+    `<th class="${dealSort.key===c.key?'sorted':''}" data-key="${c.key}">${c.label}<span class="sort-arrow">${dealSort.key===c.key?(dealSort.dir>0?'▲':'▼'):'⇅'}</span></th>`
+  ).join('') + '</tr>';
+
+  let deals = getAllDeals();
+
+  if (dealSearchTerm) {
+    const q = dealSearchTerm.toLowerCase();
+    deals = deals.filter(d => (d.opp||'').toLowerCase().includes(q) || (d.account||'').toLowerCase().includes(q) || (d.owner||'').toLowerCase().includes(q));
+  }
+
+  deals.sort((a,b) => {
+    let va = a[dealSort.key] || '', vb = b[dealSort.key] || '';
+    if (typeof va === 'number' && typeof vb === 'number') return (va - vb) * dealSort.dir;
+    return String(va).localeCompare(String(vb)) * dealSort.dir;
+  });
+
+  $('#dealTable').innerHTML = deals.slice(0,100).map(d =>
+    '<tr>' + cols.map(c => `<td>${c.fmt ? c.fmt(d[c.key]) : (d[c.key]||'—')}</td>`).join('') + '</tr>'
+  ).join('');
+
+  // Attach sort handlers
+  $$('#dealHead th').forEach(th => {
+    th.addEventListener('click', () => {
+      const key = th.dataset.key;
+      if (dealSort.key === key) dealSort.dir *= -1;
+      else { dealSort.key = key; dealSort.dir = -1; }
+      renderDeals();
+    });
+  });
+}
+
+// Filter pills
+$$('.filter-pill').forEach(p => p.addEventListener('click', () => {
+  $$('.filter-pill').forEach(x => x.classList.remove('fp-active'));
+  p.classList.add('fp-active');
+  dealSource = p.dataset.filter;
+  renderDeals();
+}));
+
+// Search
+$('#dealSearch').addEventListener('input', e => {
+  dealSearchTerm = e.target.value;
+  renderDeals();
+});
+
+// ===================================================================
+// RENDER ALL
+// ===================================================================
+function renderAll() {
+  renderARR();
+  renderPipeline();
+  renderPartners();
+  renderDeals();
+}
+
+// ===================================================================
+// INIT
+// ===================================================================
+loadData();
+</script>
+</body>
+</html>
