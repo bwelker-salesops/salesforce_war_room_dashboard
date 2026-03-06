@@ -1,0 +1,3264 @@
+{
+  "generated": "2026-03-06 19:38",
+  "arr": {
+    "by_sector": {
+      "Public": {
+        "total_arr": 5859949,
+        "opp_count": 13
+      },
+      "Private": {
+        "total_arr": 2495660,
+        "opp_count": 61
+      }
+    },
+    "by_parent": [
+      {
+        "name": "US Department of Navy",
+        "arr": 4000000,
+        "sector": "Public",
+        "opp_count": 2
+      },
+      {
+        "name": "US Department of Air Force",
+        "arr": 1255000,
+        "sector": "Public",
+        "opp_count": 2
+      },
+      {
+        "name": "AETC - Air Education Training Command",
+        "arr": 307950,
+        "sector": "Public",
+        "opp_count": 4
+      },
+      {
+        "name": "Ivoclar Vivadent AG",
+        "arr": 300000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Neurocrine Continental, Inc.",
+        "arr": 271000,
+        "sector": "Private",
+        "opp_count": 3
+      },
+      {
+        "name": "Air Force Research Laboratory (AFRL)",
+        "arr": 250000,
+        "sector": "Public",
+        "opp_count": 1
+      },
+      {
+        "name": "Sigma Defense Systems",
+        "arr": 241000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Guardant Health Inc",
+        "arr": 216000,
+        "sector": "Private",
+        "opp_count": 3
+      },
+      {
+        "name": "BridgeBio Pharma, Inc.",
+        "arr": 130000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Novartis Pharmaceuticals",
+        "arr": 125000,
+        "sector": "Private",
+        "opp_count": 4
+      },
+      {
+        "name": "Accord BioPharma, Inc.",
+        "arr": 100000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Arkenstone Defense",
+        "arr": 95000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Kiniksa Pharmaceuticals Corp",
+        "arr": 77280,
+        "sector": "Private",
+        "opp_count": 3
+      },
+      {
+        "name": "Kyowa Kirin Co Ltd",
+        "arr": 75000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Sobi - Swedish Orphan Biovitrum AB (publ)",
+        "arr": 75000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "The Breakers Palm Beach, Inc.",
+        "arr": 73440,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "AbbVie",
+        "arr": 71500,
+        "sector": "Private",
+        "opp_count": 3
+      },
+      {
+        "name": "Lantheus",
+        "arr": 63340,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "PGA TOUR Enterprises, LLC",
+        "arr": 55311,
+        "sector": "Private",
+        "opp_count": 2
+      },
+      {
+        "name": "Gilead Sciences, Inc.",
+        "arr": 50000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "AstraZeneca",
+        "arr": 45000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "ERAS Cardiac Society",
+        "arr": 42857,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "UroGen Pharma Ltd.",
+        "arr": 42000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Buckeye Relief, LLC",
+        "arr": 41288,
+        "sector": "Private",
+        "opp_count": 3
+      },
+      {
+        "name": "Halozyme Therapeutics, Inc",
+        "arr": 38500,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "US Fleet Forces Command (USFF)",
+        "arr": 32000,
+        "sector": "Public",
+        "opp_count": 2
+      },
+      {
+        "name": "Sun Pharmaceutical Industries, Inc.",
+        "arr": 30720,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Endeavor Holdings Group, Inc.",
+        "arr": 29880,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Fennec Pharmaceuticals, Inc.",
+        "arr": 25000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Crinetics Pharmaceuticals, Inc.",
+        "arr": 21000,
+        "sector": "Private",
+        "opp_count": 2
+      },
+      {
+        "name": "Bristol Myers Squibb",
+        "arr": 20000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Deep Well Services",
+        "arr": 18000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Beta Bionics, Inc.",
+        "arr": 15000,
+        "sector": "Private",
+        "opp_count": 4
+      },
+      {
+        "name": "Seattle Seahawks",
+        "arr": 12500,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Acrotech Biopharma, Inc.",
+        "arr": 12000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Prosponsive Logistics",
+        "arr": 12000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Cheema Freightlines LLC",
+        "arr": 10800,
+        "sector": "Private",
+        "opp_count": 2
+      },
+      {
+        "name": "National Football League Inc",
+        "arr": 10375,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "ACC TRSS",
+        "arr": 9999,
+        "sector": "Public",
+        "opp_count": 1
+      },
+      {
+        "name": "University of Utah - Football",
+        "arr": 9999,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "University of Michigan",
+        "arr": 9750,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "University of Southern California",
+        "arr": 9750,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "AGM Transport",
+        "arr": 5040,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "Space Launch Delta 45 (Patrick - Space Force)",
+        "arr": 5000,
+        "sector": "Public",
+        "opp_count": 1
+      },
+      {
+        "name": "Cleveland Browns",
+        "arr": 5000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "O'Shea Builders",
+        "arr": 5000,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "West Covina High School",
+        "arr": 2500,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "College of Wooster",
+        "arr": 1750,
+        "sector": "Private",
+        "opp_count": 1
+      },
+      {
+        "name": "NeuroNav",
+        "arr": 1080,
+        "sector": "Private",
+        "opp_count": 1
+      }
+    ],
+    "by_product": {
+      "Premium Software License": {
+        "Public": 4302700,
+        "Private": 0
+      },
+      "Enterprise Software License": {
+        "Public": 0,
+        "Private": 1547900
+      },
+      "Wing Site License": {
+        "Public": 1250000,
+        "Private": 0
+      },
+      "Gold": {
+        "Public": 0,
+        "Private": 564000
+      },
+      "Platinum": {
+        "Public": 0,
+        "Private": 307600
+      },
+      "ETHOS Platform - IL4": {
+        "Public": 250000,
+        "Private": 0
+      },
+      "Standard": {
+        "Public": 0,
+        "Private": 243381
+      },
+      "Hosted Course (up to 10,000 users)": {
+        "Public": 0,
+        "Private": 142857
+      },
+      "Platform Administration": {
+        "Public": 0,
+        "Private": 58752
+      },
+      "Learn to Win": {
+        "Public": 0,
+        "Private": 51249
+      },
+      "Single Sign-On (SSO Integration)": {
+        "Public": 0,
+        "Private": 37000
+      },
+      "Basic Software License": {
+        "Public": 36000,
+        "Private": 0
+      },
+      "Badges & Certificates": {
+        "Public": 0,
+        "Private": 17325
+      },
+      "Basic": {
+        "Public": 17000,
+        "Private": 0
+      },
+      "Advanced": {
+        "Public": 5250,
+        "Private": 0
+      },
+      "IL4 Hosting": {
+        "Public": 2000,
+        "Private": 0
+      },
+      "Sequential Learning": {
+        "Public": 0,
+        "Private": 1000
+      },
+      "Special License Discount": {
+        "Public": -3001,
+        "Private": -475404
+      }
+    },
+    "by_period": {
+      "Q1-2025": {
+        "Public": 52500,
+        "Private": 179730
+      },
+      "Q1-2026": {
+        "Public": 250000,
+        "Private": 87000
+      },
+      "Q2-2025": {
+        "Public": 260450,
+        "Private": 552900
+      },
+      "Q3-2024": {
+        "Public": 0,
+        "Private": 96288
+      },
+      "Q3-2025": {
+        "Public": 5296999,
+        "Private": 406295
+      },
+      "Q4-2023": {
+        "Public": 0,
+        "Private": 73440
+      },
+      "Q4-2024": {
+        "Public": 0,
+        "Private": 212340
+      },
+      "Q4-2025": {
+        "Public": 0,
+        "Private": 887667
+      }
+    },
+    "deals": [
+      {
+        "sector": "Public",
+        "opp": "Space Force - 1 ROPS (Capt. Conklin) (2025-26 Renewal)",
+        "account": "1st Range Operations Squadron (1 ROPS)",
+        "parent": "Space Launch Delta 45 (Patrick - Space Force)",
+        "product": "Basic Software License",
+        "arr": 4000.0,
+        "period": "Q3-2025",
+        "contract_start": "9/1/2025",
+        "contract_end": "8/31/2026",
+        "users": "40"
+      },
+      {
+        "sector": "Public",
+        "opp": "Space Force - 1 ROPS (Capt. Conklin) (2025-26 Renewal)",
+        "account": "1st Range Operations Squadron (1 ROPS)",
+        "parent": "Space Launch Delta 45 (Patrick - Space Force)",
+        "product": "IL4 Hosting",
+        "arr": 1000.0,
+        "period": "Q3-2025",
+        "contract_start": "9/1/2025",
+        "contract_end": "8/31/2026",
+        "users": "40"
+      },
+      {
+        "sector": "Public",
+        "opp": "21st Operational Weather Squadron (Lt. Harris) (2025-26 Renewal)",
+        "account": "21st Ops Weather Squadron",
+        "parent": "US Department of Air Force",
+        "product": "Basic",
+        "arr": 4000.0,
+        "period": "Q2-2025",
+        "contract_start": "6/7/2025",
+        "contract_end": "6/6/2026",
+        "users": "40"
+      },
+      {
+        "sector": "Public",
+        "opp": "21st Operational Weather Squadron (Lt. Harris) (2025-26 Renewal)",
+        "account": "21st Ops Weather Squadron",
+        "parent": "US Department of Air Force",
+        "product": "IL4 Hosting",
+        "arr": 1000.0,
+        "period": "Q2-2025",
+        "contract_start": "6/7/2025",
+        "contract_end": "6/6/2026",
+        "users": "40"
+      },
+      {
+        "sector": "Public",
+        "opp": "AETC (2nd AF) - 335 TRS Weather Squadron (SMSgt Conner) (2025-26 Renewal)",
+        "account": "2nd AF Weather Squadron",
+        "parent": "AETC - Air Education Training Command",
+        "product": "Premium Software License",
+        "arr": 151200.0,
+        "period": "Q2-2025",
+        "contract_start": "6/1/2025",
+        "contract_end": "5/31/2026",
+        "users": "504"
+      },
+      {
+        "sector": "Public",
+        "opp": "USAF - AETC - 345th Services Schoolhouse - 7 lvl.",
+        "account": "AETC - 37th TRW - 345th TRS - Services",
+        "parent": "AETC - Air Education Training Command",
+        "product": "Premium Software License",
+        "arr": 99000.0,
+        "period": "Q2-2025",
+        "contract_start": "6/2/2025",
+        "contract_end": "6/1/2026",
+        "users": "330"
+      },
+      {
+        "sector": "Public",
+        "opp": "USAF - AETC - 335th Financial Management",
+        "account": "AETC - 81st TRW - 335th Financial Management",
+        "parent": "AETC - Air Education Training Command",
+        "product": "Premium Software License",
+        "arr": 52500.0,
+        "period": "Q1-2025",
+        "contract_start": "4/1/2025",
+        "contract_end": "3/31/2026",
+        "users": "175"
+      },
+      {
+        "sector": "Public",
+        "opp": "USAF - AETC - 361 TRS - Aircrew Flight Equipment",
+        "account": "AETC - 82nd TRW - 361 TRS AFE",
+        "parent": "AETC - Air Education Training Command",
+        "product": "Advanced",
+        "arr": 5250.0,
+        "period": "Q2-2025",
+        "contract_start": "5/26/2025",
+        "contract_end": "5/25/2026",
+        "users": "30"
+      },
+      {
+        "sector": "Public",
+        "opp": "ACC - Uchida central purchase (2025-26 Renewal)",
+        "account": "Air Combat Command (ACC)",
+        "parent": "US Department of Air Force",
+        "product": "Wing Site License",
+        "arr": 1250000.0,
+        "period": "Q3-2025",
+        "contract_start": "8/30/2025",
+        "contract_end": "8/29/2026",
+        "users": "5"
+      },
+      {
+        "sector": "Public",
+        "opp": "DAF CLOUDwerx ODIN Team (2026 ARR)",
+        "account": "DAF CLOUDworks",
+        "parent": "Air Force Research Laboratory (AFRL)",
+        "product": "ETHOS Platform - IL4",
+        "arr": 250000.0,
+        "period": "Q1-2026",
+        "contract_start": "2/24/2026",
+        "contract_end": "2/23/2027",
+        "users": "1000"
+      },
+      {
+        "sector": "Public",
+        "opp": "Navy Military Sealift Command - LOK (2025-26 Renewal)",
+        "account": "Military Sealift Command",
+        "parent": "US Fleet Forces Command (USFF)",
+        "product": "Basic Software License",
+        "arr": 6500.0,
+        "period": "Q3-2025",
+        "contract_start": "10/14/2025",
+        "contract_end": "10/13/2026",
+        "users": "65"
+      },
+      {
+        "sector": "Public",
+        "opp": "Navy Military Sealift Command - LOK (2025-26 Expansion)",
+        "account": "Military Sealift Command",
+        "parent": "US Fleet Forces Command (USFF)",
+        "product": "Basic Software License",
+        "arr": 25500.0,
+        "period": "Q3-2025",
+        "contract_start": "10/14/2025",
+        "contract_end": "10/13/2026",
+        "users": ""
+      },
+      {
+        "sector": "Public",
+        "opp": "Ready Relevant Learning Enterprise (2025-26 Renewal)",
+        "account": "Ready Relevant Learning (RRL)",
+        "parent": "US Department of Navy",
+        "product": "Premium Software License",
+        "arr": 3948000.0,
+        "period": "Q3-2025",
+        "contract_start": "8/1/2025",
+        "contract_end": "7/31/2026",
+        "users": "15000"
+      },
+      {
+        "sector": "Public",
+        "opp": "Ready Relevant Learning Enterprise (2025-26 Upsell)",
+        "account": "Ready Relevant Learning (RRL)",
+        "parent": "US Department of Navy",
+        "product": "Premium Software License",
+        "arr": 52000.0,
+        "period": "Q3-2025",
+        "contract_start": "8/1/2025",
+        "contract_end": "7/31/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Public",
+        "opp": "Thunderbirds (2025-26 Renewal)",
+        "account": "USAF ACC Thunderbirds",
+        "parent": "ACC TRSS",
+        "product": "Basic",
+        "arr": 13000.0,
+        "period": "Q3-2025",
+        "contract_start": "9/27/2025",
+        "contract_end": "9/26/2026",
+        "users": "130"
+      },
+      {
+        "sector": "Public",
+        "opp": "Thunderbirds (2025-26 Renewal)",
+        "account": "USAF ACC Thunderbirds",
+        "parent": "ACC TRSS",
+        "product": "Special License Discount",
+        "arr": -3001.0,
+        "period": "Q3-2025",
+        "contract_start": "9/27/2025",
+        "contract_end": "9/26/2026",
+        "users": "130"
+      },
+      {
+        "sector": "Private",
+        "opp": "AbbVie - PVEK",
+        "account": "AbbVie - PVEK",
+        "parent": "AbbVie",
+        "product": "Special License Discount",
+        "arr": -500.0,
+        "period": "Q4-2025",
+        "contract_start": "10/15/2025",
+        "contract_end": "10/14/2026",
+        "users": "30"
+      },
+      {
+        "sector": "Private",
+        "opp": "AbbVie - PVEK",
+        "account": "AbbVie - PVEK",
+        "parent": "AbbVie",
+        "product": "Enterprise Software License",
+        "arr": 18000.0,
+        "period": "Q4-2025",
+        "contract_start": "10/15/2025",
+        "contract_end": "10/14/2026",
+        "users": "30"
+      },
+      {
+        "sector": "Private",
+        "opp": "AbbVie - Teliso-V; Sales Training (2026-27 Multiyear)",
+        "account": "AbbVie - Teliso-V",
+        "parent": "AbbVie",
+        "product": "Enterprise Software License",
+        "arr": 30000.0,
+        "period": "Q1-2025",
+        "contract_start": "2/1/2026",
+        "contract_end": "1/31/2027",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "AbbVie - Teliso-V; Sales Training (2026-27 Multiyear)",
+        "account": "AbbVie - Teliso-V",
+        "parent": "AbbVie",
+        "product": "Special License Discount",
+        "arr": -15000.0,
+        "period": "Q1-2025",
+        "contract_start": "2/1/2026",
+        "contract_end": "1/31/2027",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "Accord Bio - Sales Team",
+        "account": "Accord BioPharma, Inc.",
+        "parent": "Accord BioPharma, Inc.",
+        "product": "Enterprise Software License",
+        "arr": 120000.0,
+        "period": "Q1-2025",
+        "contract_start": "4/1/2025",
+        "contract_end": "3/31/2026",
+        "users": "200"
+      },
+      {
+        "sector": "Private",
+        "opp": "Accord Bio - Sales Team",
+        "account": "Accord BioPharma, Inc.",
+        "parent": "Accord BioPharma, Inc.",
+        "product": "Special License Discount",
+        "arr": -20000.0,
+        "period": "Q1-2025",
+        "contract_start": "4/1/2025",
+        "contract_end": "3/31/2026",
+        "users": "200"
+      },
+      {
+        "sector": "Private",
+        "opp": "Acrotech Biopharma - Sales Training (2025-26 Renewal)",
+        "account": "Acrotech Biopharma, Inc.",
+        "parent": "Acrotech Biopharma, Inc.",
+        "product": "Gold",
+        "arr": 12000.0,
+        "period": "Q3-2025",
+        "contract_start": "9/18/2025",
+        "contract_end": "9/17/2026",
+        "users": "40"
+      },
+      {
+        "sector": "Private",
+        "opp": "AGM Transport - Sales Training (2025-26 Renewal)",
+        "account": "AGM Transport",
+        "parent": "AGM Transport",
+        "product": "Standard",
+        "arr": 5040.0,
+        "period": "Q2-2025",
+        "contract_start": "5/1/2025",
+        "contract_end": "4/30/2026",
+        "users": "42"
+      },
+      {
+        "sector": "Private",
+        "opp": "Arkenstone - PEO Launch",
+        "account": "Arkenstone Defense",
+        "parent": "Arkenstone Defense",
+        "product": "Enterprise Software License",
+        "arr": 95000.0,
+        "period": "Q4-2025",
+        "contract_start": "11/1/2025",
+        "contract_end": "10/31/2026",
+        "users": "5000"
+      },
+      {
+        "sector": "Private",
+        "opp": "ERS - AstraZeneca; Camizestrant",
+        "account": "AstraZeneca - Camizestrant",
+        "parent": "AstraZeneca",
+        "product": "Enterprise Software License",
+        "arr": 60000.0,
+        "period": "Q1-2026",
+        "contract_start": "1/2/2026",
+        "contract_end": "12/31/2026",
+        "users": "100"
+      },
+      {
+        "sector": "Private",
+        "opp": "ERS - AstraZeneca; Camizestrant",
+        "account": "AstraZeneca - Camizestrant",
+        "parent": "AstraZeneca",
+        "product": "Special License Discount",
+        "arr": -15000.0,
+        "period": "Q1-2026",
+        "contract_start": "1/2/2026",
+        "contract_end": "12/31/2026",
+        "users": "100"
+      },
+      {
+        "sector": "Private",
+        "opp": "Beta Bionics - Learning Paths for Patient Content (2026 Renewal)",
+        "account": "Beta Bionics, Inc.",
+        "parent": "Beta Bionics, Inc.",
+        "product": "Sequential Learning",
+        "arr": 1000.0,
+        "period": "Q4-2025",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "Beta Bionics - Distributor Model",
+        "account": "Beta Bionics, Inc.",
+        "parent": "Beta Bionics, Inc.",
+        "product": "Enterprise Software License",
+        "arr": 1500.0,
+        "period": "Q3-2025",
+        "contract_start": "8/1/2025",
+        "contract_end": "7/31/2026",
+        "users": "25"
+      },
+      {
+        "sector": "Private",
+        "opp": "Beta Bionics - Sales Training (2026-27 Renewal)",
+        "account": "Beta Bionics, Inc.",
+        "parent": "Beta Bionics, Inc.",
+        "product": "Standard",
+        "arr": 3600.0,
+        "period": "Q4-2025",
+        "contract_start": "2/1/2026",
+        "contract_end": "1/31/2027",
+        "users": "30"
+      },
+      {
+        "sector": "Private",
+        "opp": "Beta Bionics - Global Access (2026-27 Expansion)",
+        "account": "Beta Bionics, Inc.",
+        "parent": "Beta Bionics, Inc.",
+        "product": "Standard",
+        "arr": 8900.0,
+        "period": "Q4-2025",
+        "contract_start": "2/1/2026",
+        "contract_end": "1/31/2027",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "BridgeBio - Sales",
+        "account": "BridgeBio Pharma, Inc.",
+        "parent": "BridgeBio Pharma, Inc.",
+        "product": "Enterprise Software License",
+        "arr": 120000.0,
+        "period": "Q2-2025",
+        "contract_start": "5/15/2025",
+        "contract_end": "5/14/2026",
+        "users": "200"
+      },
+      {
+        "sector": "Private",
+        "opp": "BridgeBio - Sales",
+        "account": "BridgeBio Pharma, Inc.",
+        "parent": "BridgeBio Pharma, Inc.",
+        "product": "Single Sign-On (SSO Integration)",
+        "arr": 10000.0,
+        "period": "Q2-2025",
+        "contract_start": "5/15/2025",
+        "contract_end": "5/14/2026",
+        "users": "200"
+      },
+      {
+        "sector": "Private",
+        "opp": "Waterfall - BMS: Medical Heme MF",
+        "account": "Bristol Myers Squibb",
+        "parent": "Bristol Myers Squibb",
+        "product": "Enterprise Software License",
+        "arr": 25000.0,
+        "period": "Q4-2025",
+        "contract_start": "11/1/2025",
+        "contract_end": "10/31/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "Waterfall - BMS: Medical Heme MF",
+        "account": "Bristol Myers Squibb",
+        "parent": "Bristol Myers Squibb",
+        "product": "Special License Discount",
+        "arr": -5000.0,
+        "period": "Q4-2025",
+        "contract_start": "11/1/2025",
+        "contract_end": "10/31/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "Buckeye Relief (2024-26 Renewal)",
+        "account": "Buckeye Relief, LLC",
+        "parent": "Buckeye Relief, LLC",
+        "product": "Standard",
+        "arr": 11400.0,
+        "period": "Q3-2024",
+        "contract_start": "8/10/2024",
+        "contract_end": "8/9/2026",
+        "users": "95"
+      },
+      {
+        "sector": "Private",
+        "opp": "Buckeye Relief (2024-26 Renewal)",
+        "account": "Buckeye Relief, LLC",
+        "parent": "Buckeye Relief, LLC",
+        "product": "Badges & Certificates",
+        "arr": 2280.0,
+        "period": "Q3-2024",
+        "contract_start": "8/10/2024",
+        "contract_end": "8/9/2026",
+        "users": "95"
+      },
+      {
+        "sector": "Private",
+        "opp": "Buckeye Relief (2024-26 Renewal)",
+        "account": "Buckeye Relief, LLC",
+        "parent": "Buckeye Relief, LLC",
+        "product": "Special License Discount",
+        "arr": -540.0,
+        "period": "Q3-2024",
+        "contract_start": "8/10/2024",
+        "contract_end": "8/9/2026",
+        "users": "95"
+      },
+      {
+        "sector": "Private",
+        "opp": "Buckeye Relief (2025-26 Multiyear Contracted)",
+        "account": "Buckeye Relief, LLC",
+        "parent": "Buckeye Relief, LLC",
+        "product": "Standard",
+        "arr": 36600.0,
+        "period": "Q3-2024",
+        "contract_start": "8/10/2025",
+        "contract_end": "8/9/2026",
+        "users": "400"
+      },
+      {
+        "sector": "Private",
+        "opp": "Buckeye Relief (2025-26 Multiyear Contracted)",
+        "account": "Buckeye Relief, LLC",
+        "parent": "Buckeye Relief, LLC",
+        "product": "Badges & Certificates",
+        "arr": 7320.0,
+        "period": "Q3-2024",
+        "contract_start": "8/10/2025",
+        "contract_end": "8/9/2026",
+        "users": "400"
+      },
+      {
+        "sector": "Private",
+        "opp": "Buckeye Relief (2025-26 Multiyear Contracted)",
+        "account": "Buckeye Relief, LLC",
+        "parent": "Buckeye Relief, LLC",
+        "product": "Special License Discount",
+        "arr": -20772.0,
+        "period": "Q3-2024",
+        "contract_start": "8/10/2025",
+        "contract_end": "8/9/2026",
+        "users": "400"
+      },
+      {
+        "sector": "Private",
+        "opp": "Buckeye Relief - SSO Add-on (Multiyear contracted)",
+        "account": "Buckeye Relief, LLC",
+        "parent": "Buckeye Relief, LLC",
+        "product": "Single Sign-On (SSO Integration)",
+        "arr": 5000.0,
+        "period": "Q4-2024",
+        "contract_start": "10/10/2025",
+        "contract_end": "8/9/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "Cheema Freightlines - Employee Training (2025-26 Renewal)",
+        "account": "Cheema Freightlines LLC",
+        "parent": "Cheema Freightlines LLC",
+        "product": "Standard",
+        "arr": 5160.0,
+        "period": "Q2-2025",
+        "contract_start": "6/3/2025",
+        "contract_end": "6/2/2026",
+        "users": "43"
+      },
+      {
+        "sector": "Private",
+        "opp": "Cheema Freightlines (2025 Add Users)",
+        "account": "Cheema Freightlines LLC",
+        "parent": "Cheema Freightlines LLC",
+        "product": "Standard",
+        "arr": 5640.0,
+        "period": "Q2-2025",
+        "contract_start": "6/3/2025",
+        "contract_end": "6/2/2026",
+        "users": "47"
+      },
+      {
+        "sector": "Private",
+        "opp": "Cleveland Browns (2025-26)",
+        "account": "Cleveland Browns",
+        "parent": "Cleveland Browns",
+        "product": "Learn to Win",
+        "arr": 5000.0,
+        "period": "Q3-2025",
+        "contract_start": "9/1/2025",
+        "contract_end": "8/31/2026",
+        "users": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "College of Wooster - Lacrosse (2025-26 Renewal)",
+        "account": "College of Wooster",
+        "parent": "College of Wooster",
+        "product": "Learn to Win",
+        "arr": 1750.0,
+        "period": "Q3-2025",
+        "contract_start": "8/24/2025",
+        "contract_end": "8/23/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "Aquinas - Crinetics; Commercial Training",
+        "account": "Crinetics Pharmaceuticals, Inc.",
+        "parent": "Crinetics Pharmaceuticals, Inc.",
+        "product": "Special License Discount",
+        "arr": -5400.0,
+        "period": "Q1-2025",
+        "contract_start": "4/1/2025",
+        "contract_end": "3/31/2026",
+        "users": "30"
+      },
+      {
+        "sector": "Private",
+        "opp": "Aquinas - Crinetics; Commercial Training",
+        "account": "Crinetics Pharmaceuticals, Inc.",
+        "parent": "Crinetics Pharmaceuticals, Inc.",
+        "product": "Enterprise Software License",
+        "arr": 18000.0,
+        "period": "Q1-2025",
+        "contract_start": "4/1/2025",
+        "contract_end": "3/31/2026",
+        "users": "30"
+      },
+      {
+        "sector": "Private",
+        "opp": "Aquinas - Crinetics; Commercial Training",
+        "account": "Crinetics Pharmaceuticals, Inc.",
+        "parent": "Crinetics Pharmaceuticals, Inc.",
+        "product": "Single Sign-On (SSO Integration)",
+        "arr": 10000.0,
+        "period": "Q1-2025",
+        "contract_start": "4/1/2025",
+        "contract_end": "3/31/2026",
+        "users": "30"
+      },
+      {
+        "sector": "Private",
+        "opp": "Aquinas - Crinetics; Commercial Training",
+        "account": "Crinetics Pharmaceuticals, Inc.",
+        "parent": "Crinetics Pharmaceuticals, Inc.",
+        "product": "Special License Discount",
+        "arr": -10000.0,
+        "period": "Q1-2025",
+        "contract_start": "4/1/2025",
+        "contract_end": "3/31/2026",
+        "users": "30"
+      },
+      {
+        "sector": "Private",
+        "opp": "Aquinas - Crinetics - Expansion",
+        "account": "Crinetics Pharmaceuticals, Inc.",
+        "parent": "Crinetics Pharmaceuticals, Inc.",
+        "product": "Enterprise Software License",
+        "arr": 12000.0,
+        "period": "Q3-2025",
+        "contract_start": "8/5/2025",
+        "contract_end": "8/4/2026",
+        "users": "20"
+      },
+      {
+        "sector": "Private",
+        "opp": "Aquinas - Crinetics - Expansion",
+        "account": "Crinetics Pharmaceuticals, Inc.",
+        "parent": "Crinetics Pharmaceuticals, Inc.",
+        "product": "Special License Discount",
+        "arr": -3600.0,
+        "period": "Q3-2025",
+        "contract_start": "8/5/2025",
+        "contract_end": "8/4/2026",
+        "users": "20"
+      },
+      {
+        "sector": "Private",
+        "opp": "Deep Well Services - Well Control Onboarding/Operators (2025-26 Renewal)",
+        "account": "Deep Well Services",
+        "parent": "Deep Well Services",
+        "product": "Standard",
+        "arr": 18000.0,
+        "period": "Q3-2025",
+        "contract_start": "8/1/2025",
+        "contract_end": "7/31/2026",
+        "users": "150"
+      },
+      {
+        "sector": "Private",
+        "opp": "ERAS Cardiac Society - Hosted Courses",
+        "account": "ERAS Cardiac Society",
+        "parent": "ERAS Cardiac Society",
+        "product": "Hosted Course (up to 10,000 users)",
+        "arr": 142857.14,
+        "period": "Q4-2025",
+        "contract_start": "12/1/2025",
+        "contract_end": "1/31/2027",
+        "users": "7500"
+      },
+      {
+        "sector": "Private",
+        "opp": "ERAS Cardiac Society - Hosted Courses",
+        "account": "ERAS Cardiac Society",
+        "parent": "ERAS Cardiac Society",
+        "product": "Special License Discount",
+        "arr": -100000.0,
+        "period": "Q4-2025",
+        "contract_start": "12/1/2025",
+        "contract_end": "1/31/2027",
+        "users": "7500"
+      },
+      {
+        "sector": "Private",
+        "opp": "Fennec Pharma - Commercial Training",
+        "account": "Fennec Pharmaceuticals, Inc.",
+        "parent": "Fennec Pharmaceuticals, Inc.",
+        "product": "Enterprise Software License",
+        "arr": 25200.0,
+        "period": "Q4-2025",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": "42"
+      },
+      {
+        "sector": "Private",
+        "opp": "Fennec Pharma - Commercial Training",
+        "account": "Fennec Pharmaceuticals, Inc.",
+        "parent": "Fennec Pharmaceuticals, Inc.",
+        "product": "Special License Discount",
+        "arr": -200.0,
+        "period": "Q4-2025",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": "42"
+      },
+      {
+        "sector": "Private",
+        "opp": "Gilead - Breast Annual",
+        "account": "Gilead - Oncology",
+        "parent": "Gilead Sciences, Inc.",
+        "product": "Enterprise Software License",
+        "arr": 96000.0,
+        "period": "Q4-2025",
+        "contract_start": "12/9/2025",
+        "contract_end": "12/8/2026",
+        "users": "160"
+      },
+      {
+        "sector": "Private",
+        "opp": "Gilead - Breast Annual",
+        "account": "Gilead - Oncology",
+        "parent": "Gilead Sciences, Inc.",
+        "product": "Special License Discount",
+        "arr": -46000.0,
+        "period": "Q4-2025",
+        "contract_start": "12/9/2025",
+        "contract_end": "12/8/2026",
+        "users": "160"
+      },
+      {
+        "sector": "Private",
+        "opp": "Guardant - AMEA expansion",
+        "account": "Guardant Health AMEA",
+        "parent": "Guardant Health Inc",
+        "product": "Enterprise Software License",
+        "arr": 30000.0,
+        "period": "Q3-2025",
+        "contract_start": "12/30/2025",
+        "contract_end": "12/29/2026",
+        "users": "50"
+      },
+      {
+        "sector": "Private",
+        "opp": "Guardant - AMEA expansion",
+        "account": "Guardant Health AMEA",
+        "parent": "Guardant Health Inc",
+        "product": "Enterprise Software License",
+        "arr": 1000.0,
+        "period": "Q3-2025",
+        "contract_start": "12/30/2025",
+        "contract_end": "12/29/2026",
+        "users": "50"
+      },
+      {
+        "sector": "Private",
+        "opp": "Guardant - AMEA expansion",
+        "account": "Guardant Health AMEA",
+        "parent": "Guardant Health Inc",
+        "product": "Special License Discount",
+        "arr": -1000.0,
+        "period": "Q3-2025",
+        "contract_start": "12/30/2025",
+        "contract_end": "12/29/2026",
+        "users": "50"
+      },
+      {
+        "sector": "Private",
+        "opp": "Guardant Health - Oncology (2025-26 Renewal)",
+        "account": "Guardant Health Inc",
+        "parent": "Guardant Health Inc",
+        "product": "Platinum",
+        "arr": 171000.0,
+        "period": "Q2-2025",
+        "contract_start": "4/30/2025",
+        "contract_end": "4/29/2026",
+        "users": "285"
+      },
+      {
+        "sector": "Private",
+        "opp": "Guardant Health - Add User",
+        "account": "Guardant Health Inc",
+        "parent": "Guardant Health Inc",
+        "product": "Platinum",
+        "arr": 15000.0,
+        "period": "Q3-2025",
+        "contract_start": "6/30/2025",
+        "contract_end": "4/29/2026",
+        "users": "25"
+      },
+      {
+        "sector": "Private",
+        "opp": "Aquinas - Halozyme Sales Training (2026-27 Renewal)",
+        "account": "Halozyme Therapeutics, Inc",
+        "parent": "Halozyme Therapeutics, Inc",
+        "product": "Special License Discount",
+        "arr": -8000.0,
+        "period": "Q4-2025",
+        "contract_start": "1/15/2026",
+        "contract_end": "3/14/2027",
+        "users": "105"
+      },
+      {
+        "sector": "Private",
+        "opp": "Aquinas - Halozyme Sales Training (2026-27 Renewal)",
+        "account": "Halozyme Therapeutics, Inc",
+        "parent": "Halozyme Therapeutics, Inc",
+        "product": "Enterprise Software License",
+        "arr": 63000.0,
+        "period": "Q4-2025",
+        "contract_start": "1/15/2026",
+        "contract_end": "3/14/2027",
+        "users": "105"
+      },
+      {
+        "sector": "Private",
+        "opp": "Aquinas - Halozyme Sales Training (2026-27 Renewal)",
+        "account": "Halozyme Therapeutics, Inc",
+        "parent": "Halozyme Therapeutics, Inc",
+        "product": "Special License Discount",
+        "arr": -16500.0,
+        "period": "Q4-2025",
+        "contract_start": "1/15/2026",
+        "contract_end": "3/14/2027",
+        "users": "105"
+      },
+      {
+        "sector": "Private",
+        "opp": "IMG Arena - Official Data Collector Training (2025-26 Renewal)",
+        "account": "IMG Arena UK Limited",
+        "parent": "Endeavor Holdings Group, Inc.",
+        "product": "Standard",
+        "arr": 36000.0,
+        "period": "Q1-2025",
+        "contract_start": "4/1/2025",
+        "contract_end": "3/31/2026",
+        "users": "300"
+      },
+      {
+        "sector": "Private",
+        "opp": "IMG Arena - Official Data Collector Training (2025-26 Renewal)",
+        "account": "IMG Arena UK Limited",
+        "parent": "Endeavor Holdings Group, Inc.",
+        "product": "Special License Discount",
+        "arr": -6120.0,
+        "period": "Q1-2025",
+        "contract_start": "4/1/2025",
+        "contract_end": "3/31/2026",
+        "users": "300"
+      },
+      {
+        "sector": "Private",
+        "opp": "Ivoclar - Pilot Conversion Opportunity",
+        "account": "Ivoclar Vivadent AG",
+        "parent": "Ivoclar Vivadent AG",
+        "product": "Enterprise Software License",
+        "arr": 250000.0,
+        "period": "Q4-2025",
+        "contract_start": "12/1/2025",
+        "contract_end": "11/30/2026",
+        "users": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Ivoclar - Pilot Conversion Opportunity",
+        "account": "Ivoclar Vivadent AG",
+        "parent": "Ivoclar Vivadent AG",
+        "product": "Enterprise Software License",
+        "arr": 50000.0,
+        "period": "Q4-2025",
+        "contract_start": "12/1/2025",
+        "contract_end": "11/30/2026",
+        "users": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Kiniksa - Sales Training (2025-26 Upsell)",
+        "account": "Kiniksa Pharmaceuticals Corp",
+        "parent": "Kiniksa Pharmaceuticals Corp",
+        "product": "Platinum",
+        "arr": 15000.0,
+        "period": "Q4-2024",
+        "contract_start": "3/18/2025",
+        "contract_end": "3/17/2026",
+        "users": "25"
+      },
+      {
+        "sector": "Private",
+        "opp": "Kiniksa - Sales Training (2025-26 Upsell)",
+        "account": "Kiniksa Pharmaceuticals Corp",
+        "parent": "Kiniksa Pharmaceuticals Corp",
+        "product": "Special License Discount",
+        "arr": -3000.0,
+        "period": "Q4-2024",
+        "contract_start": "3/18/2025",
+        "contract_end": "3/17/2026",
+        "users": "25"
+      },
+      {
+        "sector": "Private",
+        "opp": "Kiniksa Sales Training (2025-26 Renewal)",
+        "account": "Kiniksa Pharmaceuticals Corp",
+        "parent": "Kiniksa Pharmaceuticals Corp",
+        "product": "Platinum",
+        "arr": 64800.0,
+        "period": "Q4-2024",
+        "contract_start": "3/18/2025",
+        "contract_end": "3/17/2026",
+        "users": "108"
+      },
+      {
+        "sector": "Private",
+        "opp": "Kiniksa Sales Training (2025-26 Renewal)",
+        "account": "Kiniksa Pharmaceuticals Corp",
+        "parent": "Kiniksa Pharmaceuticals Corp",
+        "product": "Special License Discount",
+        "arr": -12960.0,
+        "period": "Q4-2024",
+        "contract_start": "3/18/2025",
+        "contract_end": "3/17/2026",
+        "users": "108"
+      },
+      {
+        "sector": "Private",
+        "opp": "Kiniksa - Sales Training (2025 co-term expansion)",
+        "account": "Kiniksa Pharmaceuticals Corp",
+        "parent": "Kiniksa Pharmaceuticals Corp",
+        "product": "Platinum",
+        "arr": 16800.0,
+        "period": "Q3-2025",
+        "contract_start": "9/18/2025",
+        "contract_end": "3/17/2026",
+        "users": "28"
+      },
+      {
+        "sector": "Private",
+        "opp": "Kiniksa - Sales Training (2025 co-term expansion)",
+        "account": "Kiniksa Pharmaceuticals Corp",
+        "parent": "Kiniksa Pharmaceuticals Corp",
+        "product": "Special License Discount",
+        "arr": -3360.0,
+        "period": "Q3-2025",
+        "contract_start": "9/18/2025",
+        "contract_end": "3/17/2026",
+        "users": "28"
+      },
+      {
+        "sector": "Private",
+        "opp": "Kyowa Kirin - Commercial Team",
+        "account": "Kyowa Kirin, Inc.",
+        "parent": "Kyowa Kirin Co Ltd",
+        "product": "Enterprise Software License",
+        "arr": 75000.0,
+        "period": "Q4-2025",
+        "contract_start": "1/5/2026",
+        "contract_end": "1/4/2027",
+        "users": "125"
+      },
+      {
+        "sector": "Private",
+        "opp": "Lantheus - (Aquinas) Commercial Training",
+        "account": "Lantheus",
+        "parent": "Lantheus",
+        "product": "Enterprise Software License",
+        "arr": 76200.0,
+        "period": "Q2-2025",
+        "contract_start": "5/19/2025",
+        "contract_end": "5/18/2026",
+        "users": "127"
+      },
+      {
+        "sector": "Private",
+        "opp": "Lantheus - (Aquinas) Commercial Training",
+        "account": "Lantheus",
+        "parent": "Lantheus",
+        "product": "Single Sign-On (SSO Integration)",
+        "arr": 10000.0,
+        "period": "Q2-2025",
+        "contract_start": "5/19/2025",
+        "contract_end": "5/18/2026",
+        "users": "127"
+      },
+      {
+        "sector": "Private",
+        "opp": "Lantheus - (Aquinas) Commercial Training",
+        "account": "Lantheus",
+        "parent": "Lantheus",
+        "product": "Special License Discount",
+        "arr": -22860.0,
+        "period": "Q2-2025",
+        "contract_start": "5/19/2025",
+        "contract_end": "5/18/2026",
+        "users": "127"
+      },
+      {
+        "sector": "Private",
+        "opp": "NFL - Referee Training (2025-26 Renewal)",
+        "account": "National Football League Inc",
+        "parent": "National Football League Inc",
+        "product": "Standard",
+        "arr": 10375.0,
+        "period": "Q3-2025",
+        "contract_start": "8/15/2025",
+        "contract_end": "8/14/2026",
+        "users": "83"
+      },
+      {
+        "sector": "Private",
+        "opp": "Neurocrine - 2024 Expansion (200 users) (2025-26 Multiyear Prepaid)",
+        "account": "Neurocrine Continental, Inc.",
+        "parent": "Neurocrine Continental, Inc.",
+        "product": "Gold",
+        "arr": 60000.0,
+        "period": "Q3-2024",
+        "contract_start": "10/1/2025",
+        "contract_end": "5/31/2026",
+        "users": "200"
+      },
+      {
+        "sector": "Private",
+        "opp": "Neurocrine - Leadership/Development (2025-26 Renewal)",
+        "account": "Neurocrine Continental, Inc.",
+        "parent": "Neurocrine Continental, Inc.",
+        "product": "Gold",
+        "arr": 142500.0,
+        "period": "Q4-2024",
+        "contract_start": "12/31/2024",
+        "contract_end": "12/30/2026",
+        "users": "475"
+      },
+      {
+        "sector": "Private",
+        "opp": "Neurocrine - Leadership/Development (2025-26 Renewal)",
+        "account": "Neurocrine Continental, Inc.",
+        "parent": "Neurocrine Continental, Inc.",
+        "product": "Single Sign-On (SSO Integration)",
+        "arr": 1000.0,
+        "period": "Q4-2024",
+        "contract_start": "12/31/2024",
+        "contract_end": "12/30/2026",
+        "users": "475"
+      },
+      {
+        "sector": "Private",
+        "opp": "Neurocrine - 2025 Expansion (225 users)",
+        "account": "Neurocrine Continental, Inc.",
+        "parent": "Neurocrine Continental, Inc.",
+        "product": "Gold",
+        "arr": 67500.0,
+        "period": "Q4-2025",
+        "contract_start": "11/30/2025",
+        "contract_end": "12/30/2026",
+        "users": "225"
+      },
+      {
+        "sector": "Private",
+        "opp": "NeuroNav - Internal Use (2025-26 Renewal)",
+        "account": "NeuroNav",
+        "parent": "NeuroNav",
+        "product": "Standard",
+        "arr": 1080.0,
+        "period": "Q3-2025",
+        "contract_start": "8/1/2025",
+        "contract_end": "7/31/2026",
+        "users": "9"
+      },
+      {
+        "sector": "Private",
+        "opp": "Novartis - Cardiovascular (LEQVIO; Pelacarsen)",
+        "account": "Novartis - Cardiovascular",
+        "parent": "Novartis Pharmaceuticals",
+        "product": "Enterprise Software License",
+        "arr": 50000.0,
+        "period": "Q2-2025",
+        "contract_start": "6/1/2025",
+        "contract_end": "5/31/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "Novartis - Kesimpta",
+        "account": "Novartis - Kesimpta",
+        "parent": "Novartis Pharmaceuticals",
+        "product": "Enterprise Software License",
+        "arr": 25000.0,
+        "period": "Q2-2025",
+        "contract_start": "7/1/2025",
+        "contract_end": "6/30/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "Novartis - Neuroscience: Huntington's",
+        "account": "Novartis - Neuroscience: Parkinsons",
+        "parent": "Novartis Pharmaceuticals",
+        "product": "Platinum",
+        "arr": 25000.0,
+        "period": "Q1-2026",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "Novartis - OAV101 IT",
+        "account": "Novartis - OAV101 IT",
+        "parent": "Novartis Pharmaceuticals",
+        "product": "Enterprise Software License",
+        "arr": 25000.0,
+        "period": "Q2-2025",
+        "contract_start": "7/1/2025",
+        "contract_end": "6/30/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "O'Shea Builders (2026 Renewal)",
+        "account": "O'Shea Builders",
+        "parent": "O'Shea Builders",
+        "product": "Standard",
+        "arr": 5040.0,
+        "period": "Q1-2026",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": "42"
+      },
+      {
+        "sector": "Private",
+        "opp": "O'Shea Builders (2026 Renewal)",
+        "account": "O'Shea Builders",
+        "parent": "O'Shea Builders",
+        "product": "Special License Discount",
+        "arr": -40.0,
+        "period": "Q1-2026",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": "42"
+      },
+      {
+        "sector": "Private",
+        "opp": "PGA TOUR Enterprises (2026 Renewal)",
+        "account": "PGA TOUR Enterprises, LLC",
+        "parent": "PGA TOUR Enterprises, LLC",
+        "product": "Standard",
+        "arr": 45000.0,
+        "period": "Q4-2025",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": "3010"
+      },
+      {
+        "sector": "Private",
+        "opp": "PGA TOUR Enterprises (2026 Renewal)",
+        "account": "PGA TOUR Enterprises, LLC",
+        "parent": "PGA TOUR Enterprises, LLC",
+        "product": "Badges & Certificates",
+        "arr": 7500.0,
+        "period": "Q4-2025",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": "3010"
+      },
+      {
+        "sector": "Private",
+        "opp": "PGA TOUR Enterprises (2026 Renewal)",
+        "account": "PGA TOUR Enterprises, LLC",
+        "parent": "PGA TOUR Enterprises, LLC",
+        "product": "Standard",
+        "arr": 1200.0,
+        "period": "Q4-2025",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": "3010"
+      },
+      {
+        "sector": "Private",
+        "opp": "PGA TOUR Enterprises (2026 Expansion)",
+        "account": "PGA TOUR Enterprises, LLC",
+        "parent": "PGA TOUR Enterprises, LLC",
+        "product": "Standard",
+        "arr": 36.0,
+        "period": "Q4-2025",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "PGA TOUR Enterprises (2026 Expansion)",
+        "account": "PGA TOUR Enterprises, LLC",
+        "parent": "PGA TOUR Enterprises, LLC",
+        "product": "Standard",
+        "arr": 1350.0,
+        "period": "Q4-2025",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "PGA TOUR Enterprises (2026 Expansion)",
+        "account": "PGA TOUR Enterprises, LLC",
+        "parent": "PGA TOUR Enterprises, LLC",
+        "product": "Badges & Certificates",
+        "arr": 225.0,
+        "period": "Q4-2025",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "AbbVie - IMBRUVICA & EPKINLY (Pharmacyclics) (2025-26 Renewal)",
+        "account": "Pharmacyclics, an AbbVie Company",
+        "parent": "AbbVie",
+        "product": "Gold",
+        "arr": 42000.0,
+        "period": "Q3-2025",
+        "contract_start": "9/9/2025",
+        "contract_end": "9/8/2026",
+        "users": "140"
+      },
+      {
+        "sector": "Private",
+        "opp": "AbbVie - IMBRUVICA & EPKINLY (Pharmacyclics) (2025-26 Renewal)",
+        "account": "Pharmacyclics, an AbbVie Company",
+        "parent": "AbbVie",
+        "product": "Special License Discount",
+        "arr": -3000.0,
+        "period": "Q3-2025",
+        "contract_start": "9/9/2025",
+        "contract_end": "9/8/2026",
+        "users": "140"
+      },
+      {
+        "sector": "Private",
+        "opp": "Prosponsive Logistics (2026-27 Renewal)",
+        "account": "Prosponsive Logistics",
+        "parent": "Prosponsive Logistics",
+        "product": "Enterprise Software License",
+        "arr": 15000.0,
+        "period": "Q1-2026",
+        "contract_start": "1/23/2026",
+        "contract_end": "1/22/2027",
+        "users": "50"
+      },
+      {
+        "sector": "Private",
+        "opp": "Prosponsive Logistics (2026-27 Renewal)",
+        "account": "Prosponsive Logistics",
+        "parent": "Prosponsive Logistics",
+        "product": "Special License Discount",
+        "arr": -3000.0,
+        "period": "Q1-2026",
+        "contract_start": "1/23/2026",
+        "contract_end": "1/22/2027",
+        "users": "50"
+      },
+      {
+        "sector": "Private",
+        "opp": "Seattle Seahawks",
+        "account": "Seattle Seahawks",
+        "parent": "Seattle Seahawks",
+        "product": "Learn to Win",
+        "arr": 12500.0,
+        "period": "Q1-2025",
+        "contract_start": "3/17/2025",
+        "contract_end": "3/16/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "Sigma Defense - Onboarding & Technical Training (2025-26 Renewal)",
+        "account": "Sigma Defense Systems",
+        "parent": "Sigma Defense Systems",
+        "product": "Gold",
+        "arr": 240000.0,
+        "period": "Q3-2025",
+        "contract_start": "8/1/2025",
+        "contract_end": "7/31/2026",
+        "users": "800"
+      },
+      {
+        "sector": "Private",
+        "opp": "Sigma Defense - Onboarding & Technical Training (2025-26 Renewal)",
+        "account": "Sigma Defense Systems",
+        "parent": "Sigma Defense Systems",
+        "product": "Single Sign-On (SSO Integration)",
+        "arr": 1000.0,
+        "period": "Q3-2025",
+        "contract_start": "8/1/2025",
+        "contract_end": "7/31/2026",
+        "users": "800"
+      },
+      {
+        "sector": "Private",
+        "opp": "Sobi - Sales Training (2026 Renewal)",
+        "account": "Sobi",
+        "parent": "Sobi - Swedish Orphan Biovitrum AB (publ)",
+        "product": "Enterprise Software License",
+        "arr": 111000.0,
+        "period": "Q4-2025",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": "185"
+      },
+      {
+        "sector": "Private",
+        "opp": "Sobi - Sales Training (2026 Renewal)",
+        "account": "Sobi",
+        "parent": "Sobi - Swedish Orphan Biovitrum AB (publ)",
+        "product": "Special License Discount",
+        "arr": -36000.0,
+        "period": "Q4-2025",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": "185"
+      },
+      {
+        "sector": "Private",
+        "opp": "Sun Pharma - Leadership Use Case (Novadynamix+)",
+        "account": "Sun Pharmaceutical Industries, Inc.",
+        "parent": "Sun Pharmaceutical Industries, Inc.",
+        "product": "Enterprise Software License",
+        "arr": 96000.0,
+        "period": "Q2-2025",
+        "contract_start": "6/9/2025",
+        "contract_end": "6/8/2026",
+        "users": "160"
+      },
+      {
+        "sector": "Private",
+        "opp": "Sun Pharma - Leadership Use Case (Novadynamix+)",
+        "account": "Sun Pharmaceutical Industries, Inc.",
+        "parent": "Sun Pharmaceutical Industries, Inc.",
+        "product": "Special License Discount",
+        "arr": -7680.0,
+        "period": "Q2-2025",
+        "contract_start": "6/9/2025",
+        "contract_end": "6/8/2026",
+        "users": "160"
+      },
+      {
+        "sector": "Private",
+        "opp": "Sun Pharma - Leadership Use Case (Novadynamix+)",
+        "account": "Sun Pharmaceutical Industries, Inc.",
+        "parent": "Sun Pharmaceutical Industries, Inc.",
+        "product": "Special License Discount",
+        "arr": -57600.0,
+        "period": "Q2-2025",
+        "contract_start": "6/9/2025",
+        "contract_end": "6/8/2026",
+        "users": "160"
+      },
+      {
+        "sector": "Private",
+        "opp": "The Breakers - ARR License Tracking (408)",
+        "account": "The Breakers Palm Beach, Inc.",
+        "parent": "The Breakers Palm Beach, Inc.",
+        "product": "Standard",
+        "arr": 48960.0,
+        "period": "Q4-2023",
+        "contract_start": "11/1/2023",
+        "contract_end": "10/31/2026",
+        "users": "408"
+      },
+      {
+        "sector": "Private",
+        "opp": "The Breakers - ARR License Tracking (408)",
+        "account": "The Breakers Palm Beach, Inc.",
+        "parent": "The Breakers Palm Beach, Inc.",
+        "product": "Platform Administration",
+        "arr": 58752.0,
+        "period": "Q4-2023",
+        "contract_start": "11/1/2023",
+        "contract_end": "10/31/2026",
+        "users": "408"
+      },
+      {
+        "sector": "Private",
+        "opp": "The Breakers - ARR License Tracking (408)",
+        "account": "The Breakers Palm Beach, Inc.",
+        "parent": "The Breakers Palm Beach, Inc.",
+        "product": "Special License Discount",
+        "arr": -34272.0,
+        "period": "Q4-2023",
+        "contract_start": "11/1/2023",
+        "contract_end": "10/31/2026",
+        "users": "408"
+      },
+      {
+        "sector": "Private",
+        "opp": "University of Michigan Football (2025-26 Renewal)",
+        "account": "University of Michigan",
+        "parent": "University of Michigan",
+        "product": "Learn to Win",
+        "arr": 9750.0,
+        "period": "Q1-2025",
+        "contract_start": "4/20/2025",
+        "contract_end": "4/19/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "USC Football (2025-26 Renewal)",
+        "account": "University of Southern California",
+        "parent": "University of Southern California",
+        "product": "Learn to Win",
+        "arr": 9750.0,
+        "period": "Q3-2025",
+        "contract_start": "7/1/2025",
+        "contract_end": "6/30/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "University of Utah - Football (2025-26 Renewal)",
+        "account": "University of Utah - Football",
+        "parent": "University of Utah - Football",
+        "product": "Learn to Win",
+        "arr": 9999.0,
+        "period": "Q4-2025",
+        "contract_start": "6/26/2025",
+        "contract_end": "6/25/2026",
+        "users": "1"
+      },
+      {
+        "sector": "Private",
+        "opp": "Urogen | Aquinas Resale",
+        "account": "UroGen Pharma Ltd.",
+        "parent": "UroGen Pharma Ltd.",
+        "product": "Enterprise Software License",
+        "arr": 60000.0,
+        "period": "Q2-2025",
+        "contract_start": "6/23/2025",
+        "contract_end": "6/22/2026",
+        "users": "120"
+      },
+      {
+        "sector": "Private",
+        "opp": "Urogen | Aquinas Resale",
+        "account": "UroGen Pharma Ltd.",
+        "parent": "UroGen Pharma Ltd.",
+        "product": "Special License Discount",
+        "arr": -18000.0,
+        "period": "Q2-2025",
+        "contract_start": "6/23/2025",
+        "contract_end": "6/22/2026",
+        "users": "120"
+      },
+      {
+        "sector": "Private",
+        "opp": "West Covina High Football (2026)",
+        "account": "West Covina High School",
+        "parent": "West Covina High School",
+        "product": "Learn to Win",
+        "arr": 2500.0,
+        "period": "Q4-2025",
+        "contract_start": "1/1/2026",
+        "contract_end": "12/31/2026",
+        "users": "1"
+      }
+    ]
+  },
+  "pipeline": {
+    "by_sector": {
+      "Public": {
+        "total_arr": 10591900,
+        "factored_arr": 5275584,
+        "deal_count": 31
+      },
+      "Private": {
+        "total_arr": 2271810,
+        "factored_arr": null,
+        "deal_count": 39
+      }
+    },
+    "by_stage": {
+      "Pursuit": {
+        "Public": 5399200,
+        "Private": 0,
+        "count": 14
+      },
+      "Proposal / RFP": {
+        "Public": 2150000,
+        "Private": 0,
+        "count": 4
+      },
+      "Submitted": {
+        "Public": 1325000,
+        "Private": 0,
+        "count": 4
+      },
+      "Pricing Proposed": {
+        "Public": 0,
+        "Private": 1099310,
+        "count": 14
+      },
+      "Identified": {
+        "Public": 807700,
+        "Private": 0,
+        "count": 5
+      },
+      "Value Proposition": {
+        "Public": 0,
+        "Private": 721750,
+        "count": 14
+      },
+      "Qualified": {
+        "Public": 660000,
+        "Private": 0,
+        "count": 3
+      },
+      "Qualification": {
+        "Public": 0,
+        "Private": 400000,
+        "count": 9
+      },
+      "Closed Won": {
+        "Public": 250000,
+        "Private": 45000,
+        "count": 2
+      },
+      "Verbal Agreement": {
+        "Public": 0,
+        "Private": 5750,
+        "count": 1
+      }
+    },
+    "by_forecast": {
+      "Pipeline": {
+        "Public": 6866900,
+        "Private": 998310
+      },
+      "Best Case": {
+        "Public": 2150000,
+        "Private": 1012750
+      },
+      "Closed": {
+        "Public": 250000,
+        "Private": 45000
+      },
+      "Commit": {
+        "Public": 1325000,
+        "Private": 215750
+      }
+    },
+    "by_type": {
+      "Existing Business - Renewal": {
+        "Public": 1036900,
+        "Private": 0
+      },
+      "New Business": {
+        "Public": 7255000,
+        "Private": 1361550
+      },
+      "Existing Business - Expansion": {
+        "Public": 2300000,
+        "Private": 910260
+      }
+    },
+    "by_owner": [
+      {
+        "name": "Jeff Adams",
+        "arr": 2525000,
+        "deals": 4
+      },
+      {
+        "name": "Joe Dingman",
+        "arr": 2250000,
+        "deals": 2
+      },
+      {
+        "name": "Tommy Hatton",
+        "arr": 1663110,
+        "deals": 25
+      },
+      {
+        "name": "Ben Dorr",
+        "arr": 1586900,
+        "deals": 8
+      },
+      {
+        "name": "Brett Funck",
+        "arr": 1575000,
+        "deals": 7
+      },
+      {
+        "name": "Kathleen Rogers",
+        "arr": 1200000,
+        "deals": 3
+      },
+      {
+        "name": "Jay Humphlett",
+        "arr": 800000,
+        "deals": 2
+      },
+      {
+        "name": "Van East",
+        "arr": 500000,
+        "deals": 1
+      },
+      {
+        "name": "Bret Kramer",
+        "arr": 318700,
+        "deals": 7
+      },
+      {
+        "name": "Wayne Metcalfe",
+        "arr": 290000,
+        "deals": 7
+      },
+      {
+        "name": "Jack Sommer",
+        "arr": 155000,
+        "deals": 4
+      }
+    ],
+    "deals": [
+      {
+        "sector": "Public",
+        "opp": "21st Operational Weather Squadron (Lt. Harris) (2026-27 Renewal)",
+        "account": "",
+        "arr": 5000,
+        "factored_arr": 450,
+        "stage": "Identified",
+        "forecast": "Pipeline",
+        "type": "Existing Business - Renewal",
+        "owner": "Ben Dorr",
+        "close_date": "6/6/2026",
+        "priority": "Priority 1",
+        "team": "Air Force"
+      },
+      {
+        "sector": "Public",
+        "opp": "USAF - AETC - 345th Services Schoolhouse - 7 lvl. (2026-27 Renewal)",
+        "account": "",
+        "arr": 99000,
+        "factored_arr": 8910,
+        "stage": "Identified",
+        "forecast": "Pipeline",
+        "type": "Existing Business - Renewal",
+        "owner": "Ben Dorr",
+        "close_date": "6/1/2026",
+        "priority": "Priority 1",
+        "team": "Air Force"
+      },
+      {
+        "sector": "Public",
+        "opp": "AETC (2nd AF) - 335 TRS Weather Squadron (SMSgt Conner) (2026-27 Renewal)",
+        "account": "",
+        "arr": 151200,
+        "factored_arr": 13608,
+        "stage": "Identified",
+        "forecast": "Pipeline",
+        "type": "Existing Business - Renewal",
+        "owner": "Ben Dorr",
+        "close_date": "5/31/2026",
+        "priority": "Priority 1",
+        "team": "Air Force"
+      },
+      {
+        "sector": "Public",
+        "opp": "USAF - AETC - 335th Financial Management (2026-27 Renewal)",
+        "account": "",
+        "arr": 52500,
+        "factored_arr": 4725,
+        "stage": "Identified",
+        "forecast": "Pipeline",
+        "type": "Existing Business - Renewal",
+        "owner": "Ben Dorr",
+        "close_date": "3/31/2026",
+        "priority": "Priority 1",
+        "team": "Air Force"
+      },
+      {
+        "sector": "Public",
+        "opp": "Vehicle Fleet Management (FIG) (2025-26 Renewal)",
+        "account": "",
+        "arr": 623950,
+        "factored_arr": 280778,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "Existing Business - Renewal",
+        "owner": "Ben Dorr",
+        "close_date": "2/27/2026",
+        "priority": "Priority 1",
+        "team": "Air Force"
+      },
+      {
+        "sector": "Public",
+        "opp": "USAF - AETC - 361 TRS - Aircrew Flight Equipment (2026-27 Renewal)",
+        "account": "",
+        "arr": 5250,
+        "factored_arr": 2363,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "Existing Business - Renewal",
+        "owner": "Ben Dorr",
+        "close_date": "5/25/2026",
+        "priority": "Priority 2",
+        "team": "Air Force"
+      },
+      {
+        "sector": "Public",
+        "opp": "Medical Education and Training Campus (METC)",
+        "account": "",
+        "arr": 250000,
+        "factored_arr": 168750,
+        "stage": "Proposal / RFP",
+        "forecast": "Best Case",
+        "type": "New Business",
+        "owner": "Ben Dorr",
+        "close_date": "3/31/2026",
+        "priority": "Priority 1",
+        "team": "Air Force"
+      },
+      {
+        "sector": "Public",
+        "opp": "USAF - AFMC - AFSC (Mr. Bowles & Dr. Meixner)",
+        "account": "",
+        "arr": 400000,
+        "factored_arr": 180000,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Ben Dorr",
+        "close_date": "3/31/2026",
+        "priority": "Priority 1",
+        "team": "Air Force"
+      },
+      {
+        "sector": "Public",
+        "opp": "ACC Enterprise Upsell (FY25)",
+        "account": "",
+        "arr": 2000000,
+        "factored_arr": 900000,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "Existing Business - Expansion",
+        "owner": "Joe Dingman",
+        "close_date": "6/30/2026",
+        "priority": "Priority 1",
+        "team": "Air Force"
+      },
+      {
+        "sector": "Public",
+        "opp": "DAF CLOUDwerx ODIN Team (2026 ARR)",
+        "account": "",
+        "arr": 250000,
+        "factored_arr": 250000,
+        "stage": "Closed Won",
+        "forecast": "Closed",
+        "type": "New Business",
+        "owner": "Joe Dingman",
+        "close_date": "2/5/2026",
+        "priority": "Priority 2",
+        "team": "Air Force"
+      },
+      {
+        "sector": "Public",
+        "opp": "533rd TRS - Delta 1",
+        "account": "",
+        "arr": 300000,
+        "factored_arr": 135000,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Kathleen Rogers",
+        "close_date": "3/31/2026",
+        "priority": "Priority 1",
+        "team": "Air Force"
+      },
+      {
+        "sector": "Public",
+        "opp": "319th CTS - Delta 1",
+        "account": "",
+        "arr": 600000,
+        "factored_arr": 486000,
+        "stage": "Submitted",
+        "forecast": "Commit",
+        "type": "New Business",
+        "owner": "Kathleen Rogers",
+        "close_date": "3/31/2026",
+        "priority": "Priority 1",
+        "team": "Air Force"
+      },
+      {
+        "sector": "Public",
+        "opp": "BMT - Delta 1",
+        "account": "",
+        "arr": 300000,
+        "factored_arr": 202500,
+        "stage": "Proposal / RFP",
+        "forecast": "Best Case",
+        "type": "New Business",
+        "owner": "Kathleen Rogers",
+        "close_date": "3/31/2026",
+        "priority": "Priority 1",
+        "team": "Air Force"
+      },
+      {
+        "sector": "Public",
+        "opp": "US Army - SFCoE (IO-PO-PAO)",
+        "account": "",
+        "arr": 350000,
+        "factored_arr": 283500,
+        "stage": "Submitted",
+        "forecast": "Commit",
+        "type": "New Business",
+        "owner": "Brett Funck",
+        "close_date": "6/30/2026",
+        "priority": "Priority 1",
+        "team": "Army"
+      },
+      {
+        "sector": "Public",
+        "opp": "US Army -  Robotics & Tech Integrator (RTIC) SFCoE (390A)",
+        "account": "",
+        "arr": 75000,
+        "factored_arr": 60750,
+        "stage": "Submitted",
+        "forecast": "Commit",
+        "type": "New Business",
+        "owner": "Brett Funck",
+        "close_date": "3/31/2026",
+        "priority": "Priority 1",
+        "team": "Army"
+      },
+      {
+        "sector": "Public",
+        "opp": "US Army - Aviation 150U & Assessments for AVCoE",
+        "account": "",
+        "arr": 300000,
+        "factored_arr": 243000,
+        "stage": "Submitted",
+        "forecast": "Commit",
+        "type": "New Business",
+        "owner": "Brett Funck",
+        "close_date": "3/31/2026",
+        "priority": "Priority 1",
+        "team": "Army"
+      },
+      {
+        "sector": "Public",
+        "opp": "US Army - Aviation 15 Series AIT - MOS",
+        "account": "",
+        "arr": 350000,
+        "factored_arr": 157500,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Brett Funck",
+        "close_date": "6/30/2026",
+        "priority": "Priority 2",
+        "team": "Army"
+      },
+      {
+        "sector": "Public",
+        "opp": "US Army - Arizona State University",
+        "account": "",
+        "arr": 75000,
+        "factored_arr": 33750,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Brett Funck",
+        "close_date": "5/29/2026",
+        "priority": "Priority 2",
+        "team": "Army"
+      },
+      {
+        "sector": "Public",
+        "opp": "US Army- ROTC",
+        "account": "",
+        "arr": 350000,
+        "factored_arr": 78750,
+        "stage": "Qualified",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Brett Funck",
+        "close_date": "5/29/2026",
+        "priority": "Priority 2",
+        "team": "Army"
+      },
+      {
+        "sector": "Public",
+        "opp": "US Army - 1st Corps",
+        "account": "",
+        "arr": 75000,
+        "factored_arr": 33750,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Brett Funck",
+        "close_date": "4/30/2026",
+        "priority": "Priority 2",
+        "team": "Army"
+      },
+      {
+        "sector": "Public",
+        "opp": "US Army - (LPD Pilot) 1st Cavalry Div",
+        "account": "",
+        "arr": 10000,
+        "factored_arr": 4500,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Jack Sommer",
+        "close_date": "6/30/2026",
+        "priority": "Priority 1",
+        "team": "Army"
+      },
+      {
+        "sector": "Public",
+        "opp": "US Army - Transportation School (Sustainment CoE, TRADOC) / SDR",
+        "account": "",
+        "arr": 10000,
+        "factored_arr": 1250,
+        "stage": "Qualified",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Jack Sommer",
+        "close_date": "6/30/2026",
+        "priority": "Priority 1",
+        "team": "Army"
+      },
+      {
+        "sector": "Public",
+        "opp": "US Army - Directorate of Simulation (MSTC, PEO STRI)",
+        "account": "",
+        "arr": 125000,
+        "factored_arr": 56250,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Jack Sommer",
+        "close_date": "5/30/2026",
+        "priority": "Priority 1",
+        "team": "Army"
+      },
+      {
+        "sector": "Public",
+        "opp": "US Army- (E3B Pilot) 25th Infantry Div",
+        "account": "",
+        "arr": 10000,
+        "factored_arr": 4500,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Jack Sommer",
+        "close_date": "6/30/2026",
+        "priority": "Priority 2",
+        "team": "Army"
+      },
+      {
+        "sector": "Public",
+        "opp": "Renewal | PEO Digital |Flank Speed Wireless Renewal",
+        "account": "",
+        "arr": 100000,
+        "factored_arr": 67500,
+        "stage": "Proposal / RFP",
+        "forecast": "Best Case",
+        "type": "Existing Business - Renewal",
+        "owner": "Jeff Adams",
+        "close_date": "2/28/2026",
+        "priority": "Priority 1",
+        "team": "Navy"
+      },
+      {
+        "sector": "Public",
+        "opp": "Expansion | PEO Digital | Flank Speed Wireless",
+        "account": "",
+        "arr": 300000,
+        "factored_arr": 135000,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "Existing Business - Expansion",
+        "owner": "Jeff Adams",
+        "close_date": "2/28/2026",
+        "priority": "Priority 1",
+        "team": "Navy"
+      },
+      {
+        "sector": "Public",
+        "opp": "New | CNSF SMWDC | Surface Warfare Site License (STRMS/ATG/SMWDC)",
+        "account": "",
+        "arr": 1500000,
+        "factored_arr": 1012500,
+        "stage": "Proposal / RFP",
+        "forecast": "Best Case",
+        "type": "New Business",
+        "owner": "Jeff Adams",
+        "close_date": "6/30/2026",
+        "priority": "Priority 1",
+        "team": "Navy"
+      },
+      {
+        "sector": "Public",
+        "opp": "New | NAVWAR | Overmatch, ACS, ISSM Use Cases",
+        "account": "",
+        "arr": 625000,
+        "factored_arr": 281250,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Jeff Adams",
+        "close_date": "5/31/2026",
+        "priority": "Priority 1",
+        "team": "Navy"
+      },
+      {
+        "sector": "Public",
+        "opp": "Amazon Web Services (AWS)-",
+        "account": "",
+        "arr": 300000,
+        "factored_arr": 18750,
+        "stage": "Qualified",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Jay Humphlett",
+        "close_date": "6/30/2026",
+        "priority": "Priority 1",
+        "team": "Partner/OEM"
+      },
+      {
+        "sector": "Public",
+        "opp": "Intelligence Systems & Analytics-",
+        "account": "",
+        "arr": 500000,
+        "factored_arr": 45000,
+        "stage": "Identified",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Jay Humphlett",
+        "close_date": "6/30/2026",
+        "priority": "Priority 1",
+        "team": "Partner/OEM"
+      },
+      {
+        "sector": "Public",
+        "opp": "Black Pearl - Sigma Partnership Opp",
+        "account": "",
+        "arr": 500000,
+        "factored_arr": 125000,
+        "stage": "Pursuit",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Van East",
+        "close_date": "6/30/2026",
+        "priority": "Priority 1",
+        "team": "Partner/OEM"
+      },
+      {
+        "sector": "Private",
+        "opp": "Dominion Energy - DEV Training",
+        "account": "Dominion Energy",
+        "arr": 50000,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Commit",
+        "type": "New Business",
+        "owner": "Bret Kramer",
+        "close_date": "2/28/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Georgia Power - Interconnection Planning & Policy",
+        "account": "Southern Company",
+        "arr": 40000,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Commit",
+        "type": "New Business",
+        "owner": "Bret Kramer",
+        "close_date": "3/31/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Alabama Power - Knowledge Extraction - Generation",
+        "account": "Southern Company",
+        "arr": 40000,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Best Case",
+        "type": "New Business",
+        "owner": "Bret Kramer",
+        "close_date": "3/31/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Southern Telecom - Knowledge Extractio",
+        "account": "Southern Telecom",
+        "arr": 100000,
+        "factored_arr": null,
+        "stage": "Qualification",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Bret Kramer",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Prosponsive Logistics (2026-27 Upsell)",
+        "account": "Prosponsive Logistics",
+        "arr": 6000,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Best Case",
+        "type": "Existing Business - Expansion",
+        "owner": "Bret Kramer",
+        "close_date": "2/28/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Africa Re - Annual License (2026 Upsell)",
+        "account": "African Reinsurance Corporation",
+        "arr": 2700,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Best Case",
+        "type": "Existing Business - Expansion",
+        "owner": "Bret Kramer",
+        "close_date": "3/31/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Xylem - Water Sustainability - Knowledge Transfer Expansion",
+        "account": "Xylem",
+        "arr": 80000,
+        "factored_arr": null,
+        "stage": "Qualification",
+        "forecast": "Pipeline",
+        "type": "Existing Business - Expansion",
+        "owner": "Bret Kramer",
+        "close_date": "5/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "ERS - AstraZeneca; Camizestrant",
+        "account": "AstraZeneca - Camizestrant",
+        "arr": 45000,
+        "factored_arr": null,
+        "stage": "Closed Won",
+        "forecast": "Closed",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "1/14/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Mayne Pharma - Commercial Team (MLR)",
+        "account": "Mayne",
+        "arr": 36000,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "3/31/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Ionis Pharma - Medical Use Case",
+        "account": "Ionis Pharmaceuticals, Inc.",
+        "arr": 30000,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Veolia - Plant/Site Operations Pilot",
+        "account": "Veolia North America",
+        "arr": 10000,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Syndax - MSL (Water Fall partner)",
+        "account": "Syndax",
+        "arr": 18750,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "ERS - AstraZeneca - RFBT Program",
+        "account": "AstraZeneca - Respiratory",
+        "arr": 30000,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Best Case",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Bausch Health (Salix) - Measurement Pilot",
+        "account": "Bausch Health",
+        "arr": 70000,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Commit",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Merck - Verona Pharma Commercial Training",
+        "account": "Merck",
+        "arr": 96000,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Ipsen - MSL Ethos Methodology (ALG)",
+        "account": "Ipsen",
+        "arr": 75000,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Best Case",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Galderma - Immunology Sales Team (ALG)",
+        "account": "Galderma",
+        "arr": 162000,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Sanofi - Medical Gastro",
+        "account": "Sanofi",
+        "arr": 25000,
+        "factored_arr": null,
+        "stage": "Qualification",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Jazz Pharma - RYLAZE\ufffd MSL",
+        "account": "Jazz Pharmaceuticals",
+        "arr": 25000,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Commit",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "argenX - Leadership (Novadynamix+)",
+        "account": "argenx",
+        "arr": 28800,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Best Case",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Xeris - MSL Use Case",
+        "account": "Xeris",
+        "arr": 40000,
+        "factored_arr": null,
+        "stage": "Qualification",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "ArgenX - Field Medical",
+        "account": "argenx",
+        "arr": 50000,
+        "factored_arr": null,
+        "stage": "Qualification",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Philips Medical Device - Medical Affairs",
+        "account": "Philips",
+        "arr": 50000,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Ionis - Commercial Training",
+        "account": "Ionis Pharmaceuticals, Inc.",
+        "arr": 50000,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "AbbVie - Clinical",
+        "account": "AbbVie",
+        "arr": 500000,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Best Case",
+        "type": "Existing Business - Expansion",
+        "owner": "Tommy Hatton",
+        "close_date": "2/28/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "AbbVie - Oncology Team Sales Training (VENCLEXTA) (2026-27 Expansion)",
+        "account": "AbbVie - VENCLEXTA",
+        "arr": 5750,
+        "factored_arr": null,
+        "stage": "Verbal Agreement",
+        "forecast": "Commit",
+        "type": "Existing Business - Expansion",
+        "owner": "Tommy Hatton",
+        "close_date": "2/28/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Deep Well - USA, Middle East, and LATAM Expansion",
+        "account": "Deep Well Services",
+        "arr": 84000,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Pipeline",
+        "type": "Existing Business - Expansion",
+        "owner": "Tommy Hatton",
+        "close_date": "3/31/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Kyowa Kirin - Rare Disease AI Package",
+        "account": "Kyowa Kirin, Inc.",
+        "arr": 135000,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Best Case",
+        "type": "Existing Business - Expansion",
+        "owner": "Tommy Hatton",
+        "close_date": "3/31/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "beForte - Domp\ufffd (2026 Expansion)",
+        "account": "beForte",
+        "arr": 2250,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Best Case",
+        "type": "Existing Business - Expansion",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Novartis - SCEMBLIX Sales (WaterFall)",
+        "account": "Novartis Pharmaceuticals",
+        "arr": 48000,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Best Case",
+        "type": "Existing Business - Expansion",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Sun Pharma (Novadynamix+) - Leadership Use Case Expansion",
+        "account": "Sun Pharmaceutical Industries, Inc.",
+        "arr": 20000,
+        "factored_arr": null,
+        "stage": "Qualification",
+        "forecast": "Pipeline",
+        "type": "Existing Business - Expansion",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "The Breakers (2026 Expansion)",
+        "account": "The Breakers Palm Beach, Inc.",
+        "arr": 26560,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Pipeline",
+        "type": "Existing Business - Expansion",
+        "owner": "Tommy Hatton",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Alnylam - International",
+        "account": "Alnylam Pharmaceuticals, Inc.",
+        "arr": 45000,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Best Case",
+        "type": "New Business",
+        "owner": "Wayne Metcalfe",
+        "close_date": "3/31/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Lennox International Inc - Warehouse onboarding",
+        "account": "Lennox International Inc.",
+        "arr": 25000,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Commit",
+        "type": "New Business",
+        "owner": "Wayne Metcalfe",
+        "close_date": "3/31/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "PING - Annual Conversion - Golf Club Assembly Training",
+        "account": "PING",
+        "arr": 100000,
+        "factored_arr": null,
+        "stage": "Pricing Proposed",
+        "forecast": "Best Case",
+        "type": "New Business",
+        "owner": "Wayne Metcalfe",
+        "close_date": "5/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Right to Dream Academies",
+        "account": "San Diego FC",
+        "arr": 25000,
+        "factored_arr": null,
+        "stage": "Qualification",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Wayne Metcalfe",
+        "close_date": "5/30/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Levare - Field Technicians",
+        "account": "Levare International Limited",
+        "arr": 40000,
+        "factored_arr": null,
+        "stage": "Qualification",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Wayne Metcalfe",
+        "close_date": "6/26/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Tive-enablement",
+        "account": "Tive",
+        "arr": 35000,
+        "factored_arr": null,
+        "stage": "Value Proposition",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Wayne Metcalfe",
+        "close_date": "6/27/2026",
+        "priority": "",
+        "team": ""
+      },
+      {
+        "sector": "Private",
+        "opp": "Astellas - New Drug Launch",
+        "account": "Astellas Pharma",
+        "arr": 20000,
+        "factored_arr": null,
+        "stage": "Qualification",
+        "forecast": "Pipeline",
+        "type": "New Business",
+        "owner": "Wayne Metcalfe",
+        "close_date": "6/30/2026",
+        "priority": "",
+        "team": ""
+      }
+    ]
+  },
+  "partners": {
+    "totals": {
+      "arr": 4739311,
+      "nrr": 19800,
+      "deal_count": 17,
+      "partner_count": 11
+    },
+    "by_partner": [
+      {
+        "name": "Ready Relevant Learning (RRL)",
+        "arr": 1500000,
+        "nrr": 0,
+        "deals": 1
+      },
+      {
+        "name": "Aviation Center of Excellence",
+        "arr": 1325000,
+        "nrr": 0,
+        "deals": 2
+      },
+      {
+        "name": "Aquinas Leadership Group LLC",
+        "arr": 774000,
+        "nrr": 19800,
+        "deals": 4
+      },
+      {
+        "name": "NAVWAR - Naval Information Warfare Systems Command",
+        "arr": 300000,
+        "nrr": 0,
+        "deals": 1
+      },
+      {
+        "name": "Silvergate Consulting, LLC",
+        "arr": 300000,
+        "nrr": 0,
+        "deals": 1
+      },
+      {
+        "name": "US Army - Special Operations Cmd",
+        "arr": 300000,
+        "nrr": 0,
+        "deals": 1
+      },
+      {
+        "name": "Educational Resource Systems, Inc.",
+        "arr": 120000,
+        "nrr": 0,
+        "deals": 3
+      },
+      {
+        "name": "AES Consultants, LLC",
+        "arr": 55311,
+        "nrr": 0,
+        "deals": 1
+      },
+      {
+        "name": "Cyber CoE",
+        "arr": 25000,
+        "nrr": 0,
+        "deals": 1
+      },
+      {
+        "name": "Better Ways Connect",
+        "arr": 20000,
+        "nrr": 0,
+        "deals": 1
+      },
+      {
+        "name": "Waterfall Communications LLC",
+        "arr": 20000,
+        "nrr": 0,
+        "deals": 1
+      }
+    ],
+    "by_quarter": {
+      "Q1-2026": {
+        "arr": 689000,
+        "nrr": 19800
+      },
+      "Q2-2026": {
+        "arr": 1635000,
+        "nrr": 0
+      },
+      "Q3-2026": {
+        "arr": 1045000,
+        "nrr": 0
+      },
+      "Q4-2026": {
+        "arr": 1370311,
+        "nrr": 0
+      }
+    },
+    "deals": [
+      {
+        "opp": "PGA TOUR Enterprises (2027 Renewal)",
+        "arr": 55311,
+        "nrr": 0,
+        "amount": 55311,
+        "probability": 50.0,
+        "close_date": "12/31/2026",
+        "quarter": "Q4-2026",
+        "partner": "AES Consultants, LLC"
+      },
+      {
+        "opp": "Viatris - Aquinas/L2W Opthamology",
+        "arr": 24000,
+        "nrr": 0,
+        "amount": 24000,
+        "probability": 0.0,
+        "close_date": "1/15/2026",
+        "quarter": "Q1-2026",
+        "partner": "Aquinas Leadership Group LLC"
+      },
+      {
+        "opp": "AbbVie - PVEK; Aquinas Services 2026",
+        "arr": 0,
+        "nrr": 19800,
+        "amount": 19800,
+        "probability": 0.0,
+        "close_date": "2/27/2026",
+        "quarter": "Q1-2026",
+        "partner": "Aquinas Leadership Group LLC"
+      },
+      {
+        "opp": "Ionis Pharma - Medical Use Case",
+        "arr": 30000,
+        "nrr": 0,
+        "amount": 30000,
+        "probability": 50.0,
+        "close_date": "6/30/2026",
+        "quarter": "Q2-2026",
+        "partner": "Aquinas Leadership Group LLC"
+      },
+      {
+        "opp": "Bausch Health - Sales Platform (ACTO Ripout)",
+        "arr": 720000,
+        "nrr": 0,
+        "amount": 720000,
+        "probability": 50.0,
+        "close_date": "9/30/2026",
+        "quarter": "Q3-2026",
+        "partner": "Aquinas Leadership Group LLC"
+      },
+      {
+        "opp": "US Army - 1st Corps",
+        "arr": 75000,
+        "nrr": 0,
+        "amount": 75000,
+        "probability": 50.0,
+        "close_date": "4/30/2026",
+        "quarter": "Q2-2026",
+        "partner": "Aviation Center of Excellence"
+      },
+      {
+        "opp": "US Army - Flight School Next",
+        "arr": 1250000,
+        "nrr": 0,
+        "amount": 1250000,
+        "probability": 25.0,
+        "close_date": "10/1/2026",
+        "quarter": "Q4-2026",
+        "partner": "Aviation Center of Excellence"
+      },
+      {
+        "opp": "BetterWaysConnect Partner opp (Airline training)",
+        "arr": 20000,
+        "nrr": 0,
+        "amount": 20000,
+        "probability": 0.0,
+        "close_date": "2/11/2026",
+        "quarter": "Q1-2026",
+        "partner": "Better Ways Connect"
+      },
+      {
+        "opp": "US Army - Cyber CoE",
+        "arr": 25000,
+        "nrr": 0,
+        "amount": 25000,
+        "probability": 25.0,
+        "close_date": "9/30/2026",
+        "quarter": "Q3-2026",
+        "partner": "Cyber CoE"
+      },
+      {
+        "opp": "ERS - AstraZeneca; Camizestrant",
+        "arr": 45000,
+        "nrr": 0,
+        "amount": 45000,
+        "probability": 100.0,
+        "close_date": "1/14/2026",
+        "quarter": "Q1-2026",
+        "partner": "Educational Resource Systems, Inc."
+      },
+      {
+        "opp": "ERS - AstraZeneca - RFBT Program",
+        "arr": 30000,
+        "nrr": 0,
+        "amount": 30000,
+        "probability": 70.0,
+        "close_date": "6/30/2026",
+        "quarter": "Q2-2026",
+        "partner": "Educational Resource Systems, Inc."
+      },
+      {
+        "opp": "ERS - AstraZeneca; Camizestrant (2027 Renewal)",
+        "arr": 45000,
+        "nrr": 0,
+        "amount": 45000,
+        "probability": 50.0,
+        "close_date": "12/31/2026",
+        "quarter": "Q4-2026",
+        "partner": "Educational Resource Systems, Inc."
+      },
+      {
+        "opp": "Expansion | PEO Digital | Flank Speed Wireless",
+        "arr": 300000,
+        "nrr": 0,
+        "amount": 300000,
+        "probability": 50.0,
+        "close_date": "2/28/2026",
+        "quarter": "Q1-2026",
+        "partner": "NAVWAR - Naval Information Warfare Systems Command"
+      },
+      {
+        "opp": "New | CNSF SMWDC | Surface Warfare Site License (STRMS/ATG/SMWDC)",
+        "arr": 1500000,
+        "nrr": 0,
+        "amount": 1500000,
+        "probability": 75.0,
+        "close_date": "6/30/2026",
+        "quarter": "Q2-2026",
+        "partner": "Ready Relevant Learning (RRL)"
+      },
+      {
+        "opp": "New | NAVAIR | V-22 (PMA-275) Use Case",
+        "arr": 300000,
+        "nrr": 0,
+        "amount": 300000,
+        "probability": 50.0,
+        "close_date": "9/30/2026",
+        "quarter": "Q3-2026",
+        "partner": "Silvergate Consulting, LLC"
+      },
+      {
+        "opp": "US Army - Aviation 150U & Assessments for AVCoE",
+        "arr": 300000,
+        "nrr": 0,
+        "amount": 300000,
+        "probability": 90.0,
+        "close_date": "3/31/2026",
+        "quarter": "Q1-2026",
+        "partner": "US Army - Special Operations Cmd"
+      },
+      {
+        "opp": "Waterfall - BMS: Medical Heme MF (2026-27 Renewal)",
+        "arr": 20000,
+        "nrr": 0,
+        "amount": 20000,
+        "probability": 50.0,
+        "close_date": "10/31/2026",
+        "quarter": "Q4-2026",
+        "partner": "Waterfall Communications LLC"
+      }
+    ]
+  }
+}
