@@ -270,6 +270,8 @@
       <select class="pipe-filter" id="pp-f-stage"><option value="">All</option></select>
       <span class="pipe-lbl">Priority:</span>
       <select class="pipe-filter" id="pp-f-priority"><option value="">All</option></select>
+      <span class="pipe-lbl">Team:</span>
+      <select class="pipe-filter" id="pp-f-team"><option value="">All</option></select>
       <span class="pipe-count" id="pp-count"></span>
     </div>
     <div class="pipe-wrap">
@@ -290,8 +292,8 @@
       <select class="pipe-filter" id="pl-f-status"><option value="">All</option></select>
       <span class="pipe-lbl">Source:</span>
       <select class="pipe-filter" id="pl-f-source"><option value="">All</option></select>
-      <span class="pipe-lbl">Branch:</span>
-      <select class="pipe-filter" id="pl-f-branch"><option value="">All</option></select>
+      <span class="pipe-lbl">Team:</span>
+      <select class="pipe-filter" id="pl-f-team"><option value="">All</option></select>
       <span class="pipe-count" id="pl-count"></span>
     </div>
     <div class="pipe-wrap">
@@ -561,6 +563,7 @@ function ppGetDeals() {
   if(PP.filters.forecast) d=d.filter(x=>x.forecastCat===PP.filters.forecast);
   if(PP.filters.stage) d=d.filter(x=>x.pgoStage===PP.filters.stage);
   if(PP.filters.priority) d=d.filter(x=>x.priority===PP.filters.priority);
+  if(PP.filters.team) d=d.filter(x=>x.team===PP.filters.team);
   return d;
 }
 
@@ -669,16 +672,22 @@ function renderPubPipe() {
 }
 
 function initPubPipe() {
-  const forecasts=[...new Set(PP_DATA.deals.map(d=>d.forecastCat).filter(Boolean))].sort();
-  const stages=[...new Set(PP_DATA.deals.map(d=>d.pgoStage).filter(Boolean))].sort();
+  const forecastOrder=['Closed','Commit','Best Case','Pipeline'];
+  const stageOrder=['Closed Won','Submitted (90%)','Proposal / RFP (75%)','Pursuit (50%)','Qualified (25%)','Identified (10%)'];
+  const forecasts=forecastOrder.filter(f=>PP_DATA.deals.some(d=>d.forecastCat===f));
+  const allStages=[...new Set(PP_DATA.deals.map(d=>d.pgoStage).filter(Boolean))];
+  const stages=stageOrder.filter(s=>allStages.includes(s)).concat(allStages.filter(s=>!stageOrder.includes(s)));
   const priorities=[...new Set(PP_DATA.deals.map(d=>d.priority).filter(Boolean))].sort();
+  const teams=[...new Set(PP_DATA.deals.map(d=>d.team).filter(Boolean))].sort();
   forecasts.forEach(f=>$('#pp-f-forecast').innerHTML+=`<option>${f}</option>`);
   stages.forEach(s=>$('#pp-f-stage').innerHTML+=`<option>${s}</option>`);
   priorities.forEach(p=>$('#pp-f-priority').innerHTML+=`<option>${p}</option>`);
+  teams.forEach(t=>$('#pp-f-team').innerHTML+=`<option>${t}</option>`);
   $('#pp-search').addEventListener('input',e=>{PP.search=e.target.value;renderPubPipe();});
   $('#pp-f-forecast').addEventListener('change',e=>{PP.filters.forecast=e.target.value;renderPubPipe();});
   $('#pp-f-stage').addEventListener('change',e=>{PP.filters.stage=e.target.value;renderPubPipe();});
   $('#pp-f-priority').addEventListener('change',e=>{PP.filters.priority=e.target.value;renderPubPipe();});
+  $('#pp-f-team').addEventListener('change',e=>{PP.filters.team=e.target.value;renderPubPipe();});
   renderPubPipe();
 }
 
@@ -796,8 +805,12 @@ function renderPrivPipe() {
 }
 
 function initPrivPipe() {
-  const forecasts=[...new Set(PVP_DATA.deals.map(d=>d.forecastCat).filter(Boolean))].sort();
-  const stages=[...new Set(PVP_DATA.deals.map(d=>d.stage).filter(Boolean))].sort();
+  const forecastOrder=['Closed','Commit','Best Case','Pipeline'];
+  const stageOrder=['Closed Won','Verbal Agreement','Pricing Proposed','Value Proposition','Qualification'];
+  const allForecasts=[...new Set(PVP_DATA.deals.map(d=>d.forecastCat).filter(Boolean))];
+  const forecasts=forecastOrder.filter(f=>allForecasts.includes(f)).concat(allForecasts.filter(f=>!forecastOrder.includes(f)));
+  const allStages=[...new Set(PVP_DATA.deals.map(d=>d.stage).filter(Boolean))];
+  const stages=stageOrder.filter(s=>allStages.includes(s)).concat(allStages.filter(s=>!stageOrder.includes(s)));
   const owners=[...new Set(PVP_DATA.deals.map(d=>d.owner).filter(Boolean))].sort();
   forecasts.forEach(f=>$('#pvp-f-forecast').innerHTML+=`<option>${f}</option>`);
   stages.forEach(s=>$('#pvp-f-stage').innerHTML+=`<option>${s}</option>`);
@@ -837,7 +850,7 @@ function plGetLeads() {
   if(PL.search){const q=PL.search.toLowerCase();d=d.filter(x=>x.company.toLowerCase().includes(q)||x.firstName.toLowerCase().includes(q)||x.lastName.toLowerCase().includes(q)||x.owner.toLowerCase().includes(q)||(x.title||'').toLowerCase().includes(q));}
   if(PL.filters.status) d=d.filter(x=>x.status===PL.filters.status);
   if(PL.filters.source) d=d.filter(x=>x.source===PL.filters.source);
-  if(PL.filters.branch) d=d.filter(x=>x.branch===PL.filters.branch);
+  if(PL.filters.team) d=d.filter(x=>x.team===PL.filters.team);
   return d;
 }
 
@@ -928,16 +941,18 @@ function renderPubLeads() {
 }
 
 function initPubLeads() {
-  const statuses=[...new Set(PL_DATA.leads.map(d=>d.status).filter(Boolean))].sort();
+  const statusOrder=['New','Working','Nurture'];
+  const allStatuses=[...new Set(PL_DATA.leads.map(d=>d.status).filter(Boolean))];
+  const statuses=statusOrder.filter(s=>allStatuses.includes(s)).concat(allStatuses.filter(s=>!statusOrder.includes(s)));
   const sources=[...new Set(PL_DATA.leads.map(d=>d.source).filter(Boolean))].sort();
-  const branches=[...new Set(PL_DATA.leads.map(d=>d.branch).filter(Boolean))].sort();
+  const teams=[...new Set(PL_DATA.leads.map(d=>d.team).filter(Boolean))].sort();
   statuses.forEach(s=>$('#pl-f-status').innerHTML+=`<option>${s}</option>`);
   sources.forEach(s=>$('#pl-f-source').innerHTML+=`<option>${s}</option>`);
-  branches.forEach(b=>$('#pl-f-branch').innerHTML+=`<option>${b}</option>`);
+  teams.forEach(t=>$('#pl-f-team').innerHTML+=`<option>${t}</option>`);
   $('#pl-search').addEventListener('input',e=>{PL.search=e.target.value;renderPubLeads();});
   $('#pl-f-status').addEventListener('change',e=>{PL.filters.status=e.target.value;renderPubLeads();});
   $('#pl-f-source').addEventListener('change',e=>{PL.filters.source=e.target.value;renderPubLeads();});
-  $('#pl-f-branch').addEventListener('change',e=>{PL.filters.branch=e.target.value;renderPubLeads();});
+  $('#pl-f-team').addEventListener('change',e=>{PL.filters.team=e.target.value;renderPubLeads();});
   renderPubLeads();
 }
 
