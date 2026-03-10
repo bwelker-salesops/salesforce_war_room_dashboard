@@ -643,6 +643,7 @@ function renderPubPipe() {
 
   // Sort
   $$('#pp-thead th').forEach(th=>th.addEventListener('click',()=>{
+    if(isResizing) return;
     const k=th.dataset.key;
     if(PP.sortKey===k)PP.sortDir*=-1; else{PP.sortKey=k;PP.sortDir=1;}
     renderPubPipe();
@@ -775,6 +776,7 @@ function renderPrivPipe() {
 
   // Sort
   $$('#pvp-thead th').forEach(th=>th.addEventListener('click',()=>{
+    if(isResizing) return;
     const k=th.dataset.key;
     if(PVP.sortKey===k)PVP.sortDir*=-1;else{PVP.sortKey=k;PVP.sortDir=1;}
     renderPrivPipe();
@@ -903,6 +905,7 @@ function renderPubLeads() {
   $('#pl-count').textContent=leads.length+' records';
 
   $$('#pl-thead th').forEach(th=>th.addEventListener('click',()=>{
+    if(isResizing) return;
     const k=th.dataset.key;
     if(PL.sortKey===k)PL.sortDir*=-1;else{PL.sortKey=k;PL.sortDir=1;}
     renderPubLeads();
@@ -1019,6 +1022,7 @@ function renderPrivLeads() {
   $('#prl-count').textContent=leads.length+' records';
 
   $$('#prl-thead th').forEach(th=>th.addEventListener('click',()=>{
+    if(isResizing) return;
     const k=th.dataset.key;
     if(PRL.sortKey===k)PRL.sortDir*=-1;else{PRL.sortKey=k;PRL.sortDir=1;}
     renderPrivLeads();
@@ -1125,6 +1129,7 @@ function csSortableTable(prefix, data, cols, state, filterCfg) {
 
     // Sort handlers
     $$(`#${prefix}-thead th`).forEach(th=>th.addEventListener('click',()=>{
+      if(isResizing) return;
       const k=th.dataset.key;
       if(state.sort.key===k)state.sort.dir*=-1;else{state.sort.key=k;state.sort.dir=-1;}
       render();
@@ -1250,12 +1255,15 @@ function addResizeHandles(table) {
   restoreColWidths(table);
 }
 
+let isResizing = false;
+
 document.addEventListener('mousedown', e => {
   const handle = e.target.closest('.col-resize');
   if (!handle) return;
   e.preventDefault();
   e.stopPropagation();
 
+  isResizing = true;
   const th = handle.parentElement;
   const table = th.closest('table');
   const startX = e.pageX;
@@ -1277,6 +1285,8 @@ document.addEventListener('mousedown', e => {
     saveColWidths(table);
     document.removeEventListener('mousemove', onMove);
     document.removeEventListener('mouseup', onUp);
+    // Delay reset so the click event on th sees isResizing=true
+    setTimeout(() => { isResizing = false; }, 50);
   }
 
   document.addEventListener('mousemove', onMove);
