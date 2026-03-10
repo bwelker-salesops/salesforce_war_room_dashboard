@@ -62,11 +62,22 @@
   .pipe-wrap { background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 var(--radius) var(--radius); overflow-x:auto; margin-bottom:1rem; }
   .pipe-wrap table { width:100%; border-collapse:collapse; }
   .pipe-wrap th { position:sticky;top:0;z-index:10;text-align:left;padding:0.4rem 0.6rem;font-size:0.58rem;text-transform:uppercase;
-    letter-spacing:0.06em;color:var(--text-dim);background:#eef2f7;border-bottom:2px solid var(--border);font-weight:600;white-space:nowrap;cursor:pointer;user-select:none; }
+    letter-spacing:0.06em;color:var(--text-dim);background:#eef2f7;border-bottom:2px solid var(--border);font-weight:600;white-space:nowrap;cursor:pointer;user-select:none;position:relative; }
   .pipe-wrap th:hover { color:var(--text); }
   .pipe-wrap th .sa { opacity:0.4;font-size:0.5rem;margin-left:2px; }
   .pipe-wrap th.sorted { color:var(--accent); }
   .pipe-wrap th.sorted .sa { opacity:1;color:var(--accent); }
+
+  /* Column resize handle */
+  .pipe-wrap th .col-resize {
+    position:absolute; right:0; top:0; bottom:0; width:5px;
+    cursor:col-resize; z-index:20;
+  }
+  .pipe-wrap th .col-resize:hover, .pipe-wrap th .col-resize.active {
+    background:var(--accent); opacity:0.4;
+  }
+  .pipe-wrap table { table-layout:fixed; }
+  .pipe-wrap td { overflow:hidden; text-overflow:ellipsis; }
   .pipe-wrap td { padding:0.35rem 0.6rem;font-size:0.75rem;border-bottom:1px solid #e8ebf0;color:var(--text-mid);vertical-align:top;font-variant-numeric:tabular-nums;white-space:nowrap; }
   .pipe-wrap tr.p-data:hover td { background:#f0f1ff; }
   .pipe-wrap tr.p-data td:nth-child(1) { padding-left:3.5rem; }
@@ -1201,6 +1212,60 @@ function initPrivAccounts() {
 // ===================================================================
 // INIT
 // ===================================================================
+// ===================================================================
+// COLUMN RESIZE — drag right edge of any th to resize
+// ===================================================================
+function enableColumnResize() {
+  document.addEventListener('mousedown', e => {
+    const handle = e.target.closest('.col-resize');
+    if (!handle) return;
+    e.preventDefault();
+    e.stopPropagation();
+
+    const th = handle.parentElement;
+    const table = th.closest('table');
+    const startX = e.pageX;
+    const startW = th.offsetWidth;
+
+    handle.classList.add('active');
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+
+    function onMove(ev) {
+      const diff = ev.pageX - startX;
+      const newW = Math.max(40, startW + diff);
+      th.style.width = newW + 'px';
+    }
+
+    function onUp() {
+      handle.classList.remove('active');
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+    }
+
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  });
+}
+enableColumnResize();
+
+// Inject resize handles into all pipe-wrap th elements after each render
+const origObserver = new MutationObserver(() => {
+  $$('.pipe-wrap th').forEach(th => {
+    if (!th.querySelector('.col-resize')) {
+      const handle = document.createElement('div');
+      handle.className = 'col-resize';
+      th.appendChild(handle);
+    }
+  });
+});
+// Observe all pipe-wrap tbodies for changes (re-renders)
+document.querySelectorAll('.pipe-wrap').forEach(wrap => {
+  origObserver.observe(wrap, { childList: true, subtree: true });
+});
+
 loadData();
 </script>
 </body>
