@@ -1215,55 +1215,83 @@ function initPrivAccounts() {
 // ===================================================================
 // COLUMN RESIZE — drag right edge of any th to resize
 // ===================================================================
-function enableColumnResize() {
-  document.addEventListener('mousedown', e => {
-    const handle = e.target.closest('.col-resize');
-    if (!handle) return;
-    e.preventDefault();
-    e.stopPropagation();
+const colWidths = {}; // key: tableId + colIndex → width
 
-    const th = handle.parentElement;
-    const table = th.closest('table');
-    const startX = e.pageX;
-    const startW = th.offsetWidth;
+function getTableId(table) {
+  const thead = table.querySelector('thead');
+  return thead ? thead.id : '';
+}
 
-    handle.classList.add('active');
-    document.body.style.cursor = 'col-resize';
-    document.body.style.userSelect = 'none';
-
-    function onMove(ev) {
-      const diff = ev.pageX - startX;
-      const newW = Math.max(40, startW + diff);
-      th.style.width = newW + 'px';
-    }
-
-    function onUp() {
-      handle.classList.remove('active');
-      document.body.style.cursor = '';
-      document.body.style.userSelect = '';
-      document.removeEventListener('mousemove', onMove);
-      document.removeEventListener('mouseup', onUp);
-    }
-
-    document.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseup', onUp);
+function saveColWidths(table) {
+  const id = getTableId(table);
+  if (!id) return;
+  table.querySelectorAll('thead th').forEach((th, i) => {
+    if (th.style.width) colWidths[id + ':' + i] = th.style.width;
   });
 }
-enableColumnResize();
 
-// Inject resize handles into all pipe-wrap th elements after each render
-const origObserver = new MutationObserver(() => {
-  $$('.pipe-wrap th').forEach(th => {
+function restoreColWidths(table) {
+  const id = getTableId(table);
+  if (!id) return;
+  table.querySelectorAll('thead th').forEach((th, i) => {
+    const saved = colWidths[id + ':' + i];
+    if (saved) th.style.width = saved;
+  });
+}
+
+function addResizeHandles(table) {
+  table.querySelectorAll('thead th').forEach(th => {
     if (!th.querySelector('.col-resize')) {
       const handle = document.createElement('div');
       handle.className = 'col-resize';
       th.appendChild(handle);
     }
   });
+  restoreColWidths(table);
+}
+
+document.addEventListener('mousedown', e => {
+  const handle = e.target.closest('.col-resize');
+  if (!handle) return;
+  e.preventDefault();
+  e.stopPropagation();
+
+  const th = handle.parentElement;
+  const table = th.closest('table');
+  const startX = e.pageX;
+  const startW = th.offsetWidth;
+
+  handle.classList.add('active');
+  document.body.style.cursor = 'col-resize';
+  document.body.style.userSelect = 'none';
+
+  function onMove(ev) {
+    const diff = ev.pageX - startX;
+    th.style.width = Math.max(40, startW + diff) + 'px';
+  }
+
+  function onUp() {
+    handle.classList.remove('active');
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+    saveColWidths(table);
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onUp);
+  }
+
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onUp);
 });
-// Observe all pipe-wrap tbodies for changes (re-renders)
+
+// Watch for re-renders and restore handles + widths
+const resizeObserver = new MutationObserver(mutations => {
+  mutations.forEach(m => {
+    const table = m.target.closest('table') || m.target.querySelector('table');
+    if (table) addResizeHandles(table);
+  });
+});
 document.querySelectorAll('.pipe-wrap').forEach(wrap => {
-  origObserver.observe(wrap, { childList: true, subtree: true });
+  resizeObserver.observe(wrap, { childList: true, subtree: true });
 });
 
 loadData();
