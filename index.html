@@ -99,6 +99,28 @@
   .notes-cell { max-width:300px;white-space:normal!important;word-wrap:break-word;font-size:0.7rem;color:#8b90a0;line-height:1.35; }
   .money { text-align:right; }
 
+  /* ClientSuccess styles */
+  .pulse { display:inline-flex;align-items:center;justify-content:center;padding:0.15rem 0.5rem;border-radius:4px;font-size:0.62rem;font-weight:600;white-space:nowrap;min-width:55px;text-align:center; }
+  .pulse-extreme { background:#0e7c3a;color:#fff; }
+  .pulse-very { background:#3cb44b;color:#fff; }
+  .pulse-fairly { background:#f5a623;color:#fff; }
+  .pulse-some { background:#e8742c;color:#fff; }
+  .pulse-high { background:#d4380d;color:#fff; }
+  .pulse-severe { background:#a8071a;color:#fff; }
+  .renewal-warn { color:#d4380d;font-weight:600; }
+  .renewal-soon { color:#d97706;font-weight:500; }
+  .renewal-ok { color:var(--text-mid); }
+  .score-wrap { display:flex;align-items:center;gap:0.35rem; }
+  .score-bar { width:45px;height:5px;background:#e5e7eb;border-radius:3px;overflow:hidden; }
+  .score-fill { height:100%;border-radius:3px; }
+  .score-red { background:#ef4444; }
+  .score-orange { background:#f59e0b; }
+  .score-yellow { background:#eab308; }
+  .score-green { background:#22c55e; }
+  .type-tag { display:inline-block;font-size:0.58rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;padding:0.1rem 0.35rem;border-radius:3px; }
+  .type-customer { background:#dcfce7;color:#166534; }
+  .type-prospect { background:#e0e7ff;color:#3730a3; }
+
   /* Placeholder view */
   .placeholder { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:3rem 2rem;
     text-align:center; margin-bottom:1rem; }
@@ -194,10 +216,6 @@
     <button class="tab" data-view="priv-pipe">Private Sector - Pipe</button>
     <button class="tab" data-view="priv-leads">Private Sector - Leads</button>
     <button class="tab" data-view="priv-accounts">Private Sector - Accounts</button>
-    <div class="tab-divider"></div>
-    <button class="tab" data-view="pipeline">Pipeline</button>
-    <button class="tab" data-view="partners">Partners</button>
-    <button class="tab" data-view="deals">Deal Detail</button>
   </div>
 
   <!-- ============ ARR VIEW ============ -->
@@ -259,11 +277,24 @@
 
   <!-- ============ PUBLIC SECTOR - ACCOUNTS ============ -->
   <div class="view" id="view-pub-accounts">
-    <div class="placeholder">
-      <div class="placeholder-icon">🏛️</div>
-      <div class="placeholder-title">Public Sector — ARR War Room &gt;50K + Pilots</div>
-      <div class="placeholder-sub">ClientSuccess segment with Pulse scores, renewal tracking, CSM assignments, and defense branch breakdown. Data integration pending.</div>
+    <div class="pipe-header" style="background:#1b5c3a">
+      <div class="ph-icon">🏛️</div>
+      <div><div class="ph-meta">ClientSuccess Segment</div><div class="ph-title">Public Sector — ARR War Room &gt;50K + Pilots</div></div>
     </div>
+    <div class="pipe-summary" id="pa-summary"></div>
+    <div class="pipe-toolbar">
+      <input class="pipe-search" id="pa-search" placeholder="Search customers..." />
+      <span class="pipe-lbl">Pulse:</span>
+      <select class="pipe-filter" id="pa-f-pulse"><option value="">All</option></select>
+      <span class="pipe-lbl">CSM:</span>
+      <select class="pipe-filter" id="pa-f-csm"><option value="">All</option></select>
+      <span class="pipe-lbl">Branch:</span>
+      <select class="pipe-filter" id="pa-f-branch"><option value="">All</option></select>
+      <span class="pipe-lbl">Type:</span>
+      <select class="pipe-filter" id="pa-f-type"><option value="">All</option></select>
+      <span class="pipe-count" id="pa-count"></span>
+    </div>
+    <div class="pipe-wrap"><table><thead id="pa-thead"></thead><tbody id="pa-tbody"></tbody></table></div>
   </div>
 
   <!-- ============ PRIVATE SECTOR - PIPE ============ -->
@@ -286,85 +317,27 @@
 
   <!-- ============ PRIVATE SECTOR - ACCOUNTS ============ -->
   <div class="view" id="view-priv-accounts">
-    <div class="placeholder">
-      <div class="placeholder-icon">🏢</div>
-      <div class="placeholder-title">Private Sector — Top Accounts (Bi-weekly Business Review)</div>
-      <div class="placeholder-sub">ClientSuccess segment with Pulse scores, Success Scores, renewal tracking, and sales rep assignments. Data integration pending.</div>
+    <div class="pipe-header" style="background:#1b5c3a">
+      <div class="ph-icon">🏢</div>
+      <div><div class="ph-meta">ClientSuccess Segment</div><div class="ph-title">Bi-weekly Business Review — Top Private Sector Accounts</div></div>
     </div>
+    <div class="pipe-summary" id="pra-summary"></div>
+    <div class="pipe-toolbar">
+      <input class="pipe-search" id="pra-search" placeholder="Search customers..." />
+      <span class="pipe-lbl">Pulse:</span>
+      <select class="pipe-filter" id="pra-f-pulse"><option value="">All</option></select>
+      <span class="pipe-lbl">CSM:</span>
+      <select class="pipe-filter" id="pra-f-csm"><option value="">All</option></select>
+      <span class="pipe-lbl">Rep:</span>
+      <select class="pipe-filter" id="pra-f-rep"><option value="">All</option></select>
+      <span class="pipe-count" id="pra-count"></span>
+    </div>
+    <div class="pipe-wrap"><table><thead id="pra-thead"></thead><tbody id="pra-tbody"></tbody></table></div>
   </div>
 
-  <!-- ============ PIPELINE VIEW ============ -->
-  <div class="view" id="view-pipeline">
-    <div class="kpi-row" id="pipe-kpis"></div>
-    <div class="chart-grid">
-      <div class="card">
-        <div class="card-head">
-          <span class="card-title">Pipeline by Stage</span>
-          <div class="legend"><span class="l-pub">Public</span><span class="l-priv">Private</span></div>
-        </div>
-        <div class="chart-wrap"><canvas id="pipeStageChart"></canvas></div>
-      </div>
-      <div class="card">
-        <div class="card-head">
-          <span class="card-title">Pipeline by Forecast Category</span>
-        </div>
-        <div class="chart-wrap"><canvas id="pipeForecastChart"></canvas></div>
-      </div>
-      <div class="card card-full">
-        <div class="card-head">
-          <span class="card-title">Pipeline by Rep</span>
-          <div class="legend"><span class="l-pub">Public</span><span class="l-priv">Private</span></div>
-        </div>
-        <div class="chart-wrap"><canvas id="pipeOwnerChart"></canvas></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ PARTNERS VIEW ============ -->
-  <div class="view" id="view-partners">
-    <div class="kpi-row" id="partner-kpis"></div>
-    <div class="chart-grid">
-      <div class="card">
-        <div class="card-head">
-          <span class="card-title">Pipeline by Partner</span>
-        </div>
-        <div class="chart-wrap"><canvas id="partnerBarChart"></canvas></div>
-      </div>
-      <div class="card">
-        <div class="card-head">
-          <span class="card-title">Pipeline by Quarter</span>
-        </div>
-        <div class="chart-wrap"><canvas id="partnerQtrChart"></canvas></div>
-      </div>
-    </div>
-    <div class="table-card">
-      <table>
-        <thead><tr><th>Opportunity</th><th>Partner</th><th>ARR</th><th>NRR</th><th>Prob %</th><th>Close Date</th><th>Quarter</th></tr></thead>
-        <tbody id="partnerTable"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ============ DEALS VIEW ============ -->
-  <div class="view" id="view-deals">
-    <div class="table-card">
-      <div class="table-toolbar">
-        <input class="search-input" id="dealSearch" placeholder="Search opportunities..." />
-        <button class="filter-pill fp-active" data-filter="all">All</button>
-        <button class="filter-pill" data-filter="pipeline">Pipeline</button>
-        <button class="filter-pill" data-filter="arr">Current ARR</button>
-      </div>
-      <div style="overflow-x:auto;">
-        <table>
-          <thead id="dealHead"></thead>
-          <tbody id="dealTable"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
 </div>
 
-<footer>Data refreshed from Salesforce · Shared link — no login required</footer>
+<footer>Data from Salesforce &amp; ClientSuccess · Shared link — no login required</footer>
 
 <script>
 // ===================================================================
@@ -484,215 +457,13 @@ function renderARR() {
 }
 
 // ===================================================================
-// PIPELINE VIEW
-// ===================================================================
-function renderPipeline() {
-  const p = D.pipeline;
-  const totalARR = p.by_sector.Public.total_arr + p.by_sector.Private.total_arr;
-  const factored = (p.by_sector.Public.factored_arr||0) + (p.by_sector.Private.factored_arr||0);
-  const totalDeals = p.by_sector.Public.deal_count + p.by_sector.Private.deal_count;
-
-  $('#pipe-kpis').innerHTML = `
-    <div class="kpi"><div class="kpi-value accent-c">${fmt(totalARR)}</div><div class="kpi-label">Total Pipeline ARR</div><div class="kpi-sub">${totalDeals} deals</div></div>
-    <div class="kpi"><div class="kpi-value pub-c">${fmt(p.by_sector.Public.total_arr)}</div><div class="kpi-label">Public Pipeline</div><div class="kpi-sub">${factored ? 'Factored: '+fmt(factored) : ''}</div></div>
-    <div class="kpi"><div class="kpi-value priv-c">${fmt(p.by_sector.Private.total_arr)}</div><div class="kpi-label">Private Pipeline</div><div class="kpi-sub">${p.by_sector.Private.deal_count} deals</div></div>
-    <div class="kpi"><div class="kpi-value warn-c">${fmt(p.by_forecast.Commit ? (p.by_forecast.Commit.Public + p.by_forecast.Commit.Private) : 0)}</div><div class="kpi-label">Commit</div><div class="kpi-sub">forecast category</div></div>
-  `;
-
-  // Stage bar
-  const stages = Object.keys(p.by_stage);
-  makeChart('pipeStageChart', {
-    type: 'bar',
-    data: {
-      labels: stages,
-      datasets: [
-        { label:'Public', data:stages.map(s => p.by_stage[s].Public), backgroundColor:PUB+'88', borderRadius:3, borderSkipped:false },
-        { label:'Private', data:stages.map(s => p.by_stage[s].Private), backgroundColor:PRIV+'88', borderRadius:3, borderSkipped:false },
-      ]
-    },
-    options: { responsive:true, maintainAspectRatio:false, indexAxis:'y',
-      plugins: { legend:{display:false}, tooltip:{ callbacks:{ label:ctx => ' '+ctx.dataset.label+': '+fmtFull(ctx.raw) } } },
-      scales: { x:{ stacked:true, ticks:{ callback:v=>fmt(v) } }, y:{stacked:true} } }
-  });
-
-  // Forecast donut
-  const fcats = Object.keys(p.by_forecast);
-  const fcolors = { Pipeline:'#6366f1', 'Best Case':'#d97706', Commit:'#059669', Closed:'#10b981' };
-  makeChart('pipeForecastChart', {
-    type: 'doughnut',
-    data: {
-      labels: fcats,
-      datasets: [{ data: fcats.map(f => p.by_forecast[f].Public + p.by_forecast[f].Private),
-        backgroundColor: fcats.map(f => (fcolors[f]||'#888')+'cc'), borderWidth:0, hoverOffset:6 }]
-    },
-    options: { responsive:true, maintainAspectRatio:false, cutout:'60%',
-      plugins: { legend:{ position:'bottom', labels:{ padding:12, usePointStyle:true, pointStyleWidth:8, font:{size:11} } },
-        tooltip:{ callbacks:{ label:ctx => ' '+ctx.label+': '+fmtFull(ctx.raw) } } } }
-  });
-
-  // Owner bar
-  const owners = p.by_owner.slice(0,10);
-  makeChart('pipeOwnerChart', {
-    type: 'bar',
-    data: {
-      labels: owners.map(o => o.name),
-      datasets: [{ data: owners.map(o => o.arr),
-        backgroundColor: '#6366f166', hoverBackgroundColor: '#6366f1',
-        borderRadius: 4, borderSkipped: false }]
-    },
-    options: { responsive:true, maintainAspectRatio:false,
-      plugins: { legend:{display:false}, tooltip:{ callbacks:{ label:ctx => ' '+fmtFull(ctx.raw)+' ('+owners[ctx.dataIndex].deals+' deals)' } } },
-      scales: { y:{ beginAtZero:true, ticks:{ callback:v=>fmt(v) } } } }
-  });
-}
-
-// ===================================================================
-// PARTNERS VIEW
-// ===================================================================
-function renderPartners() {
-  const pt = D.partners;
-  $('#partner-kpis').innerHTML = `
-    <div class="kpi"><div class="kpi-value partner-c">${fmt(pt.totals.arr)}</div><div class="kpi-label">Partner Pipeline ARR</div><div class="kpi-sub">${pt.totals.deal_count} deals</div></div>
-    <div class="kpi"><div class="kpi-value accent-c">${pt.totals.partner_count}</div><div class="kpi-label">Active Partners</div></div>
-    <div class="kpi"><div class="kpi-value warn-c">${fmt(pt.totals.nrr)}</div><div class="kpi-label">NRR (Services)</div></div>
-    <div class="kpi"><div class="kpi-value priv-c">${fmt(Math.round(pt.totals.arr / pt.totals.deal_count))}</div><div class="kpi-label">Avg Deal Size</div></div>
-  `;
-
-  // Partner bar
-  makeChart('partnerBarChart', {
-    type: 'bar',
-    data: {
-      labels: pt.by_partner.map(p => truncLabel(p.name, 18)),
-      datasets: [{ data: pt.by_partner.map(p => p.arr),
-        backgroundColor: PARTNER+'66', hoverBackgroundColor: PARTNER,
-        borderRadius: 4, borderSkipped: false }]
-    },
-    options: { responsive:true, maintainAspectRatio:false, indexAxis:'y',
-      plugins: { legend:{display:false}, tooltip:{ callbacks:{ label:ctx => ' '+fmtFull(ctx.raw) } } },
-      scales: { x:{ ticks:{ callback:v=>fmt(v) } } } }
-  });
-
-  // Quarter bar
-  const qtrs = Object.keys(pt.by_quarter);
-  makeChart('partnerQtrChart', {
-    type: 'bar',
-    data: {
-      labels: qtrs,
-      datasets: [
-        { label:'ARR', data:qtrs.map(q => pt.by_quarter[q].arr), backgroundColor:PARTNER+'88', borderRadius:4, borderSkipped:false },
-        { label:'NRR', data:qtrs.map(q => pt.by_quarter[q].nrr), backgroundColor:'#d9770688', borderRadius:4, borderSkipped:false },
-      ]
-    },
-    options: { responsive:true, maintainAspectRatio:false,
-      plugins: { legend:{ position:'bottom', labels:{ padding:10, usePointStyle:true, pointStyleWidth:7, font:{size:10} } },
-        tooltip:{ callbacks:{ label:ctx => ' '+ctx.dataset.label+': '+fmtFull(ctx.raw) } } },
-      scales: { y:{ stacked:true, ticks:{ callback:v=>fmt(v) } }, x:{stacked:true} } }
-  });
-
-  // Partner table
-  $('#partnerTable').innerHTML = pt.deals
-    .sort((a,b) => b.arr - a.arr)
-    .map(d => `<tr>
-      <td>${truncLabel(d.opp,35)}</td>
-      <td style="font-size:0.72rem">${truncLabel(d.partner,22)}</td>
-      <td>${fmtFull(d.arr)}</td>
-      <td>${d.nrr ? fmtFull(d.nrr) : '—'}</td>
-      <td>${d.probability}%</td>
-      <td>${d.close_date}</td>
-      <td>${d.quarter}</td>
-    </tr>`).join('');
-}
-
-// ===================================================================
-// DEALS VIEW
-// ===================================================================
-let dealSource = 'all';
-let dealSearchTerm = '';
-let dealSort = { key: 'arr', dir: -1 };
-
-function getAllDeals() {
-  let deals = [];
-  if (dealSource === 'all' || dealSource === 'pipeline') {
-    deals = deals.concat(D.pipeline.deals.map(d => ({...d, source:'Pipeline'})));
-  }
-  if (dealSource === 'all' || dealSource === 'arr') {
-    deals = deals.concat(D.arr.deals.map(d => ({...d, source:'ARR'})));
-  }
-  return deals;
-}
-
-function renderDeals() {
-  const cols = [
-    { key:'opp', label:'Opportunity', fmt: v=>truncLabel(v,40) },
-    { key:'sector', label:'Sector', fmt: v=>`<span class="sector-tag ${v==='Public'?'pub':'priv'}">${v}</span>` },
-    { key:'source', label:'Source' },
-    { key:'arr', label:'ARR', fmt: v=>v?fmtFull(v):'—', numeric:true },
-    { key:'stage', label:'Stage' },
-    { key:'forecast', label:'Forecast', fmt: v=>{
-      if(!v) return '—';
-      const cls = v.toLowerCase().replace(/\s+/g,'-');
-      return `<span class="forecast-tag ${cls}">${v}</span>`;
-    }},
-    { key:'owner', label:'Owner' },
-    { key:'close_date', label:'Close Date' },
-    { key:'type', label:'Type', fmt: v=>v||'—' },
-  ];
-
-  $('#dealHead').innerHTML = '<tr>' + cols.map(c =>
-    `<th class="${dealSort.key===c.key?'sorted':''}" data-key="${c.key}">${c.label}<span class="sort-arrow">${dealSort.key===c.key?(dealSort.dir>0?'▲':'▼'):'⇅'}</span></th>`
-  ).join('') + '</tr>';
-
-  let deals = getAllDeals();
-
-  if (dealSearchTerm) {
-    const q = dealSearchTerm.toLowerCase();
-    deals = deals.filter(d => (d.opp||'').toLowerCase().includes(q) || (d.account||'').toLowerCase().includes(q) || (d.owner||'').toLowerCase().includes(q));
-  }
-
-  deals.sort((a,b) => {
-    let va = a[dealSort.key] || '', vb = b[dealSort.key] || '';
-    if (typeof va === 'number' && typeof vb === 'number') return (va - vb) * dealSort.dir;
-    return String(va).localeCompare(String(vb)) * dealSort.dir;
-  });
-
-  $('#dealTable').innerHTML = deals.slice(0,100).map(d =>
-    '<tr>' + cols.map(c => `<td>${c.fmt ? c.fmt(d[c.key]) : (d[c.key]||'—')}</td>`).join('') + '</tr>'
-  ).join('');
-
-  // Attach sort handlers
-  $$('#dealHead th').forEach(th => {
-    th.addEventListener('click', () => {
-      const key = th.dataset.key;
-      if (dealSort.key === key) dealSort.dir *= -1;
-      else { dealSort.key = key; dealSort.dir = -1; }
-      renderDeals();
-    });
-  });
-}
-
-// Filter pills
-$$('.filter-pill').forEach(p => p.addEventListener('click', () => {
-  $$('.filter-pill').forEach(x => x.classList.remove('fp-active'));
-  p.classList.add('fp-active');
-  dealSource = p.dataset.filter;
-  renderDeals();
-}));
-
-// Search
-$('#dealSearch').addEventListener('input', e => {
-  dealSearchTerm = e.target.value;
-  renderDeals();
-});
-
-// ===================================================================
 // RENDER ALL
 // ===================================================================
 function renderAll() {
   renderARR();
-  renderPipeline();
-  renderPartners();
-  renderDeals();
   initPubPipe();
+  initPubAccounts();
+  initPrivAccounts();
 }
 
 // ===================================================================
@@ -855,6 +626,166 @@ function initPubPipe() {
   $('#pp-f-stage').addEventListener('change',e=>{PP.filters.stage=e.target.value;renderPubPipe();});
   $('#pp-f-priority').addEventListener('change',e=>{PP.filters.priority=e.target.value;renderPubPipe();});
   renderPubPipe();
+}
+
+// ===================================================================
+// CLIENTSUCCESS SHARED HELPERS
+// ===================================================================
+const CS_DATA = {"public": [{"customer": "Air Combat Command (ACC)", "arr": 1250000, "renewal": "2026-08-29", "pulse": "Some Risk", "lastEngaged": "2025-05-30", "csm": "Drew March", "sector": "Public", "customerType": "Customer", "subSector": "DOW", "branch": "Air Force", "relationshipType": "Customer", "tier": "Tier 1", "platform": "Commercial, IL4", "cltv": 3108000, "cArr": 1250000, "fundingSource": "O&M", "daysSinceLaunch": ""}, {"customer": "Ready Relevant Learning (RRL)", "arr": 4000000, "renewal": "2026-07-31", "pulse": "Fairly Satisfied", "lastEngaged": "2026-02-12", "csm": "Alie Orr", "sector": "Public", "customerType": "Customer", "subSector": "DOW", "branch": "Navy", "relationshipType": "Customer", "tier": "Tier 1", "platform": "Commercial, IL2, IL4, IL6", "cltv": 9466030, "cArr": 3948000, "fundingSource": "O&M", "daysSinceLaunch": ""}, {"customer": "2nd AF Weather Squadron", "arr": 151200, "renewal": "2026-05-31", "pulse": "Severe Risk", "lastEngaged": "2026-02-02", "csm": "Abby Jenkins", "sector": "Public", "customerType": "Customer", "subSector": "DOW", "branch": "Air Force", "relationshipType": "Customer", "tier": "Tier 1", "platform": "IL2, IL6", "cltv": 579600, "cArr": 151200, "fundingSource": "UFR", "daysSinceLaunch": ""}, {"customer": "Vehicle Fleet Management Career Field", "arr": 0, "renewal": "2025-09-14", "pulse": "Severe Risk", "lastEngaged": "2026-03-05", "csm": "Drew March", "sector": "Public", "customerType": "Customer", "subSector": "DOW", "branch": "Air Force", "relationshipType": "Customer", "tier": "Tier 1", "platform": "IL4", "cltv": 1223890, "cArr": 0, "fundingSource": "UFR", "daysSinceLaunch": ""}, {"customer": "Fuels Career Field", "arr": 0, "renewal": "", "pulse": "Severe Risk", "lastEngaged": "2026-02-04", "csm": "Drew March", "sector": "Public", "customerType": "Customer", "subSector": "DOW", "branch": "Air Force", "relationshipType": "Customer", "tier": "Tier 1", "platform": "IL4", "cltv": 449955, "cArr": 0, "fundingSource": "UFR", "daysSinceLaunch": ""}, {"customer": "DAF CLOUDworks", "arr": 250000, "renewal": "2027-02-23", "pulse": "Very Satisfied", "lastEngaged": "2026-03-04", "csm": "Randy Gaona", "sector": "Public", "customerType": "Customer", "subSector": "DOW", "branch": "Air Force", "relationshipType": "Customer", "tier": "Tier 1", "platform": "Commercial, IL4", "cltv": 500000, "cArr": 250000, "fundingSource": "PrimeSub", "daysSinceLaunch": ""}, {"customer": "PEO Digital", "arr": 0, "renewal": "2026-02-28", "pulse": "Fairly Satisfied", "lastEngaged": "2026-02-26", "csm": "Sean Palmertree", "sector": "Public", "customerType": "Customer", "subSector": "DOW", "branch": "Navy", "relationshipType": "Customer", "tier": "Tier 1", "platform": "Commercial", "cltv": 100000, "cArr": 0, "fundingSource": "PrimeSub", "daysSinceLaunch": ""}, {"customer": "AETC - 81st TRW - 335th Financial Management", "arr": 52500, "renewal": "2026-03-31", "pulse": "Severe Risk", "lastEngaged": "2026-01-28", "csm": "Abby Jenkins", "sector": "Public", "customerType": "Customer", "subSector": "DOW", "branch": "Air Force", "relationshipType": "Customer", "tier": "Tier 1", "platform": "Commercial", "cltv": 177500, "cArr": 52500, "fundingSource": "UFR", "daysSinceLaunch": ""}, {"customer": "AETC - 37th TRW - 345th TRS - Services", "arr": 99000, "renewal": "2026-06-01", "pulse": "Severe Risk", "lastEngaged": "2026-03-05", "csm": "Abby Jenkins", "sector": "Public", "customerType": "Customer", "subSector": "DOW", "branch": "Air Force", "relationshipType": "Customer", "tier": "Tier 1", "platform": "Commercial", "cltv": 224000, "cArr": 99000, "fundingSource": "UFR", "daysSinceLaunch": ""}, {"customer": "US Army National Guard", "arr": 0, "renewal": "", "pulse": "Fairly Satisfied", "lastEngaged": "", "csm": "Alie Orr", "sector": "Public", "customerType": "Customer", "subSector": "DOW", "branch": "Army", "relationshipType": "Customer", "tier": "Tier 1", "platform": "Commercial", "cltv": 62000, "cArr": 0, "fundingSource": "", "daysSinceLaunch": ""}, {"customer": "Aviation Center of Excellence", "arr": 0, "renewal": "", "pulse": "Very Satisfied", "lastEngaged": "2026-02-10", "csm": "Alie Orr", "sector": "Public", "customerType": "Prospect", "subSector": "DOW", "branch": "Army", "relationshipType": "Prospect", "tier": "Tier 1", "platform": "Commercial", "cltv": 0, "cArr": 0, "fundingSource": "", "daysSinceLaunch": ""}, {"customer": "Medical Center of Excellence", "arr": 0, "renewal": "", "pulse": "Some Risk", "lastEngaged": "", "csm": "Alie Orr", "sector": "Public", "customerType": "Prospect", "subSector": "DOW", "branch": "Army", "relationshipType": "Prospect", "tier": "Tier 1", "platform": "Commercial", "cltv": 0, "cArr": 0, "fundingSource": "", "daysSinceLaunch": ""}, {"customer": "ACCLOGWING - E2D", "arr": 0, "renewal": "", "pulse": "Fairly Satisfied", "lastEngaged": "2025-12-08", "csm": "Alie Orr", "sector": "Public", "customerType": "Prospect", "subSector": "DOW", "branch": "Navy", "relationshipType": "Prospect", "tier": "Tier 1", "platform": "Commercial", "cltv": 0, "cArr": 0, "fundingSource": "N/A", "daysSinceLaunch": ""}, {"customer": "VRMWING - V22", "arr": 0, "renewal": "", "pulse": "Fairly Satisfied", "lastEngaged": "2026-02-04", "csm": "Alie Orr", "sector": "Public", "customerType": "Prospect", "subSector": "DOW", "branch": "Navy", "relationshipType": "Prospect", "tier": "Tier 1", "platform": "IL4", "cltv": 0, "cArr": 0, "fundingSource": "N/A", "daysSinceLaunch": ""}], "private": [{"customer": "PGA TOUR Enterprises, LLC", "arr": 55311, "renewal": "2026-12-31", "pulse": "High Risk", "csm": "Victor Balderas", "successScore": 17.5, "customerAsOf": "2021-07-15", "cltv": 285211, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Bret Kramer", "licenseCount": "3000"}, {"customer": "AbbVie - Teliso-V", "arr": 15000, "renewal": "2026-01-31", "pulse": "Fairly Satisfied", "csm": "Harley Rosenblum", "successScore": 77.5, "customerAsOf": "2021-12-28", "cltv": 206250, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": "165"}, {"customer": "Sobi", "arr": 75000, "renewal": "2026-12-31", "pulse": "Fairly Satisfied", "csm": "Harley Rosenblum", "successScore": 56.2, "customerAsOf": "2022-06-08", "cltv": 221249, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": "105"}, {"customer": "The Breakers Palm Beach, Inc.", "arr": 73440, "renewal": "2026-10-31", "pulse": "Very Satisfied", "csm": "Victor Balderas", "successScore": 60.5, "customerAsOf": "2022-06-08", "cltv": 186340, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Bret Kramer", "licenseCount": "284"}, {"customer": "Sigma Defense Systems", "arr": 241000, "renewal": "2026-07-31", "pulse": "High Risk", "csm": "Victor Balderas", "successScore": 29.0, "customerAsOf": "2022-07-15", "cltv": 917000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Sasha Seymore", "licenseCount": "850"}, {"customer": "Guardant Health Inc", "arr": 186000, "renewal": "2026-04-29", "pulse": "Fairly Satisfied", "csm": "Darren O'Brien", "successScore": 32.5, "customerAsOf": "2023-08-07", "cltv": 421750, "firstLaunch": "2023-11-06", "daysSinceLaunch": "799", "salesRep": "Bret Kramer", "licenseCount": "285"}, {"customer": "Neurocrine Continental, Inc.", "arr": 271000, "renewal": "2026-12-30", "pulse": "Extremely Satisfied", "csm": "Harley Rosenblum", "successScore": 48.5, "customerAsOf": "2023-11-16", "cltv": 636750, "firstLaunch": "2024-01-29", "daysSinceLaunch": "715", "salesRep": "Tommy Hatton", "licenseCount": "675"}, {"customer": "Kiniksa Pharmaceuticals Corp", "arr": 77280, "renewal": "2026-03-17", "pulse": "Extremely Satisfied", "csm": "Harley Rosenblum", "successScore": 78.0, "customerAsOf": "2024-03-10", "cltv": 122160, "firstLaunch": "2024-03-26", "daysSinceLaunch": "658", "salesRep": "Tommy Hatton", "licenseCount": "105"}, {"customer": "Pharmacyclics, an AbbVie Company", "arr": 39000, "renewal": "2026-09-08", "pulse": "Fairly Satisfied", "csm": "Harley Rosenblum", "successScore": 36.5, "customerAsOf": "2024-09-09", "cltv": 98000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": "98"}, {"customer": "AbbVie - VENCLEXTA", "arr": 0, "renewal": "2026-01-15", "pulse": "Fairly Satisfied", "csm": "Harley Rosenblum", "successScore": 29.0, "customerAsOf": "2025-01-17", "cltv": 52750, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": ""}, {"customer": "Novartis - Immunology", "arr": 0, "renewal": "2026-02-28", "pulse": "High Risk", "csm": "Victor Balderas", "successScore": 42.9, "customerAsOf": "2025-02-21", "cltv": 75000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": ""}, {"customer": "Ivoclar Vivadent AG", "arr": 300000, "renewal": "2026-11-30", "pulse": "Fairly Satisfied", "csm": "Darren O'Brien", "successScore": 27.0, "customerAsOf": "2025-02-21", "cltv": 330000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Wayne Metcalfe", "licenseCount": ""}, {"customer": "Novartis - Solid Tumor", "arr": 0, "renewal": "2026-03-02", "pulse": "Severe Risk", "csm": "Victor Balderas", "successScore": 35.2, "customerAsOf": "2025-02-25", "cltv": 25000, "firstLaunch": "2025-03-07", "daysSinceLaunch": "312", "salesRep": "Tommy Hatton", "licenseCount": ""}, {"customer": "RaceTrac", "arr": 0, "renewal": "2026-02-23", "pulse": "Some Risk", "csm": "Victor Balderas", "successScore": 22.7, "customerAsOf": "2025-03-04", "cltv": 265000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": ""}, {"customer": "Novartis - Cardiovascular", "arr": 50000, "renewal": "2026-05-31", "pulse": "Fairly Satisfied", "csm": "Victor Balderas", "successScore": 16.5, "customerAsOf": "2025-05-13", "cltv": 50000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": ""}, {"customer": "Lantheus", "arr": 63340, "renewal": "2026-05-18", "pulse": "Very Satisfied", "csm": "Darren O'Brien", "successScore": 50.2, "customerAsOf": "2025-05-16", "cltv": 63340, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": ""}, {"customer": "Novartis - Kesimpta", "arr": 25000, "renewal": "2026-06-30", "pulse": "Fairly Satisfied", "csm": "Victor Balderas", "successScore": 78.5, "customerAsOf": "2025-06-10", "cltv": 25000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": ""}, {"customer": "Novartis - OAV101 IT", "arr": 25000, "renewal": "2026-06-30", "pulse": "Fairly Satisfied", "csm": "Victor Balderas", "successScore": 66.0, "customerAsOf": "2025-06-10", "cltv": 25000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": ""}, {"customer": "Guardant Health AMEA", "arr": 30000, "renewal": "2026-12-29", "pulse": "Very Satisfied", "csm": "Darren O'Brien", "successScore": 49.0, "customerAsOf": "2025-08-04", "cltv": 50000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Eoin Rogers", "licenseCount": ""}, {"customer": "Xylem", "arr": 0, "renewal": "", "pulse": "Fairly Satisfied", "csm": "Darren O'Brien", "successScore": 51.2, "customerAsOf": "2025-08-13", "cltv": 45000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Bret Kramer", "licenseCount": ""}, {"customer": "Arkenstone Defense", "arr": 95000, "renewal": "2026-10-31", "pulse": "Some Risk", "csm": "Victor Balderas", "successScore": 25.2, "customerAsOf": "2025-10-31", "cltv": 95000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Bret Kramer", "licenseCount": ""}, {"customer": "AbbVie - PVEK", "arr": 17500, "renewal": "2026-10-14", "pulse": "Very Satisfied", "csm": "Harley Rosenblum", "successScore": 8.0, "customerAsOf": "2025-11-14", "cltv": 50000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": ""}, {"customer": "ERAS Cardiac Society", "arr": 42857, "renewal": "2027-01-31", "pulse": "Fairly Satisfied", "csm": "Darren O'Brien", "successScore": 47.0, "customerAsOf": "2025-11-14", "cltv": 50000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": ""}, {"customer": "Bristol Myers Squibb", "arr": 20000, "renewal": "2026-10-31", "pulse": "Some Risk", "csm": "Darren O'Brien", "successScore": 0.0, "customerAsOf": "2025-11-18", "cltv": 20000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": ""}, {"customer": "Kyowa Kirin, Inc.", "arr": 75000, "renewal": "2027-01-04", "pulse": "Very Satisfied", "csm": "Darren O'Brien", "successScore": 31.0, "customerAsOf": "2025-11-26", "cltv": 75000, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": ""}, {"customer": "Gilead - Oncology", "arr": 50000, "renewal": "2026-12-08", "pulse": "Fairly Satisfied", "csm": "Harley Rosenblum", "successScore": 0.0, "customerAsOf": "2025-12-06", "cltv": 181600, "firstLaunch": "", "daysSinceLaunch": "", "salesRep": "Tommy Hatton", "licenseCount": ""}]};
+
+function csPulseHTML(p) {
+  if(!p) return '—';
+  const c=p.includes('Extreme')?'extreme':p.includes('Very')?'very':p.includes('Fairly')?'fairly':p.includes('Some')?'some':p.includes('High')?'high':'severe';
+  return `<span class="pulse pulse-${c}">${p}</span>`;
+}
+function csPulseOrder(p) {
+  const o={'Extremely Satisfied':6,'Very Satisfied':5,'Fairly Satisfied':4,'Some Risk':3,'High Risk':2,'Severe Risk':1};
+  return o[p]||0;
+}
+function csRenewalHTML(d) {
+  if(!d) return '—';
+  const dt=new Date(d),now=new Date(),days=Math.round((dt-now)/864e5);
+  const f=dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  const c=days<0?'renewal-warn':days<60?'renewal-soon':'renewal-ok';
+  return `<span class="${c}">${f} <small>(${days}d)</small></span>`;
+}
+function csScoreHTML(s) {
+  if(s===null||s===undefined) return '—';
+  const c=s<25?'score-red':s<50?'score-orange':s<70?'score-yellow':'score-green';
+  return `<div class="score-wrap"><div class="score-bar"><div class="score-fill ${c}" style="width:${s}%"></div></div><span>${s.toFixed(1)}</span></div>`;
+}
+function csTypeHTML(t) {
+  if(!t) return '—';
+  return `<span class="type-tag type-${t.toLowerCase().includes('customer')?'customer':'prospect'}">${t}</span>`;
+}
+function csLastEngagedHTML(d) {
+  if(!d) return '—';
+  const dt=new Date(d),now=new Date(),days=Math.round((now-dt)/864e5);
+  return `${dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})} <small style="color:#8b90a0">(${days}d)</small>`;
+}
+
+function csSortableTable(prefix, data, cols, state, filterCfg) {
+  function getFiltered() {
+    let rows=[...data];
+    if(state.search){const q=state.search.toLowerCase();rows=rows.filter(r=>r.customer.toLowerCase().includes(q)||(r.csm||'').toLowerCase().includes(q)||(r.salesRep||'').toLowerCase().includes(q));}
+    Object.keys(state.filters).forEach(k=>{if(state.filters[k])rows=rows.filter(r=>r[k]===state.filters[k]);});
+    return rows;
+  }
+
+  function render() {
+    const rows=getFiltered();
+    // Summary
+    const tArr=rows.reduce((a,r)=>a+r.arr,0);
+    const atRisk=rows.filter(r=>(r.pulse||'').includes('Risk')).length;
+    $(`#${prefix}-summary`).innerHTML=`
+      <div class="ps-item"><div class="ps-value">${rows.length}</div><div class="ps-label">Accounts</div></div>
+      <div class="ps-item"><div class="ps-value">${fmtFull(tArr)}</div><div class="ps-label">Total ARR</div></div>
+      <div class="ps-item"><div class="ps-value" style="color:#d4380d">${atRisk}</div><div class="ps-label">At Risk</div></div>`;
+
+    // Sort
+    rows.sort((a,b)=>{
+      let va=a[state.sort.key],vb=b[state.sort.key];
+      if(state.sort.key==='pulse'){va=csPulseOrder(va);vb=csPulseOrder(vb);}
+      if(typeof va==='number'&&typeof vb==='number') return (va-vb)*state.sort.dir;
+      return String(va||'').localeCompare(String(vb||''))*state.sort.dir;
+    });
+
+    // Header
+    $(`#${prefix}-thead`).innerHTML='<tr>'+cols.map(c=>
+      `<th class="${state.sort.key===c.key?'sorted':''} ${c.cls||''}" data-key="${c.key}">${c.label}<span class="sa">${state.sort.key===c.key?(state.sort.dir>0?'▲':'▼'):'⇅'}</span></th>`
+    ).join('')+'</tr>';
+
+    // Body
+    $(`#${prefix}-tbody`).innerHTML=rows.map(r=>
+      '<tr style="cursor:default">'+cols.map(c=>c.render?c.render(r[c.key]):`<td>${r[c.key]||'—'}</td>`).join('')+'</tr>'
+    ).join('');
+
+    $(`#${prefix}-count`).textContent=rows.length+' accounts';
+
+    // Sort handlers
+    $$(`#${prefix}-thead th`).forEach(th=>th.addEventListener('click',()=>{
+      const k=th.dataset.key;
+      if(state.sort.key===k)state.sort.dir*=-1;else{state.sort.key=k;state.sort.dir=-1;}
+      render();
+    }));
+  }
+
+  return {render,getFiltered};
+}
+
+// ===================================================================
+// PUBLIC SECTOR ACCOUNTS
+// ===================================================================
+const PA_COLS = [
+  {key:'customer',label:'Customer',render:v=>`<td style="color:var(--text);font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${v}">${v}</td>`},
+  {key:'arr',label:'ARR',cls:'money',render:v=>`<td class="money">${fmtFull(v)}</td>`},
+  {key:'renewal',label:'Renewal',render:v=>`<td>${csRenewalHTML(v)}</td>`},
+  {key:'pulse',label:'Pulse',render:v=>`<td>${csPulseHTML(v)}</td>`},
+  {key:'lastEngaged',label:'Last Engaged',render:v=>`<td>${csLastEngagedHTML(v)}</td>`},
+  {key:'csm',label:'CSM'},
+  {key:'customerType',label:'Type',render:v=>`<td>${csTypeHTML(v)}</td>`},
+  {key:'branch',label:'Branch'},
+  {key:'relationshipType',label:'Relationship'},
+  {key:'platform',label:'Platform'},
+  {key:'cltv',label:'cLTV',cls:'money',render:v=>`<td class="money">${fmtFull(v)}</td>`},
+  {key:'fundingSource',label:'Funding'},
+];
+
+const paState={sort:{key:'arr',dir:-1},search:'',filters:{}};
+let paTable;
+
+function initPubAccounts() {
+  paTable=csSortableTable('pa',CS_DATA.public,PA_COLS,paState);
+  // Populate filters
+  const pulses=[...new Set(CS_DATA.public.map(r=>r.pulse).filter(Boolean))];
+  const csms=[...new Set(CS_DATA.public.map(r=>r.csm).filter(Boolean))].sort();
+  const branches=[...new Set(CS_DATA.public.map(r=>r.branch).filter(Boolean))].sort();
+  const types=[...new Set(CS_DATA.public.map(r=>r.customerType).filter(Boolean))].sort();
+  pulses.forEach(p=>$('#pa-f-pulse').innerHTML+=`<option>${p}</option>`);
+  csms.forEach(c=>$('#pa-f-csm').innerHTML+=`<option>${c}</option>`);
+  branches.forEach(b=>$('#pa-f-branch').innerHTML+=`<option>${b}</option>`);
+  types.forEach(t=>$('#pa-f-type').innerHTML+=`<option>${t}</option>`);
+  $('#pa-search').addEventListener('input',e=>{paState.search=e.target.value;paTable.render();});
+  $('#pa-f-pulse').addEventListener('change',e=>{paState.filters.pulse=e.target.value;paTable.render();});
+  $('#pa-f-csm').addEventListener('change',e=>{paState.filters.csm=e.target.value;paTable.render();});
+  $('#pa-f-branch').addEventListener('change',e=>{paState.filters.branch=e.target.value;paTable.render();});
+  $('#pa-f-type').addEventListener('change',e=>{paState.filters.customerType=e.target.value;paTable.render();});
+  paTable.render();
+}
+
+// ===================================================================
+// PRIVATE SECTOR ACCOUNTS
+// ===================================================================
+const PRA_COLS = [
+  {key:'customer',label:'Customer',render:v=>`<td style="color:var(--text);font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${v}">${v}</td>`},
+  {key:'arr',label:'ARR',cls:'money',render:v=>`<td class="money">${fmtFull(v)}</td>`},
+  {key:'renewal',label:'Renewal',render:v=>`<td>${csRenewalHTML(v)}</td>`},
+  {key:'pulse',label:'Pulse',render:v=>`<td>${csPulseHTML(v)}</td>`},
+  {key:'successScore',label:'Score',render:v=>`<td>${csScoreHTML(v)}</td>`},
+  {key:'csm',label:'CSM'},
+  {key:'customerAsOf',label:'Customer Since'},
+  {key:'cltv',label:'cLTV',cls:'money',render:v=>`<td class="money">${fmtFull(v)}</td>`},
+  {key:'salesRep',label:'Sales Rep'},
+  {key:'licenseCount',label:'Licenses'},
+  {key:'daysSinceLaunch',label:'Days Since Launch'},
+];
+
+const praState={sort:{key:'arr',dir:-1},search:'',filters:{}};
+let praTable;
+
+function initPrivAccounts() {
+  praTable=csSortableTable('pra',CS_DATA.private,PRA_COLS,praState);
+  const pulses=[...new Set(CS_DATA.private.map(r=>r.pulse).filter(Boolean))];
+  const csms=[...new Set(CS_DATA.private.map(r=>r.csm).filter(Boolean))].sort();
+  const reps=[...new Set(CS_DATA.private.map(r=>r.salesRep).filter(Boolean))].sort();
+  pulses.forEach(p=>$('#pra-f-pulse').innerHTML+=`<option>${p}</option>`);
+  csms.forEach(c=>$('#pra-f-csm').innerHTML+=`<option>${c}</option>`);
+  reps.forEach(r=>$('#pra-f-rep').innerHTML+=`<option>${r}</option>`);
+  $('#pra-search').addEventListener('input',e=>{praState.search=e.target.value;praTable.render();});
+  $('#pra-f-pulse').addEventListener('change',e=>{praState.filters.pulse=e.target.value;praTable.render();});
+  $('#pra-f-csm').addEventListener('change',e=>{praState.filters.csm=e.target.value;praTable.render();});
+  $('#pra-f-rep').addEventListener('change',e=>{praState.filters.salesRep=e.target.value;praTable.render();});
+  praTable.render();
 }
 
 // ===================================================================
