@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Revenue Dashboard</title>
+<title>Business Review</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -28,7 +28,7 @@
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:400; min-height:100vh; line-height:1.5; }
-  .container { max-width:1140px; margin:0 auto; padding:0 1.5rem; }
+  .container { max-width:1400px; margin:0 auto; padding:0 1.25rem; }
 
   /* Header */
   header { padding:2rem 0 0.6rem; }
@@ -37,11 +37,20 @@
   .updated { font-size:0.72rem; color:var(--text-dim); }
 
   /* Tabs */
-  .tabs { display:flex; gap:0; margin:0.8rem 0 1rem; border-bottom:2px solid var(--border); }
-  .tab { padding:0.5rem 1.2rem; font-size:0.78rem; font-weight:500; color:var(--text-dim); background:none; border:none;
-    cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:all 0.15s; font-family:inherit; }
+  .tabs { display:flex; gap:0; margin:0.8rem 0 1rem; border-bottom:2px solid var(--border); overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .tabs::-webkit-scrollbar { height:0; }
+  .tab { padding:0.5rem 1rem; font-size:0.72rem; font-weight:500; color:var(--text-dim); background:none; border:none;
+    cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:all 0.15s; font-family:inherit; white-space:nowrap; flex-shrink:0; }
   .tab:hover { color:var(--text-mid); }
   .tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+  .tab-divider { width:1px; background:var(--border); margin:0.3rem 0.2rem; flex-shrink:0; }
+
+  /* Placeholder view */
+  .placeholder { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:3rem 2rem;
+    text-align:center; margin-bottom:1rem; }
+  .placeholder-icon { font-size:2rem; margin-bottom:0.5rem; }
+  .placeholder-title { font-size:0.95rem; font-weight:600; color:var(--text); margin-bottom:0.3rem; }
+  .placeholder-sub { font-size:0.78rem; color:var(--text-dim); max-width:400px; margin:0 auto; }
 
   /* KPIs */
   .kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:0.6rem; margin-bottom:0.8rem; }
@@ -116,13 +125,22 @@
 <div class="container">
   <header>
     <div class="header-row">
-      <h1>Revenue Dashboard</h1>
+      <h1>Business Review</h1>
       <span class="updated" id="updated"></span>
     </div>
   </header>
 
   <div class="tabs" id="tabs">
-    <button class="tab active" data-view="arr">Current ARR</button>
+    <button class="tab active" data-view="arr">Dashboard</button>
+    <div class="tab-divider"></div>
+    <button class="tab" data-view="pub-pipe">Public Sector - Pipe</button>
+    <button class="tab" data-view="pub-leads">Public Sector - Leads</button>
+    <button class="tab" data-view="pub-accounts">Public Sector - Accounts</button>
+    <div class="tab-divider"></div>
+    <button class="tab" data-view="priv-pipe">Private Sector - Pipe</button>
+    <button class="tab" data-view="priv-leads">Private Sector - Leads</button>
+    <button class="tab" data-view="priv-accounts">Private Sector - Accounts</button>
+    <div class="tab-divider"></div>
     <button class="tab" data-view="pipeline">Pipeline</button>
     <button class="tab" data-view="partners">Partners</button>
     <button class="tab" data-view="deals">Deal Detail</button>
@@ -151,6 +169,60 @@
         </div>
         <div class="chart-wrap"><canvas id="arrPeriodChart"></canvas></div>
       </div>
+    </div>
+  </div>
+
+  <!-- ============ PUBLIC SECTOR - PIPE ============ -->
+  <div class="view" id="view-pub-pipe">
+    <div class="placeholder">
+      <div class="placeholder-icon">📊</div>
+      <div class="placeholder-title">Public Sector — Factored ARR War Room Pipe</div>
+      <div class="placeholder-sub">Salesforce pipeline report with Team / Owner / Type grouping, collapsible sections, and sortable columns. Data integration pending.</div>
+    </div>
+  </div>
+
+  <!-- ============ PUBLIC SECTOR - LEADS ============ -->
+  <div class="view" id="view-pub-leads">
+    <div class="placeholder">
+      <div class="placeholder-icon">🎯</div>
+      <div class="placeholder-title">Public Sector — Leads</div>
+      <div class="placeholder-sub">Lead tracking and conversion data for Public Sector. Coming soon.</div>
+    </div>
+  </div>
+
+  <!-- ============ PUBLIC SECTOR - ACCOUNTS ============ -->
+  <div class="view" id="view-pub-accounts">
+    <div class="placeholder">
+      <div class="placeholder-icon">🏛️</div>
+      <div class="placeholder-title">Public Sector — ARR War Room &gt;50K + Pilots</div>
+      <div class="placeholder-sub">ClientSuccess segment with Pulse scores, renewal tracking, CSM assignments, and defense branch breakdown. Data integration pending.</div>
+    </div>
+  </div>
+
+  <!-- ============ PRIVATE SECTOR - PIPE ============ -->
+  <div class="view" id="view-priv-pipe">
+    <div class="placeholder">
+      <div class="placeholder-icon">📊</div>
+      <div class="placeholder-title">Private Sector — ARR War Room Pipeline</div>
+      <div class="placeholder-sub">Salesforce pipeline report for Private Sector opportunities. Data integration pending.</div>
+    </div>
+  </div>
+
+  <!-- ============ PRIVATE SECTOR - LEADS ============ -->
+  <div class="view" id="view-priv-leads">
+    <div class="placeholder">
+      <div class="placeholder-icon">🎯</div>
+      <div class="placeholder-title">Private Sector — Leads</div>
+      <div class="placeholder-sub">Lead tracking and conversion data for Private Sector. Coming soon.</div>
+    </div>
+  </div>
+
+  <!-- ============ PRIVATE SECTOR - ACCOUNTS ============ -->
+  <div class="view" id="view-priv-accounts">
+    <div class="placeholder">
+      <div class="placeholder-icon">🏢</div>
+      <div class="placeholder-title">Private Sector — Top Accounts (Bi-weekly Business Review)</div>
+      <div class="placeholder-sub">ClientSuccess segment with Pulse scores, Success Scores, renewal tracking, and sales rep assignments. Data integration pending.</div>
     </div>
   </div>
 
