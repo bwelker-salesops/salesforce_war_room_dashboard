@@ -45,6 +45,60 @@
   .tab.active { color:var(--accent); border-bottom-color:var(--accent); }
   .tab-divider { width:1px; background:var(--border); margin:0.3rem 0.2rem; flex-shrink:0; }
 
+  /* Pipe report styles */
+  .pipe-header { background:#1b3a5c; color:#e8ecf1; border-radius:var(--radius) var(--radius) 0 0; padding:0.7rem 1rem; display:flex; align-items:center; gap:1rem; }
+  .pipe-header .ph-icon { width:24px;height:24px;background:rgba(255,255,255,0.15);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px; }
+  .pipe-header .ph-meta { font-size:0.65rem; opacity:0.7; }
+  .pipe-header .ph-title { font-size:0.85rem; font-weight:600; }
+  .pipe-summary { background:var(--surface); border:1px solid var(--border); border-top:none; padding:0.6rem 1rem; display:flex; gap:2rem; }
+  .pipe-summary .ps-value { font-size:0.95rem; font-weight:700; }
+  .pipe-summary .ps-label { font-size:0.6rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; }
+  .pipe-toolbar { background:var(--surface); border:1px solid var(--border); border-top:none; padding:0.4rem 1rem; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; }
+  .pipe-search { padding:0.3rem 0.6rem; border:1px solid var(--border); border-radius:4px; font-family:inherit; font-size:0.75rem; outline:none; width:180px; background:var(--surface); }
+  .pipe-search:focus { border-color:var(--accent); }
+  .pipe-filter { padding:0.3rem 0.4rem; border:1px solid var(--border); border-radius:4px; font-family:inherit; font-size:0.68rem; background:var(--surface); color:var(--text-mid); cursor:pointer; outline:none; }
+  .pipe-lbl { font-size:0.6rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; margin-left:0.4rem; }
+  .pipe-count { margin-left:auto; font-size:0.68rem; color:var(--text-dim); }
+  .pipe-wrap { background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 var(--radius) var(--radius); overflow-x:auto; margin-bottom:1rem; }
+  .pipe-wrap table { width:100%; border-collapse:collapse; min-width:1100px; }
+  .pipe-wrap th { position:sticky;top:0;z-index:10;text-align:left;padding:0.4rem 0.6rem;font-size:0.58rem;text-transform:uppercase;
+    letter-spacing:0.06em;color:var(--text-dim);background:#eef2f7;border-bottom:2px solid var(--border);font-weight:600;white-space:nowrap;cursor:pointer;user-select:none; }
+  .pipe-wrap th:hover { color:var(--text); }
+  .pipe-wrap th .sa { opacity:0.4;font-size:0.5rem;margin-left:2px; }
+  .pipe-wrap th.sorted { color:var(--accent); }
+  .pipe-wrap th.sorted .sa { opacity:1;color:var(--accent); }
+  .pipe-wrap td { padding:0.35rem 0.6rem;font-size:0.75rem;border-bottom:1px solid #e8ebf0;color:var(--text-mid);vertical-align:top;font-variant-numeric:tabular-nums;white-space:nowrap; }
+  .pipe-wrap tr.p-data:hover td { background:#f0f1ff; }
+  .pipe-wrap tr.p-data td:nth-child(1) { padding-left:3.5rem; }
+  .pipe-wrap .p-team { background:#eef2f7;font-weight:700;font-size:0.8rem; }
+  .pipe-wrap .p-team td { padding:0.5rem 0.6rem;border-bottom:1px solid var(--border);color:var(--text); }
+  .pipe-wrap .p-team .gt { cursor:pointer;user-select:none; }
+  .pipe-wrap .p-team .gt::before { content:'▾ ';font-size:0.65rem;color:var(--text-dim); }
+  .pipe-wrap .p-team.collapsed .gt::before { content:'▸ '; }
+  .pipe-wrap .p-owner { background:#f4f7fa;font-weight:600;font-size:0.78rem; }
+  .pipe-wrap .p-owner td { padding:0.4rem 0.6rem 0.4rem 1.8rem;border-bottom:1px solid #e8ebf0;color:#0b5faa; }
+  .pipe-wrap .p-owner .go { cursor:pointer;user-select:none; }
+  .pipe-wrap .p-owner .go::before { content:'▾ ';font-size:0.6rem;color:var(--text-dim); }
+  .pipe-wrap .p-owner.collapsed .go::before { content:'▸ '; }
+  .pipe-wrap .p-type { background:#f8fafb;font-weight:500;font-size:0.74rem; }
+  .pipe-wrap .p-type td { padding:0.35rem 0.6rem 0.35rem 3rem;border-bottom:1px solid #e8ebf0;color:var(--text-mid);font-style:italic; }
+  .pipe-wrap .p-type .gty { cursor:pointer;user-select:none; }
+  .pipe-wrap .p-type .gty::before { content:'▾ ';font-size:0.55rem;color:var(--text-dim); }
+  .pipe-wrap .p-type.collapsed .gty::before { content:'▸ '; }
+  .pipe-wrap .p-grand td { font-weight:700;color:var(--text);border-top:2px solid var(--border);padding:0.5rem 0.6rem;font-size:0.78rem;background:#eef2f7; }
+  .opp-link { color:#0b5faa;text-decoration:none;font-weight:500; }
+  .opp-link:hover { text-decoration:underline; }
+  .priority-1 { color:#0e7c3a;font-weight:600; }
+  .priority-2 { color:#9a6700;font-weight:600; }
+  .priority-3 { color:#d4380d;font-weight:600; }
+  .fc-tag { display:inline-block;font-size:0.6rem;font-weight:600;padding:0.1rem 0.35rem;border-radius:3px; }
+  .fc-pipeline { background:#e0e7ff;color:#3730a3; }
+  .fc-commit { background:#dcfce7;color:#166534; }
+  .fc-best { background:#fef3c7;color:#92400e; }
+  .fc-closed { background:#d1fae5;color:#065f46; }
+  .notes-cell { max-width:300px;white-space:normal!important;word-wrap:break-word;font-size:0.7rem;color:#8b90a0;line-height:1.35; }
+  .money { text-align:right; }
+
   /* Placeholder view */
   .placeholder { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:3rem 2rem;
     text-align:center; margin-bottom:1rem; }
@@ -174,10 +228,23 @@
 
   <!-- ============ PUBLIC SECTOR - PIPE ============ -->
   <div class="view" id="view-pub-pipe">
-    <div class="placeholder">
-      <div class="placeholder-icon">📊</div>
-      <div class="placeholder-title">Public Sector — Factored ARR War Room Pipe</div>
-      <div class="placeholder-sub">Salesforce pipeline report with Team / Owner / Type grouping, collapsible sections, and sortable columns. Data integration pending.</div>
+    <div class="pipe-header">
+      <div class="ph-icon">📊</div>
+      <div><div class="ph-meta">Report: Opportunities</div><div class="ph-title">Public Sector Factored ARR War Room Pipe</div></div>
+    </div>
+    <div class="pipe-summary" id="pp-summary"></div>
+    <div class="pipe-toolbar">
+      <input class="pipe-search" id="pp-search" placeholder="Search opportunities..." />
+      <span class="pipe-lbl">Forecast:</span>
+      <select class="pipe-filter" id="pp-f-forecast"><option value="">All</option></select>
+      <span class="pipe-lbl">Stage:</span>
+      <select class="pipe-filter" id="pp-f-stage"><option value="">All</option></select>
+      <span class="pipe-lbl">Priority:</span>
+      <select class="pipe-filter" id="pp-f-priority"><option value="">All</option></select>
+      <span class="pipe-count" id="pp-count"></span>
+    </div>
+    <div class="pipe-wrap">
+      <table><thead id="pp-thead"></thead><tbody id="pp-tbody"></tbody></table>
     </div>
   </div>
 
@@ -625,6 +692,169 @@ function renderAll() {
   renderPipeline();
   renderPartners();
   renderDeals();
+  initPubPipe();
+}
+
+// ===================================================================
+// PUBLIC SECTOR PIPE REPORT
+// ===================================================================
+const PP_DATA = {"totals": {"records": 31, "totalArr": 10591900, "totalFactored": 5275584}, "deals": [{"team": "Air Force", "owner": "Ben Dorr", "type": "Existing Business - Renewal", "priority": "Priority 1", "opp": "21st Operational Weather Squadron (Lt. Harris) (2026-27 Renewal)", "arr": 5000, "pgoStage": "Identified (10%)", "pwinStage": "Commit (90%)", "factoredArr": 450, "notes": "2/17/26 - Abby has not heard from the 21st despite multiple emails. No contact since she took over the account from Bryan. With lack of comms, no ownership and Weather schoolhouse not renewing this ac", "closeDate": "6/6/2026", "contractStart": "6/7/2026", "contractEnd": "6/6/2027", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Air Force", "owner": "Ben Dorr", "type": "Existing Business - Renewal", "priority": "Priority 1", "opp": "USAF - AETC - 345th Services Schoolhouse - 7 lvl. (2026-27 Renewal)", "arr": 99000, "pgoStage": "Identified (10%)", "pwinStage": "Commit (90%)", "factoredArr": 8910, "notes": "2/13/26 - Abby to add more details but Services has been late to launch and compared our features and functionality to MyLearning and we don't have specific features they need. Unlikely to renew.   8/", "closeDate": "6/1/2026", "contractStart": "6/2/2026", "contractEnd": "6/1/2027", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Air Force", "owner": "Ben Dorr", "type": "Existing Business - Renewal", "priority": "Priority 1", "opp": "AETC (2nd AF) - 335 TRS Weather Squadron (SMSgt Conner) (2026-27 Renewal)", "arr": 151200, "pgoStage": "Identified (10%)", "pwinStage": "Commit (90%)", "factoredArr": 13608, "notes": "2/13/26 - SMSgt Connor indicated to Abby and AP that Weather will not be continuing the partnership   8/26/25 - renewal opp pushed from CS", "closeDate": "5/31/2026", "contractStart": "6/1/2026", "contractEnd": "5/31/2027", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Air Force", "owner": "Ben Dorr", "type": "Existing Business - Renewal", "priority": "Priority 1", "opp": "USAF - AETC - 335th Financial Management (2026-27 Renewal)", "arr": 52500, "pgoStage": "Identified (10%)", "pwinStage": "Commit (90%)", "factoredArr": 4725, "notes": "2/13/26 - Finance told Abby that they will not be renewing due to 2nd AF direction to go back to Blackboard   8/22/25 - renewal opp pushed from CS", "closeDate": "3/31/2026", "contractStart": "4/1/2026", "contractEnd": "3/31/2027", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Air Force", "owner": "Ben Dorr", "type": "Existing Business - Renewal", "priority": "Priority 1", "opp": "Vehicle Fleet Management (FIG) (2025-26 Renewal)", "arr": 623950, "pgoStage": "Pursuit (50%)", "pwinStage": "Commit (90%)", "factoredArr": 280778, "notes": "2/17/26 - Joe is still in Comms with Chief Fig but has not received and update on funding and timing. Multiple calls and emails sent but no visibility on timeline but still working to find $$, Chief F", "closeDate": "2/27/2026", "contractStart": "9/15/2025", "contractEnd": "9/14/2026", "forecastCat": "Pipeline", "forecastAdmin": "Commit"}, {"team": "Air Force", "owner": "Ben Dorr", "type": "Existing Business - Renewal", "priority": "Priority 2", "opp": "USAF - AETC - 361 TRS - Aircrew Flight Equipment (2026-27 Renewal)", "arr": 5250, "pgoStage": "Pursuit (50%)", "pwinStage": "Commit (90%)", "factoredArr": 2363, "notes": "2/17/26 - Despite all the feedback we're getting from 2nd AF the 361st still remains very engaged and interested in expanding their use cases within the schoolhouse. We have a great POC Mr. Snyder who", "closeDate": "5/25/2026", "contractStart": "5/26/2026", "contractEnd": "5/25/2027", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Air Force", "owner": "Ben Dorr", "type": "New Business", "priority": "Priority 1", "opp": "Medical Education and Training Campus (METC)", "arr": 250000, "pgoStage": "Proposal / RFP (75%)", "pwinStage": "Commit (90%)", "factoredArr": 168750, "notes": "2/26/26 - They have had to reschedule this meeting 4 different times now. Will update as soon as I know   2/12/26 - \"For your situational awareness, the Equipment Review and Authorization Activity\ufffd ( ", "closeDate": "3/31/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Best Case", "forecastAdmin": "Omitted"}, {"team": "Air Force", "owner": "Ben Dorr", "type": "New Business", "priority": "Priority 1", "opp": "USAF - AFMC - AFSC (Mr. Bowles & Dr. Meixner)", "arr": 400000, "pgoStage": "Pursuit (50%)", "pwinStage": "Commit (90%)", "factoredArr": 180000, "notes": "2/26/26 - Met with Shaun Morris at AFA and he has reached out to Ms. T for clarification on whats going on. Ms. T responded with, \" Thanks for the note as I was not tracking. I suspect 1 of 2 things h", "closeDate": "3/31/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": "Omitted"}, {"team": "Air Force", "owner": "Joe Dingman", "type": "Existing Business - Expansion", "priority": "Priority 1", "opp": "ACC Enterprise Upsell (FY25)", "arr": 2000000, "pgoStage": "Pursuit (50%)", "pwinStage": "Commit (90%)", "factoredArr": 900000, "notes": "2/27/26 - Will visit ACC HQ in mid-March to meet with A35 (Ozzie) & contracting to discuss the meeting update with Cheetah (late spring) and more support for data gathering/aircraft forms/pubs etc wit", "closeDate": "6/30/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": "Commit"}, {"team": "Air Force", "owner": "Joe Dingman", "type": "New Business", "priority": "Priority 2", "opp": "DAF CLOUDwerx ODIN Team (2026 ARR)", "arr": 250000, "pgoStage": "Closed Won", "pwinStage": "Closed Won", "factoredArr": 250000, "notes": "2/5/2026 - Purchase order received! 1/23/2026 - Note from Monica that \"they are pushing to sourcing next week\"; should progress to a contract from there 1/13/2026 - Monica responded that she is checki", "closeDate": "2/5/2026", "contractStart": "2/24/2026", "contractEnd": "2/23/2027", "forecastCat": "Closed", "forecastAdmin": "Commit"}, {"team": "Air Force", "owner": "Kathleen Rogers", "type": "New Business", "priority": "Priority 1", "opp": "533rd TRS - Delta 1", "arr": 300000, "pgoStage": "Pursuit (50%)", "pwinStage": "Commit (90%)", "factoredArr": 135000, "notes": "2/27/26 - Completed successful visit with 533rd Training Squadron leadership. Key win: Mr. Buck (Deputy Commander; Executive Director, Delta 1) committed to Delta 1-wide endorsement and agreed to spon", "closeDate": "3/31/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Air Force", "owner": "Kathleen Rogers", "type": "New Business", "priority": "Priority 1", "opp": "319th CTS - Delta 1", "arr": 600000, "pgoStage": "Submitted (90%)", "pwinStage": "Commit (90%)", "factoredArr": 486000, "notes": "2/25/26 - Met up with Jerry at AFA. He has involved his boss in the conversation; they did not balk at the SOW & price. Jerry is waiting for our meeting next week with Col St Romain on 3/4 to hear how", "closeDate": "3/31/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Commit", "forecastAdmin": ""}, {"team": "Air Force", "owner": "Kathleen Rogers", "type": "New Business", "priority": "Priority 1", "opp": "BMT - Delta 1", "arr": 300000, "pgoStage": "Proposal / RFP (75%)", "pwinStage": "Commit (90%)", "factoredArr": 202500, "notes": "2/25/26 - We are waiting till we have the meeting with Col St Romain to put together an enterprise-wide SOW.   2/13/26 - We just finished a great visit with Space Force BMT. We met across the team and", "closeDate": "3/31/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Best Case", "forecastAdmin": ""}, {"team": "Army", "owner": "Brett Funck", "type": "New Business", "priority": "Priority 1", "opp": "US Army - SFCoE (IO-PO-PAO)", "arr": 350000, "pgoStage": "Submitted (90%)", "pwinStage": "Commit (90%)", "factoredArr": 283500, "notes": "13 Feb 26: Scheduled to meet IW/IO Commandant and staff on 18 Feb 26   Multiple previous conversation.", "closeDate": "6/30/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Commit", "forecastAdmin": "Commit"}, {"team": "Army", "owner": "Brett Funck", "type": "New Business", "priority": "Priority 1", "opp": "US Army -  Robotics & Tech Integrator (RTIC) SFCoE (390A)", "arr": 75000, "pgoStage": "Submitted (90%)", "pwinStage": "Commit (90%)", "factoredArr": 60750, "notes": "18 Feb 2026: Sat in a day of curriculum for the 390A's. Linked up w/ CW5 Gary O, very helpful. Specific to the 390 is knowledge maping and knowledge retention work. How does the 390 class overlay with", "closeDate": "3/31/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Commit", "forecastAdmin": ""}, {"team": "Army", "owner": "Brett Funck", "type": "New Business", "priority": "Priority 1", "opp": "US Army - Aviation 150U & Assessments for AVCoE", "arr": 300000, "pgoStage": "Submitted (90%)", "pwinStage": "Commit (90%)", "factoredArr": 243000, "notes": "2/17/2026: Contracting teams working together. AVCOE plans to use ACC funding method. Andrew schools is working with AVCOE, Joe D and ACC are tracking.   2/09/2026: Dep to CG Mr. Rob Doer has it over ", "closeDate": "3/31/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Commit", "forecastAdmin": ""}, {"team": "Army", "owner": "Brett Funck", "type": "New Business", "priority": "Priority 2", "opp": "US Army - Aviation 15 Series AIT - MOS", "arr": 350000, "pgoStage": "Pursuit (50%)", "pwinStage": "Commit (90%)", "factoredArr": 157500, "notes": "?01/16/2026: Will begin pilot assessment work with the 128th once the SoW is approved.   ?12/19/2025: Our performance with the 150U is tied to this deal.   9/3/2025: Follow up note to Mike Ash, Robert", "closeDate": "6/30/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": "Best Case"}, {"team": "Army", "owner": "Brett Funck", "type": "New Business", "priority": "Priority 2", "opp": "US Army - Arizona State University", "arr": 75000, "pgoStage": "Pursuit (50%)", "pwinStage": "Commit (90%)", "factoredArr": 33750, "notes": "Multiple meetings on this w/ Sasha and ASU.", "closeDate": "5/29/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Army", "owner": "Brett Funck", "type": "New Business", "priority": "Priority 2", "opp": "US Army- ROTC", "arr": 350000, "pgoStage": "Qualified (25%)", "pwinStage": "Commit (90%)", "factoredArr": 78750, "notes": "AUSA Meeting Notes   BG Mo Barnett - ROTC CG - Opportunity Priority #2 - maurice.o.barnett.mil@army.mil The pain point is Advanced camp and who attends. His vision is a way to prioritize who attends a", "closeDate": "5/29/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Army", "owner": "Brett Funck", "type": "New Business", "priority": "Priority 2", "opp": "US Army - 1st Corps", "arr": 75000, "pgoStage": "Pursuit (50%)", "pwinStage": "Commit (90%)", "factoredArr": 33750, "notes": "Knowledge graph work", "closeDate": "4/30/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Army", "owner": "Jack Sommer", "type": "New Business", "priority": "Priority 1", "opp": "US Army - (LPD Pilot) 1st Cavalry Div", "arr": 10000, "pgoStage": "Pursuit (50%)", "pwinStage": "Commit (90%)", "factoredArr": 4500, "notes": "20 FEB 2026 GEN Funk met with COL Dempsey, CoS at 1CD. He gave some insights and we will discuss strategy at our meeting with GEN Funk next week.   02/13/2026 Will have a visit with 1st CD and 3rd Cor", "closeDate": "6/30/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Army", "owner": "Jack Sommer", "type": "New Business", "priority": "Priority 1", "opp": "US Army - Transportation School (Sustainment CoE, TRADOC) / SDR", "arr": 10000, "pgoStage": "Qualified (25%)", "pwinStage": "Upside (50%)", "factoredArr": 1250, "notes": "26 FEB 2026 : COL Arnold and his aide have been unresponsive to JS - going to have BF reach out and see if we can get this back on the table. Would be a great CoE expansion.   12/16/2026: Call w/ Col ", "closeDate": "6/30/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Army", "owner": "Jack Sommer", "type": "New Business", "priority": "Priority 1", "opp": "US Army - Directorate of Simulation (MSTC, PEO STRI)", "arr": 125000, "pgoStage": "Pursuit (50%)", "pwinStage": "Commit (90%)", "factoredArr": 56250, "notes": "26 FEB 2026: We have the greenlight from MEDCoE on the assessment, and we have uploaded all of the content into the Ethos platform and verified internally. Next step is to push out to MEDCoE instructo", "closeDate": "5/30/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Army", "owner": "Jack Sommer", "type": "New Business", "priority": "Priority 2", "opp": "US Army- (E3B Pilot) 25th Infantry Div", "arr": 10000, "pgoStage": "Pursuit (50%)", "pwinStage": "Commit (90%)", "factoredArr": 4500, "notes": "3 MAR 2026: \ufffdEmail from CSM Guevara: I apologize for not getting back to you sooner. We were tasked to pilot a data aggregation tool created by the Army Software Factory headed by T2COM, which became ", "closeDate": "6/30/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Navy", "owner": "Jeff Adams", "type": "Existing Business - Renewal", "priority": "Priority 1", "opp": "Renewal | PEO Digital |Flank Speed Wireless Renewal", "arr": 100000, "pgoStage": "Proposal / RFP (75%)", "pwinStage": "Commit (90%)", "factoredArr": 67500, "notes": "02/26/2026: Increasing Pwin due to email from PEO Digital stating they fully intend to use Ethos in 2026. Issue is getting the new prime (SAIC) on contract in the next 4-6 weeks. We have said we will ", "closeDate": "2/28/2026", "contractStart": "3/31/2026", "contractEnd": "2/28/2027", "forecastCat": "Best Case", "forecastAdmin": ""}, {"team": "Navy", "owner": "Jeff Adams", "type": "Existing Business - Expansion", "priority": "Priority 1", "opp": "Expansion | PEO Digital | Flank Speed Wireless", "arr": 300000, "pgoStage": "Pursuit (50%)", "pwinStage": "Commit (90%)", "factoredArr": 135000, "notes": "02/19/26: Reducing Pwin from 75 to 50% due to schedule risk with SAIC assuming the role as prime contactor. Also additional risk is that feedback from the Fleet was that the training was inadequate. T", "closeDate": "2/28/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Navy", "owner": "Jeff Adams", "type": "New Business", "priority": "Priority 1", "opp": "New | CNSF SMWDC | Surface Warfare Site License (STRMS/ATG/SMWDC)", "arr": 1500000, "pgoStage": "Proposal / RFP (75%)", "pwinStage": "Commit (90%)", "factoredArr": 1012500, "notes": "02/20/2026: Phone call today with Kevin Hunt. Key takeaways: He has submitted a SBIR issue. While this is not his or our preferred path, he is fighting for all pathways to obtain funding to keep the A", "closeDate": "6/30/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Best Case", "forecastAdmin": ""}, {"team": "Navy", "owner": "Jeff Adams", "type": "New Business", "priority": "Priority 1", "opp": "New | NAVWAR | Overmatch, ACS, ISSM Use Cases", "arr": 625000, "pgoStage": "Pursuit (50%)", "pwinStage": "Commit (90%)", "factoredArr": 281250, "notes": "02/26/2026: Spoke with Jordan at NAVWAR. Despite efforts to stay in the one-off BMA lane, NAVWAR is likely moving toward a larger enterprise push to modernize fleet training delivery, which is both a ", "closeDate": "5/31/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": "Commit"}, {"team": "Partner/OEM", "owner": "Jay Humphlett", "type": "New Business", "priority": "Priority 1", "opp": "Amazon Web Services (AWS)-", "arr": 300000, "pgoStage": "Qualified (25%)", "pwinStage": "Possible (25%)", "factoredArr": 18750, "notes": "Next Steps: Send \"homework\" items to Thom (Jay). 23FEB26: Sasha attended the AWS partner day / constructive conversation with Thom 20FEB26: Had a call with Thom and associates. Going to intro us to th", "closeDate": "6/30/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Partner/OEM", "owner": "Jay Humphlett", "type": "New Business", "priority": "Priority 1", "opp": "Intelligence Systems & Analytics-", "arr": 500000, "pgoStage": "Identified (10%)", "pwinStage": "Commit (90%)", "factoredArr": 45000, "notes": "26FEB26: Jay reached out to Chuck for a follow up session. Chuck informed Jay that they have changed their mind and now want to create tools internaly. IS&A is a SETA contractor supporting Army Intel ", "closeDate": "6/30/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": ""}, {"team": "Partner/OEM", "owner": "Van East", "type": "New Business", "priority": "Priority 1", "opp": "Black Pearl - Sigma Partnership Opp", "arr": 500000, "pgoStage": "Pursuit (50%)", "pwinStage": "Upside (50%)", "factoredArr": 125000, "notes": "2/12 - Sasha met with Chris R at AFCEA West. They are not receiving the full amount of money they were expecting. Our deal with them will push to May/June timeframe. 1/26 - Van call Chris and left voi", "closeDate": "6/30/2026", "contractStart": "", "contractEnd": "", "forecastCat": "Pipeline", "forecastAdmin": ""}]};
+
+const PP = {
+  sortKey:'priority', sortDir:1, search:'', filters:{},
+  collapsed: { teams:new Set(), owners:new Set(), types:new Set() },
+};
+
+const PP_COLS = [
+  {key:'opp',label:'Opportunity Name',w:'220px'},
+  {key:'arr',label:'Amount (ARR)',cls:'money',numeric:true},
+  {key:'pgoStage',label:'Pgo'},
+  {key:'pwinStage',label:'Pwin'},
+  {key:'factoredArr',label:'Factored ARR',cls:'money',numeric:true},
+  {key:'notes',label:'Next Steps / Latest Updates',w:'300px'},
+  {key:'closeDate',label:'Close Date'},
+  {key:'contractStart',label:'Start'},
+  {key:'contractEnd',label:'End'},
+  {key:'forecastCat',label:'Category'},
+  {key:'forecastAdmin',label:'Category (Admin)'},
+];
+
+function ppPriorityHTML(p) {
+  const n=p.replace(/[^0-9]/g,'');
+  return `<span class="priority-${n==='1'?'1':n==='2'?'2':'3'}">${p}</span>`;
+}
+function ppForecastHTML(f) {
+  if(!f) return '—';
+  const c=f==='Pipeline'?'fc-pipeline':f==='Commit'?'fc-commit':f==='Best Case'?'fc-best':f==='Closed'?'fc-closed':'fc-pipeline';
+  return `<span class="fc-tag ${c}">${f}</span>`;
+}
+function ppPriSortVal(p) { return parseInt(p.replace(/[^0-9]/g,''))||99; }
+function ppGroupId(t,o,ty) { if(ty) return t+'||'+o+'||'+ty; if(o) return t+'||'+o; return t; }
+
+function ppGetDeals() {
+  let d=[...PP_DATA.deals];
+  if(PP.search){const q=PP.search.toLowerCase();d=d.filter(x=>x.opp.toLowerCase().includes(q)||x.owner.toLowerCase().includes(q)||x.team.toLowerCase().includes(q));}
+  if(PP.filters.forecast) d=d.filter(x=>x.forecastCat===PP.filters.forecast);
+  if(PP.filters.stage) d=d.filter(x=>x.pgoStage===PP.filters.stage);
+  if(PP.filters.priority) d=d.filter(x=>x.priority===PP.filters.priority);
+  return d;
+}
+
+function renderPubPipe() {
+  const deals=ppGetDeals();
+  const tArr=deals.reduce((a,d)=>a+d.arr,0);
+  const tFact=deals.reduce((a,d)=>a+d.factoredArr,0);
+  $('#pp-summary').innerHTML=`
+    <div class="ps-item"><div class="ps-value">${deals.length}</div><div class="ps-label">Total Records</div></div>
+    <div class="ps-item"><div class="ps-value">${fmtFull(tArr)}</div><div class="ps-label">Total Amount (ARR)</div></div>
+    <div class="ps-item"><div class="ps-value">${fmtFull(tFact)}</div><div class="ps-label">Total Factored ARR</div></div>`;
+
+  deals.sort((a,b)=>{
+    let c=a.team.localeCompare(b.team); if(c) return c;
+    c=a.owner.localeCompare(b.owner); if(c) return c;
+    c=a.type.localeCompare(b.type); if(c) return c;
+    let va,vb;
+    if(PP.sortKey==='priority'){va=ppPriSortVal(a.priority);vb=ppPriSortVal(b.priority);}
+    else if(PP.sortKey==='arr'||PP.sortKey==='factoredArr'){va=a[PP.sortKey];vb=b[PP.sortKey];}
+    else{va=a[PP.sortKey]||'';vb=b[PP.sortKey]||'';}
+    if(typeof va==='number'&&typeof vb==='number') return (va-vb)*PP.sortDir;
+    return String(va).localeCompare(String(vb))*PP.sortDir;
+  });
+
+  const thP=`<th class="${PP.sortKey==='priority'?'sorted':''}" data-key="priority" style="width:80px">Priority (JH)<span class="sa">${PP.sortKey==='priority'?(PP.sortDir>0?'▲':'▼'):'⇅'}</span></th>`;
+  $('#pp-thead').innerHTML='<tr>'+thP+PP_COLS.map(c=>
+    `<th class="${PP.sortKey===c.key?'sorted':''} ${c.cls||''}" data-key="${c.key}" ${c.w?'style="width:'+c.w+'"':''}>${c.label}<span class="sa">${PP.sortKey===c.key?(PP.sortDir>0?'▲':'▼'):'⇅'}</span></th>`
+  ).join('')+'</tr>';
+
+  let h='',cT='',cO='',cTy='';
+  const cs=PP_COLS.length+1;
+  const col=PP.collapsed;
+
+  deals.forEach(d=>{
+    const tc=col.teams.has(d.team);
+    const oid=ppGroupId(d.team,d.owner);
+    const oc=col.owners.has(oid);
+    const tid=ppGroupId(d.team,d.owner,d.type);
+    const tyc=col.types.has(tid);
+
+    if(d.team!==cT){
+      cT=d.team;cO='';cTy='';
+      const td=deals.filter(x=>x.team===cT);
+      h+=`<tr class="p-team ${tc?'collapsed':''}" data-th="${cT}"><td colspan="2"><span class="gt">${cT}</span></td><td class="money">${fmtFull(td.reduce((a,x)=>a+x.arr,0))}</td><td></td><td></td><td class="money">${fmtFull(td.reduce((a,x)=>a+x.factoredArr,0))}</td><td colspan="${cs-6}"></td></tr>`;
+    }
+    if(d.owner!==cO){
+      cO=d.owner;cTy='';
+      const od=deals.filter(x=>x.team===cT&&x.owner===cO);
+      const v=tc?' style="display:none"':'';
+      h+=`<tr class="p-owner ${oc?'collapsed':''}" data-team="${cT}" data-oh="${oid}"${v}><td colspan="2"><span class="go">${cO}</span></td><td class="money">${fmtFull(od.reduce((a,x)=>a+x.arr,0))}</td><td></td><td></td><td class="money">${fmtFull(od.reduce((a,x)=>a+x.factoredArr,0))}</td><td colspan="${cs-6}"></td></tr>`;
+    }
+    if(d.type!==cTy){
+      cTy=d.type;
+      const tyd=deals.filter(x=>x.team===cT&&x.owner===cO&&x.type===cTy);
+      const v=(tc||oc)?' style="display:none"':'';
+      h+=`<tr class="p-type ${tyc?'collapsed':''}" data-team="${cT}" data-owner="${oid}" data-tyh="${tid}"${v}><td colspan="2" style="padding-left:3rem"><span class="gty">${cTy}</span></td><td class="money">${fmtFull(tyd.reduce((a,x)=>a+x.arr,0))}</td><td></td><td></td><td class="money">${fmtFull(tyd.reduce((a,x)=>a+x.factoredArr,0))}</td><td colspan="${cs-6}"></td></tr>`;
+    }
+
+    const rh=tc||oc||tyc;
+    const v=rh?' style="display:none"':'';
+    h+=`<tr class="p-data" data-team="${d.team}" data-owner="${oid}" data-type="${tid}"${v}>
+      <td>${ppPriorityHTML(d.priority)}</td>
+      <td><span class="opp-link" title="${d.opp}">${d.opp}</span></td>
+      <td class="money">${fmtFull(d.arr)}</td>
+      <td style="font-size:0.7rem">${d.pgoStage}</td>
+      <td style="font-size:0.7rem">${d.pwinStage}</td>
+      <td class="money">${fmtFull(d.factoredArr)}</td>
+      <td class="notes-cell">${d.notes}</td>
+      <td>${d.closeDate}</td>
+      <td>${d.contractStart||'—'}</td>
+      <td>${d.contractEnd||'—'}</td>
+      <td>${ppForecastHTML(d.forecastCat)}</td>
+      <td>${d.forecastAdmin||'—'}</td>
+    </tr>`;
+  });
+
+  h+=`<tr class="p-grand"><td colspan="2">Grand Total</td><td class="money">${fmtFull(tArr)}</td><td></td><td></td><td class="money">${fmtFull(tFact)}</td><td colspan="${cs-6}"></td></tr>`;
+  $('#pp-tbody').innerHTML=h;
+  $('#pp-count').textContent=deals.length+' records';
+
+  // Sort
+  $$('#pp-thead th').forEach(th=>th.addEventListener('click',()=>{
+    const k=th.dataset.key;
+    if(PP.sortKey===k)PP.sortDir*=-1; else{PP.sortKey=k;PP.sortDir=1;}
+    renderPubPipe();
+  }));
+  // Collapse team
+  $$('#pp-tbody .p-team .gt').forEach(el=>el.addEventListener('click',()=>{
+    const t=el.closest('tr').dataset.th;
+    col.teams.has(t)?col.teams.delete(t):col.teams.add(t);
+    renderPubPipe();
+  }));
+  // Collapse owner
+  $$('#pp-tbody .p-owner .go').forEach(el=>el.addEventListener('click',()=>{
+    const o=el.closest('tr').dataset.oh;
+    col.owners.has(o)?col.owners.delete(o):col.owners.add(o);
+    renderPubPipe();
+  }));
+  // Collapse type
+  $$('#pp-tbody .p-type .gty').forEach(el=>el.addEventListener('click',()=>{
+    const t=el.closest('tr').dataset.tyh;
+    col.types.has(t)?col.types.delete(t):col.types.add(t);
+    renderPubPipe();
+  }));
+}
+
+function initPubPipe() {
+  const forecasts=[...new Set(PP_DATA.deals.map(d=>d.forecastCat).filter(Boolean))].sort();
+  const stages=[...new Set(PP_DATA.deals.map(d=>d.pgoStage).filter(Boolean))].sort();
+  const priorities=[...new Set(PP_DATA.deals.map(d=>d.priority).filter(Boolean))].sort();
+  forecasts.forEach(f=>$('#pp-f-forecast').innerHTML+=`<option>${f}</option>`);
+  stages.forEach(s=>$('#pp-f-stage').innerHTML+=`<option>${s}</option>`);
+  priorities.forEach(p=>$('#pp-f-priority').innerHTML+=`<option>${p}</option>`);
+  $('#pp-search').addEventListener('input',e=>{PP.search=e.target.value;renderPubPipe();});
+  $('#pp-f-forecast').addEventListener('change',e=>{PP.filters.forecast=e.target.value;renderPubPipe();});
+  $('#pp-f-stage').addEventListener('change',e=>{PP.filters.stage=e.target.value;renderPubPipe();});
+  $('#pp-f-priority').addEventListener('change',e=>{PP.filters.priority=e.target.value;renderPubPipe();});
+  renderPubPipe();
 }
 
 // ===================================================================
