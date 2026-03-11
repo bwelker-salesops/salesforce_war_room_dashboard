@@ -608,7 +608,7 @@ const PP_COLS = [
   {key:'contractStart',label:'Start',w:'75px'},
   {key:'contractEnd',label:'End',w:'75px'},
   {key:'forecastCat',label:'Category',w:'75px'},
-  {key:'forecastAdmin',label:'Category (Admin)',w:'70px'},
+  {key:'forecastAdmin',label:'Category (Admin)',w:'55px'},
 ];
 
 function ppPriorityHTML(p) {
@@ -654,7 +654,7 @@ function renderPubPipe() {
     return String(va).localeCompare(String(vb))*PP.sortDir;
   });
 
-  const thP=`<th class="${PP.sortKey==='priority'?'sorted':''}" data-key="priority" style="width:80px">Priority (JH)<span class="sa">${PP.sortKey==='priority'?(PP.sortDir>0?'▲':'▼'):'⇅'}</span></th>`;
+  const thP=`<th class="${PP.sortKey==='priority'?'sorted':''}" data-key="priority" style="width:95px">Priority (JH)<span class="sa">${PP.sortKey==='priority'?(PP.sortDir>0?'▲':'▼'):'⇅'}</span></th>`;
   $('#pp-thead').innerHTML='<tr>'+thP+PP_COLS.map(c=>
     `<th class="${PP.sortKey===c.key?'sorted':''} ${c.cls||''}" data-key="${c.key}" ${c.w?'style="width:'+c.w+'"':''}>${c.label}<span class="sa">${PP.sortKey===c.key?(PP.sortDir>0?'▲':'▼'):'⇅'}</span></th>`
   ).join('')+'</tr>';
