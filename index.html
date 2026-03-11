@@ -1409,6 +1409,59 @@ document.querySelectorAll('.pipe-wrap').forEach(wrap => {
   resizeObserver.observe(wrap, { childList: true, subtree: true });
 });
 
+// Double-click resize handle to auto-fit column width
+document.addEventListener('dblclick', e => {
+  const handle = e.target.closest('.col-resize');
+  if (!handle) return;
+  e.preventDefault();
+  e.stopPropagation();
+  isResizing = true;
+
+  const th = handle.parentElement;
+  const table = th.closest('table');
+  const colIdx = Array.from(th.parentElement.children).indexOf(th);
+
+  // Create an off-screen measuring element
+  const measurer = document.createElement('span');
+  measurer.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:inherit;padding:0 0.6rem;';
+  document.body.appendChild(measurer);
+
+  // Measure header text width
+  measurer.style.font = getComputedStyle(th).font;
+  measurer.style.fontWeight = '600';
+  measurer.style.fontSize = getComputedStyle(th).fontSize;
+  measurer.textContent = th.textContent;
+  let maxW = measurer.offsetWidth + 20; // padding + sort arrow
+
+  // Measure all visible data cells in this column
+  const rows = table.querySelectorAll('tbody tr');
+  rows.forEach(row => {
+    if (row.style.display === 'none') return;
+    const cells = row.querySelectorAll('td');
+    if (cells[colIdx]) {
+      const cell = cells[colIdx];
+      // For notes cells, don't auto-fit to full content — cap at 350px
+      if (cell.classList.contains('notes-cell')) {
+        maxW = Math.max(maxW, 350);
+        return;
+      }
+      measurer.style.font = getComputedStyle(cell).font;
+      measurer.style.fontWeight = getComputedStyle(cell).fontWeight;
+      measurer.style.fontSize = getComputedStyle(cell).fontSize;
+      measurer.textContent = cell.textContent;
+      maxW = Math.max(maxW, measurer.offsetWidth + 16);
+    }
+  });
+
+  document.body.removeChild(measurer);
+
+  // Cap at reasonable bounds
+  maxW = Math.max(50, Math.min(maxW, 600));
+  th.style.width = maxW + 'px';
+  saveColWidths(table);
+  setTimeout(() => { isResizing = false; }, 50);
+});
+
 // ===================================================================
 // EXPAND ALL / COLLAPSE ALL
 // ===================================================================
