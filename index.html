@@ -81,6 +81,7 @@
   }
   .pipe-wrap table { table-layout:fixed; }
   .pipe-wrap td { overflow:hidden; text-overflow:ellipsis; }
+  .pipe-wrap td.notes-cell { overflow:visible; text-overflow:unset; }
   .pipe-wrap td { padding:0.35rem 0.6rem;font-size:0.75rem;border-bottom:1px solid #e8ebf0;color:var(--text-mid);vertical-align:top;font-variant-numeric:tabular-nums;white-space:nowrap; }
   .pipe-wrap tr.p-data:hover td { background:#f0f1ff; }
   .pipe-wrap tr.p-data td:nth-child(1) { padding-left:3.5rem; }
@@ -111,10 +112,11 @@
   .fc-best { background:#fef3c7;color:#92400e; }
   .fc-closed { background:#d1fae5;color:#065f46; }
   .notes-cell { max-width:300px;white-space:normal!important;word-wrap:break-word;font-size:0.7rem;color:#8b90a0;line-height:1.35;
-    max-height:3.5em;overflow:hidden;cursor:pointer;position:relative;transition:max-height 0.3s ease; }
-  .notes-cell.expanded { max-height:none; }
-  .notes-cell:not(.expanded)::after { content:'';position:absolute;bottom:0;left:0;right:0;height:1.2em;
-    background:linear-gradient(transparent,var(--surface)); pointer-events:none; }
+    max-height:3.5em;overflow:hidden;cursor:pointer;position:relative; }
+  .notes-cell.expanded { max-height:none;overflow:visible; }
+  .notes-cell:not(.expanded)::after { content:'… more';position:absolute;bottom:0;right:0;
+    padding:0 0.3rem 0 1rem;background:linear-gradient(90deg,transparent,var(--surface) 40%);
+    font-size:0.6rem;color:var(--accent);font-weight:500; }
   .money { text-align:right; }
 
   /* ClientSuccess styles */
