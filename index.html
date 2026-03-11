@@ -59,6 +59,9 @@
   .pipe-filter { padding:0.3rem 0.4rem; border:1px solid var(--border); border-radius:4px; font-family:inherit; font-size:0.68rem; background:var(--surface); color:var(--text-mid); cursor:pointer; outline:none; }
   .pipe-lbl { font-size:0.6rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; margin-left:0.4rem; }
   .pipe-count { margin-left:auto; font-size:0.68rem; color:var(--text-dim); }
+  .ec-btn { padding:0.25rem 0.6rem; border:1px solid var(--border); border-radius:4px; font-family:inherit; font-size:0.65rem;
+    font-weight:500; background:var(--surface); color:var(--text-dim); cursor:pointer; transition:all 0.15s; }
+  .ec-btn:hover { border-color:var(--accent); color:var(--accent); }
   .pipe-wrap { background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 var(--radius) var(--radius); overflow-x:auto; margin-bottom:1rem; }
   .pipe-wrap table { width:100%; border-collapse:collapse; }
   .pipe-wrap th { position:sticky;top:0;z-index:10;text-align:left;padding:0.4rem 0.6rem;font-size:0.58rem;text-transform:uppercase;
@@ -107,7 +110,11 @@
   .fc-commit { background:#dcfce7;color:#166534; }
   .fc-best { background:#fef3c7;color:#92400e; }
   .fc-closed { background:#d1fae5;color:#065f46; }
-  .notes-cell { max-width:300px;white-space:normal!important;word-wrap:break-word;font-size:0.7rem;color:#8b90a0;line-height:1.35; }
+  .notes-cell { max-width:300px;white-space:normal!important;word-wrap:break-word;font-size:0.7rem;color:#8b90a0;line-height:1.35;
+    max-height:3.5em;overflow:hidden;cursor:pointer;position:relative;transition:max-height 0.3s ease; }
+  .notes-cell.expanded { max-height:none; }
+  .notes-cell:not(.expanded)::after { content:'';position:absolute;bottom:0;left:0;right:0;height:1.2em;
+    background:linear-gradient(transparent,var(--surface)); pointer-events:none; }
   .money { text-align:right; }
 
   /* ClientSuccess styles */
@@ -277,6 +284,8 @@
       <span class="pipe-lbl">Team:</span>
       <select class="pipe-filter" id="pp-f-team"><option value="">All</option></select>
       <span class="pipe-count" id="pp-count"></span>
+      <button class="ec-btn" id="pp-expand">Expand All</button>
+      <button class="ec-btn" id="pp-collapse">Collapse All</button>
     </div>
     <div class="pipe-wrap">
       <table><thead id="pp-thead"></thead><tbody id="pp-tbody"></tbody></table>
@@ -299,6 +308,8 @@
       <span class="pipe-lbl">Team:</span>
       <select class="pipe-filter" id="pl-f-team"><option value="">All</option></select>
       <span class="pipe-count" id="pl-count"></span>
+      <button class="ec-btn" id="pl-expand">Expand All</button>
+      <button class="ec-btn" id="pl-collapse">Collapse All</button>
     </div>
     <div class="pipe-wrap">
       <table><thead id="pl-thead"></thead><tbody id="pl-tbody"></tbody></table>
@@ -343,6 +354,8 @@
       <span class="pipe-lbl">Owner:</span>
       <select class="pipe-filter" id="pvp-f-owner"><option value="">All</option></select>
       <span class="pipe-count" id="pvp-count"></span>
+      <button class="ec-btn" id="pvp-expand">Expand All</button>
+      <button class="ec-btn" id="pvp-collapse">Collapse All</button>
     </div>
     <div class="pipe-wrap">
       <table><thead id="pvp-thead"></thead><tbody id="pvp-tbody"></tbody></table>
@@ -365,6 +378,8 @@
       <span class="pipe-lbl">Owner:</span>
       <select class="pipe-filter" id="prl-f-owner"><option value="">All</option></select>
       <span class="pipe-count" id="prl-count"></span>
+      <button class="ec-btn" id="prl-expand">Expand All</button>
+      <button class="ec-btn" id="prl-collapse">Collapse All</button>
     </div>
     <div class="pipe-wrap">
       <table><thead id="prl-thead"></thead><tbody id="prl-tbody"></tbody></table>
@@ -417,7 +432,7 @@ Chart.defaults.font.size = 11;
 // ===================================================================
 async function loadData() {
   D = {};
-  $('#updated').textContent = 'Data as of ' + new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  $('#updated').textContent = 'Last refresh: Mar 8, 2026';
   renderAll();
 }
 
@@ -585,6 +600,7 @@ function renderAll() {
   initPrivLeads();
   initPubAccounts();
   initPrivAccounts();
+  setupAllExpandCollapse();
 }
 
 // ===================================================================
@@ -1383,6 +1399,44 @@ const resizeObserver = new MutationObserver(mutations => {
 });
 document.querySelectorAll('.pipe-wrap').forEach(wrap => {
   resizeObserver.observe(wrap, { childList: true, subtree: true });
+});
+
+// ===================================================================
+// EXPAND ALL / COLLAPSE ALL
+// ===================================================================
+function setupExpandCollapse(expandId, collapseId, collapsedState, allDataFn, renderFn) {
+  document.getElementById(expandId).addEventListener('click', () => {
+    collapsedState.teams && collapsedState.teams.clear();
+    collapsedState.owners && collapsedState.owners.clear();
+    collapsedState.types && collapsedState.types.clear();
+    collapsedState.statuses && collapsedState.statuses.clear();
+    renderFn();
+  });
+  document.getElementById(collapseId).addEventListener('click', () => {
+    const data = allDataFn();
+    if (collapsedState.teams) data.forEach(d => { if(d.team) collapsedState.teams.add(d.team); });
+    if (collapsedState.owners) data.forEach(d => {
+      const oid = d.team ? d.team+'||'+d.owner : d.owner;
+      collapsedState.owners.add(oid);
+    });
+    renderFn();
+  });
+}
+
+// Wire up after data loads (called from renderAll via init functions)
+function setupAllExpandCollapse() {
+  setupExpandCollapse('pp-expand','pp-collapse', PP.collapsed, ()=>PP_DATA.deals, renderPubPipe);
+  setupExpandCollapse('pvp-expand','pvp-collapse', PVP.collapsed, ()=>PVP_DATA.deals, renderPrivPipe);
+  setupExpandCollapse('pl-expand','pl-collapse', PL.collapsed, ()=>PL_DATA.leads, renderPubLeads);
+  setupExpandCollapse('prl-expand','prl-collapse', PRL.collapsed, ()=>PRL_DATA.leads, renderPrivLeads);
+}
+
+// ===================================================================
+// CLICK-TO-EXPAND NOTES
+// ===================================================================
+document.addEventListener('click', e => {
+  const cell = e.target.closest('.notes-cell');
+  if (cell) cell.classList.toggle('expanded');
 });
 
 loadData();
