@@ -56,12 +56,28 @@
   .pipe-toolbar { background:var(--surface); border:1px solid var(--border); border-top:none; padding:0.4rem 1rem; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; }
   .pipe-search { padding:0.3rem 0.6rem; border:1px solid var(--border); border-radius:4px; font-family:inherit; font-size:0.75rem; outline:none; width:180px; background:var(--surface); }
   .pipe-search:focus { border-color:var(--accent); }
-  .pipe-filter { padding:0.3rem 0.4rem; border:1px solid var(--border); border-radius:4px; font-family:inherit; font-size:0.68rem; background:var(--surface); color:var(--text-mid); cursor:pointer; outline:none; }
-  .pipe-lbl { font-size:0.6rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; margin-left:0.4rem; }
   .pipe-count { margin-left:auto; font-size:0.68rem; color:var(--text-dim); }
   .ec-btn { padding:0.25rem 0.6rem; border:1px solid var(--border); border-radius:4px; font-family:inherit; font-size:0.65rem;
     font-weight:500; background:var(--surface); color:var(--text-dim); cursor:pointer; transition:all 0.15s; }
   .ec-btn:hover { border-color:var(--accent); color:var(--accent); }
+
+  /* Multi-select dropdown */
+  .ms-wrap { position:relative; display:inline-block; }
+  .ms-btn { padding:0.3rem 0.5rem; border:1px solid var(--border); border-radius:4px; font-family:inherit;
+    font-size:0.7rem; background:var(--surface); color:var(--text-mid); cursor:pointer; outline:none;
+    display:flex; align-items:center; gap:0.3rem; min-width:70px; white-space:nowrap; }
+  .ms-btn:hover { border-color:var(--accent); }
+  .ms-btn.has-selection { border-color:var(--accent); color:var(--accent); }
+  .ms-btn .ms-arrow { font-size:0.5rem; opacity:0.5; margin-left:auto; }
+  .ms-drop { display:none; position:absolute; top:100%; left:0; margin-top:2px; background:var(--surface);
+    border:1px solid var(--border); border-radius:6px; box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    z-index:100; min-width:140px; max-height:220px; overflow-y:auto; padding:0.3rem 0; }
+  .ms-drop.open { display:block; }
+  .ms-opt { display:flex; align-items:center; gap:0.4rem; padding:0.3rem 0.7rem; font-size:0.7rem;
+    color:var(--text-mid); cursor:pointer; white-space:nowrap; }
+  .ms-opt:hover { background:var(--surface-2); }
+  .ms-opt input { accent-color:var(--accent); margin:0; }
+  .ms-opt.all-opt { border-bottom:1px solid var(--border); margin-bottom:0.2rem; padding-bottom:0.4rem; font-weight:500; }
   .pipe-wrap { background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 var(--radius) var(--radius); overflow-x:auto; margin-bottom:1rem; }
   .pipe-wrap table { width:100%; border-collapse:collapse; }
   .pipe-wrap th { position:sticky;top:0;z-index:10;text-align:left;padding:0.4rem 0.6rem;font-size:0.58rem;text-transform:uppercase;
@@ -282,15 +298,7 @@
     </div>
     <div class="pipe-summary" id="pp-summary"></div>
     <div class="pipe-toolbar">
-      <input class="pipe-search" id="pp-search" placeholder="Search opportunities..." />
-      <span class="pipe-lbl">Forecast:</span>
-      <select class="pipe-filter" id="pp-f-forecast"><option value="">All</option></select>
-      <span class="pipe-lbl">Stage:</span>
-      <select class="pipe-filter" id="pp-f-stage"><option value="">All</option></select>
-      <span class="pipe-lbl">Priority:</span>
-      <select class="pipe-filter" id="pp-f-priority"><option value="">All</option></select>
-      <span class="pipe-lbl">Team:</span>
-      <select class="pipe-filter" id="pp-f-team"><option value="">All</option></select>
+      <input class="pipe-search" id="pp-search" placeholder="Search opportunities..." />      <div class="ms-wrap" id="pp-f-forecast"></div>      <div class="ms-wrap" id="pp-f-stage"></div>      <div class="ms-wrap" id="pp-f-priority"></div>      <div class="ms-wrap" id="pp-f-team"></div>
       <span class="pipe-count" id="pp-count"></span>
       <button class="ec-btn" id="pp-expand">Expand All</button>
       <button class="ec-btn" id="pp-collapse">Collapse All</button>
@@ -308,13 +316,7 @@
     </div>
     <div class="pipe-summary" id="pl-summary"></div>
     <div class="pipe-toolbar">
-      <input class="pipe-search" id="pl-search" placeholder="Search leads..." />
-      <span class="pipe-lbl">Status:</span>
-      <select class="pipe-filter" id="pl-f-status"><option value="">All</option></select>
-      <span class="pipe-lbl">Source:</span>
-      <select class="pipe-filter" id="pl-f-source"><option value="">All</option></select>
-      <span class="pipe-lbl">Team:</span>
-      <select class="pipe-filter" id="pl-f-team"><option value="">All</option></select>
+      <input class="pipe-search" id="pl-search" placeholder="Search leads..." />      <div class="ms-wrap" id="pl-f-status"></div>      <div class="ms-wrap" id="pl-f-source"></div>      <div class="ms-wrap" id="pl-f-team"></div>
       <span class="pipe-count" id="pl-count"></span>
       <button class="ec-btn" id="pl-expand">Expand All</button>
       <button class="ec-btn" id="pl-collapse">Collapse All</button>
@@ -332,15 +334,7 @@
     </div>
     <div class="pipe-summary" id="pa-summary"></div>
     <div class="pipe-toolbar">
-      <input class="pipe-search" id="pa-search" placeholder="Search customers..." />
-      <span class="pipe-lbl">Pulse:</span>
-      <select class="pipe-filter" id="pa-f-pulse"><option value="">All</option></select>
-      <span class="pipe-lbl">CSM:</span>
-      <select class="pipe-filter" id="pa-f-csm"><option value="">All</option></select>
-      <span class="pipe-lbl">Branch:</span>
-      <select class="pipe-filter" id="pa-f-branch"><option value="">All</option></select>
-      <span class="pipe-lbl">Type:</span>
-      <select class="pipe-filter" id="pa-f-type"><option value="">All</option></select>
+      <input class="pipe-search" id="pa-search" placeholder="Search customers..." />      <div class="ms-wrap" id="pa-f-pulse"></div>      <div class="ms-wrap" id="pa-f-csm"></div>      <div class="ms-wrap" id="pa-f-branch"></div>      <div class="ms-wrap" id="pa-f-type"></div>
       <span class="pipe-count" id="pa-count"></span>
     </div>
     <div class="pipe-wrap"><table><thead id="pa-thead"></thead><tbody id="pa-tbody"></tbody></table></div>
@@ -354,13 +348,7 @@
     </div>
     <div class="pipe-summary" id="pvp-summary"></div>
     <div class="pipe-toolbar">
-      <input class="pipe-search" id="pvp-search" placeholder="Search opportunities..." />
-      <span class="pipe-lbl">Forecast:</span>
-      <select class="pipe-filter" id="pvp-f-forecast"><option value="">All</option></select>
-      <span class="pipe-lbl">Stage:</span>
-      <select class="pipe-filter" id="pvp-f-stage"><option value="">All</option></select>
-      <span class="pipe-lbl">Owner:</span>
-      <select class="pipe-filter" id="pvp-f-owner"><option value="">All</option></select>
+      <input class="pipe-search" id="pvp-search" placeholder="Search opportunities..." />      <div class="ms-wrap" id="pvp-f-forecast"></div>      <div class="ms-wrap" id="pvp-f-stage"></div>      <div class="ms-wrap" id="pvp-f-owner"></div>
       <span class="pipe-count" id="pvp-count"></span>
       <button class="ec-btn" id="pvp-expand">Expand All</button>
       <button class="ec-btn" id="pvp-collapse">Collapse All</button>
@@ -378,13 +366,7 @@
     </div>
     <div class="pipe-summary" id="prl-summary"></div>
     <div class="pipe-toolbar">
-      <input class="pipe-search" id="prl-search" placeholder="Search leads..." />
-      <span class="pipe-lbl">Status:</span>
-      <select class="pipe-filter" id="prl-f-status"><option value="">All</option></select>
-      <span class="pipe-lbl">Source:</span>
-      <select class="pipe-filter" id="prl-f-source"><option value="">All</option></select>
-      <span class="pipe-lbl">Owner:</span>
-      <select class="pipe-filter" id="prl-f-owner"><option value="">All</option></select>
+      <input class="pipe-search" id="prl-search" placeholder="Search leads..." />      <div class="ms-wrap" id="prl-f-status"></div>      <div class="ms-wrap" id="prl-f-source"></div>      <div class="ms-wrap" id="prl-f-owner"></div>
       <span class="pipe-count" id="prl-count"></span>
       <button class="ec-btn" id="prl-expand">Expand All</button>
       <button class="ec-btn" id="prl-collapse">Collapse All</button>
@@ -402,13 +384,7 @@
     </div>
     <div class="pipe-summary" id="pra-summary"></div>
     <div class="pipe-toolbar">
-      <input class="pipe-search" id="pra-search" placeholder="Search customers..." />
-      <span class="pipe-lbl">Pulse:</span>
-      <select class="pipe-filter" id="pra-f-pulse"><option value="">All</option></select>
-      <span class="pipe-lbl">CSM:</span>
-      <select class="pipe-filter" id="pra-f-csm"><option value="">All</option></select>
-      <span class="pipe-lbl">Rep:</span>
-      <select class="pipe-filter" id="pra-f-rep"><option value="">All</option></select>
+      <input class="pipe-search" id="pra-search" placeholder="Search customers..." />      <div class="ms-wrap" id="pra-f-pulse"></div>      <div class="ms-wrap" id="pra-f-csm"></div>      <div class="ms-wrap" id="pra-f-rep"></div>
       <span class="pipe-count" id="pra-count"></span>
     </div>
     <div class="pipe-wrap"><table><thead id="pra-thead"></thead><tbody id="pra-tbody"></tbody></table></div>
@@ -650,10 +626,10 @@ function ppGroupId(t,o,ty) { if(ty) return t+'||'+o+'||'+ty; if(o) return t+'||'
 function ppGetDeals() {
   let d=[...PP_DATA.deals];
   if(PP.search){const q=PP.search.toLowerCase();d=d.filter(x=>x.opp.toLowerCase().includes(q)||x.owner.toLowerCase().includes(q)||x.team.toLowerCase().includes(q));}
-  if(PP.filters.forecast) d=d.filter(x=>x.forecastCat===PP.filters.forecast);
-  if(PP.filters.stage) d=d.filter(x=>x.pgoStage===PP.filters.stage);
-  if(PP.filters.priority) d=d.filter(x=>x.priority===PP.filters.priority);
-  if(PP.filters.team) d=d.filter(x=>x.team===PP.filters.team);
+  if(PP.filters.forecast&&PP.filters.forecast.length) d=d.filter(x=>PP.filters.forecast.includes(x.forecastCat));
+  if(PP.filters.stage&&PP.filters.stage.length) d=d.filter(x=>PP.filters.stage.includes(x.pgoStage));
+  if(PP.filters.priority&&PP.filters.priority.length) d=d.filter(x=>PP.filters.priority.includes(x.priority));
+  if(PP.filters.team&&PP.filters.team.length) d=d.filter(x=>PP.filters.team.includes(x.team));
   return d;
 }
 
@@ -769,15 +745,11 @@ function initPubPipe() {
   const stages=stageOrder.filter(s=>allStages.includes(s)).concat(allStages.filter(s=>!stageOrder.includes(s)));
   const priorities=[...new Set(PP_DATA.deals.map(d=>d.priority).filter(Boolean))].sort();
   const teams=[...new Set(PP_DATA.deals.map(d=>d.team).filter(Boolean))].sort();
-  forecasts.forEach(f=>$('#pp-f-forecast').innerHTML+=`<option>${f}</option>`);
-  stages.forEach(s=>$('#pp-f-stage').innerHTML+=`<option>${s}</option>`);
-  priorities.forEach(p=>$('#pp-f-priority').innerHTML+=`<option>${p}</option>`);
-  teams.forEach(t=>$('#pp-f-team').innerHTML+=`<option>${t}</option>`);
+  buildMultiSelect('pp-f-forecast','Forecast',forecasts,v=>{PP.filters.forecast=v;renderPubPipe();});
+  buildMultiSelect('pp-f-stage','Stage',stages,v=>{PP.filters.stage=v;renderPubPipe();});
+  buildMultiSelect('pp-f-priority','Priority',priorities,v=>{PP.filters.priority=v;renderPubPipe();});
+  buildMultiSelect('pp-f-team','Team',teams,v=>{PP.filters.team=v;renderPubPipe();});
   $('#pp-search').addEventListener('input',e=>{PP.search=e.target.value;renderPubPipe();});
-  $('#pp-f-forecast').addEventListener('change',e=>{PP.filters.forecast=e.target.value;renderPubPipe();});
-  $('#pp-f-stage').addEventListener('change',e=>{PP.filters.stage=e.target.value;renderPubPipe();});
-  $('#pp-f-priority').addEventListener('change',e=>{PP.filters.priority=e.target.value;renderPubPipe();});
-  $('#pp-f-team').addEventListener('change',e=>{PP.filters.team=e.target.value;renderPubPipe();});
   renderPubPipe();
 }
 
@@ -807,9 +779,9 @@ function pvpGroupId(o,t) { if(t) return o+'||'+t; return o; }
 function pvpGetDeals() {
   let d=[...PVP_DATA.deals];
   if(PVP.search){const q=PVP.search.toLowerCase();d=d.filter(x=>x.opp.toLowerCase().includes(q)||x.account.toLowerCase().includes(q)||x.owner.toLowerCase().includes(q));}
-  if(PVP.filters.forecast) d=d.filter(x=>x.forecastCat===PVP.filters.forecast);
-  if(PVP.filters.stage) d=d.filter(x=>x.stage===PVP.filters.stage);
-  if(PVP.filters.owner) d=d.filter(x=>x.owner===PVP.filters.owner);
+  if(PVP.filters.forecast&&PVP.filters.forecast.length) d=d.filter(x=>PVP.filters.forecast.includes(x.forecastCat));
+  if(PVP.filters.stage&&PVP.filters.stage.length) d=d.filter(x=>PVP.filters.stage.includes(x.stage));
+  if(PVP.filters.owner&&PVP.filters.owner.length) d=d.filter(x=>PVP.filters.owner.includes(x.owner));
   return d;
 }
 
@@ -902,13 +874,10 @@ function initPrivPipe() {
   const allStages=[...new Set(PVP_DATA.deals.map(d=>d.stage).filter(Boolean))];
   const stages=stageOrder.filter(s=>allStages.includes(s)).concat(allStages.filter(s=>!stageOrder.includes(s)));
   const owners=[...new Set(PVP_DATA.deals.map(d=>d.owner).filter(Boolean))].sort();
-  forecasts.forEach(f=>$('#pvp-f-forecast').innerHTML+=`<option>${f}</option>`);
-  stages.forEach(s=>$('#pvp-f-stage').innerHTML+=`<option>${s}</option>`);
-  owners.forEach(o=>$('#pvp-f-owner').innerHTML+=`<option>${o}</option>`);
+  buildMultiSelect('pvp-f-forecast','Forecast',forecasts,v=>{PVP.filters.forecast=v;renderPrivPipe();});
+  buildMultiSelect('pvp-f-stage','Stage',stages,v=>{PVP.filters.stage=v;renderPrivPipe();});
+  buildMultiSelect('pvp-f-owner','Owner',owners,v=>{PVP.filters.owner=v;renderPrivPipe();});
   $('#pvp-search').addEventListener('input',e=>{PVP.search=e.target.value;renderPrivPipe();});
-  $('#pvp-f-forecast').addEventListener('change',e=>{PVP.filters.forecast=e.target.value;renderPrivPipe();});
-  $('#pvp-f-stage').addEventListener('change',e=>{PVP.filters.stage=e.target.value;renderPrivPipe();});
-  $('#pvp-f-owner').addEventListener('change',e=>{PVP.filters.owner=e.target.value;renderPrivPipe();});
   renderPrivPipe();
 }
 
@@ -938,9 +907,9 @@ function plGroupId(t,o,s) { if(s) return t+'||'+o+'||'+s; if(o) return t+'||'+o;
 function plGetLeads() {
   let d=[...PL_DATA.leads];
   if(PL.search){const q=PL.search.toLowerCase();d=d.filter(x=>x.company.toLowerCase().includes(q)||x.firstName.toLowerCase().includes(q)||x.lastName.toLowerCase().includes(q)||x.owner.toLowerCase().includes(q)||(x.title||'').toLowerCase().includes(q));}
-  if(PL.filters.status) d=d.filter(x=>x.status===PL.filters.status);
-  if(PL.filters.source) d=d.filter(x=>x.source===PL.filters.source);
-  if(PL.filters.team) d=d.filter(x=>x.team===PL.filters.team);
+  if(PL.filters.status&&PL.filters.status.length) d=d.filter(x=>PL.filters.status.includes(x.status));
+  if(PL.filters.source&&PL.filters.source.length) d=d.filter(x=>PL.filters.source.includes(x.source));
+  if(PL.filters.team&&PL.filters.team.length) d=d.filter(x=>PL.filters.team.includes(x.team));
   return d;
 }
 
@@ -1036,13 +1005,10 @@ function initPubLeads() {
   const statuses=statusOrder.filter(s=>allStatuses.includes(s)).concat(allStatuses.filter(s=>!statusOrder.includes(s)));
   const sources=[...new Set(PL_DATA.leads.map(d=>d.source).filter(Boolean))].sort();
   const teams=[...new Set(PL_DATA.leads.map(d=>d.team).filter(Boolean))].sort();
-  statuses.forEach(s=>$('#pl-f-status').innerHTML+=`<option>${s}</option>`);
-  sources.forEach(s=>$('#pl-f-source').innerHTML+=`<option>${s}</option>`);
-  teams.forEach(t=>$('#pl-f-team').innerHTML+=`<option>${t}</option>`);
+  buildMultiSelect('pl-f-status','Status',statuses,v=>{PL.filters.status=v;renderPubLeads();});
+  buildMultiSelect('pl-f-source','Source',sources,v=>{PL.filters.source=v;renderPubLeads();});
+  buildMultiSelect('pl-f-team','Team',teams,v=>{PL.filters.team=v;renderPubLeads();});
   $('#pl-search').addEventListener('input',e=>{PL.search=e.target.value;renderPubLeads();});
-  $('#pl-f-status').addEventListener('change',e=>{PL.filters.status=e.target.value;renderPubLeads();});
-  $('#pl-f-source').addEventListener('change',e=>{PL.filters.source=e.target.value;renderPubLeads();});
-  $('#pl-f-team').addEventListener('change',e=>{PL.filters.team=e.target.value;renderPubLeads();});
   renderPubLeads();
 }
 
@@ -1070,9 +1036,9 @@ function prlGroupId(o,s) { if(s) return o+'||'+s; return o; }
 function prlGetLeads() {
   let d=[...PRL_DATA.leads];
   if(PRL.search){const q=PRL.search.toLowerCase();d=d.filter(x=>x.company.toLowerCase().includes(q)||x.firstName.toLowerCase().includes(q)||x.lastName.toLowerCase().includes(q)||(x.title||'').toLowerCase().includes(q)||(x.owner||'').toLowerCase().includes(q));}
-  if(PRL.filters.status) d=d.filter(x=>x.status===PRL.filters.status);
-  if(PRL.filters.source) d=d.filter(x=>x.source===PRL.filters.source);
-  if(PRL.filters.owner) d=d.filter(x=>x.owner===PRL.filters.owner);
+  if(PRL.filters.status&&PRL.filters.status.length) d=d.filter(x=>PRL.filters.status.includes(x.status));
+  if(PRL.filters.source&&PRL.filters.source.length) d=d.filter(x=>PRL.filters.source.includes(x.source));
+  if(PRL.filters.owner&&PRL.filters.owner.length) d=d.filter(x=>PRL.filters.owner.includes(x.owner));
   return d;
 }
 
@@ -1148,13 +1114,10 @@ function initPrivLeads() {
   const statuses=[...new Set(PRL_DATA.leads.map(d=>d.status).filter(Boolean))].sort();
   const sources=[...new Set(PRL_DATA.leads.map(d=>d.source).filter(Boolean))].sort();
   const owners=[...new Set(PRL_DATA.leads.map(d=>d.owner).filter(Boolean))].sort();
-  statuses.forEach(s=>$('#prl-f-status').innerHTML+=`<option>${s}</option>`);
-  sources.forEach(s=>$('#prl-f-source').innerHTML+=`<option>${s}</option>`);
-  owners.forEach(o=>$('#prl-f-owner').innerHTML+=`<option>${o}</option>`);
+  buildMultiSelect('prl-f-status','Status',statuses,v=>{PRL.filters.status=v;renderPrivLeads();});
+  buildMultiSelect('prl-f-source','Source',sources,v=>{PRL.filters.source=v;renderPrivLeads();});
+  buildMultiSelect('prl-f-owner','Owner',owners,v=>{PRL.filters.owner=v;renderPrivLeads();});
   $('#prl-search').addEventListener('input',e=>{PRL.search=e.target.value;renderPrivLeads();});
-  $('#prl-f-status').addEventListener('change',e=>{PRL.filters.status=e.target.value;renderPrivLeads();});
-  $('#prl-f-source').addEventListener('change',e=>{PRL.filters.source=e.target.value;renderPrivLeads();});
-  $('#prl-f-owner').addEventListener('change',e=>{PRL.filters.owner=e.target.value;renderPrivLeads();});
   renderPrivLeads();
 }
 
@@ -1198,7 +1161,7 @@ function csSortableTable(prefix, data, cols, state, filterCfg) {
   function getFiltered() {
     let rows=[...data];
     if(state.search){const q=state.search.toLowerCase();rows=rows.filter(r=>r.customer.toLowerCase().includes(q)||(r.csm||'').toLowerCase().includes(q)||(r.salesRep||'').toLowerCase().includes(q));}
-    Object.keys(state.filters).forEach(k=>{if(state.filters[k])rows=rows.filter(r=>r[k]===state.filters[k]);});
+    Object.keys(state.filters).forEach(k=>{if(state.filters[k]&&state.filters[k].length)rows=rows.filter(r=>state.filters[k].includes(r[k]));});
     return rows;
   }
 
@@ -1272,15 +1235,11 @@ function initPubAccounts() {
   const csms=[...new Set(CS_DATA.public.map(r=>r.csm).filter(Boolean))].sort();
   const branches=[...new Set(CS_DATA.public.map(r=>r.branch).filter(Boolean))].sort();
   const types=[...new Set(CS_DATA.public.map(r=>r.customerType).filter(Boolean))].sort();
-  pulses.forEach(p=>$('#pa-f-pulse').innerHTML+=`<option>${p}</option>`);
-  csms.forEach(c=>$('#pa-f-csm').innerHTML+=`<option>${c}</option>`);
-  branches.forEach(b=>$('#pa-f-branch').innerHTML+=`<option>${b}</option>`);
-  types.forEach(t=>$('#pa-f-type').innerHTML+=`<option>${t}</option>`);
+  buildMultiSelect('pa-f-pulse','Pulse',pulses,v=>{paState.filters.pulse=v;paTable.render();});
+  buildMultiSelect('pa-f-csm','CSM',csms,v=>{paState.filters.csm=v;paTable.render();});
+  buildMultiSelect('pa-f-branch','Branch',branches,v=>{paState.filters.branch=v;paTable.render();});
+  buildMultiSelect('pa-f-type','Type',types,v=>{paState.filters.customerType=v;paTable.render();});
   $('#pa-search').addEventListener('input',e=>{paState.search=e.target.value;paTable.render();});
-  $('#pa-f-pulse').addEventListener('change',e=>{paState.filters.pulse=e.target.value;paTable.render();});
-  $('#pa-f-csm').addEventListener('change',e=>{paState.filters.csm=e.target.value;paTable.render();});
-  $('#pa-f-branch').addEventListener('change',e=>{paState.filters.branch=e.target.value;paTable.render();});
-  $('#pa-f-type').addEventListener('change',e=>{paState.filters.customerType=e.target.value;paTable.render();});
   paTable.render();
 }
 
@@ -1309,13 +1268,10 @@ function initPrivAccounts() {
   const pulses=[...new Set(CS_DATA.private.map(r=>r.pulse).filter(Boolean))].sort((a,b)=>csPulseOrder(b)-csPulseOrder(a));
   const csms=[...new Set(CS_DATA.private.map(r=>r.csm).filter(Boolean))].sort();
   const reps=[...new Set(CS_DATA.private.map(r=>r.salesRep).filter(Boolean))].sort();
-  pulses.forEach(p=>$('#pra-f-pulse').innerHTML+=`<option>${p}</option>`);
-  csms.forEach(c=>$('#pra-f-csm').innerHTML+=`<option>${c}</option>`);
-  reps.forEach(r=>$('#pra-f-rep').innerHTML+=`<option>${r}</option>`);
+  buildMultiSelect('pra-f-pulse','Pulse',pulses,v=>{praState.filters.pulse=v;praTable.render();});
+  buildMultiSelect('pra-f-csm','CSM',csms,v=>{praState.filters.csm=v;praTable.render();});
+  buildMultiSelect('pra-f-rep','Rep',reps,v=>{praState.filters.salesRep=v;praTable.render();});
   $('#pra-search').addEventListener('input',e=>{praState.search=e.target.value;praTable.render();});
-  $('#pra-f-pulse').addEventListener('change',e=>{praState.filters.pulse=e.target.value;praTable.render();});
-  $('#pra-f-csm').addEventListener('change',e=>{praState.filters.csm=e.target.value;praTable.render();});
-  $('#pra-f-rep').addEventListener('change',e=>{praState.filters.salesRep=e.target.value;praTable.render();});
   praTable.render();
 }
 
@@ -1485,6 +1441,91 @@ function setupExpandCollapse(expandId, collapseId, collapsedState, allDataFn, re
 }
 
 // Wire up after data loads (called from renderAll via init functions)
+// ===================================================================
+// MULTI-SELECT DROPDOWN COMPONENT
+// ===================================================================
+function buildMultiSelect(containerId, label, options, onChange) {
+  const wrap = document.getElementById(containerId);
+  if (!wrap) return;
+  wrap.innerHTML = '';
+
+  const btn = document.createElement('div');
+  btn.className = 'ms-btn';
+  btn.innerHTML = `${label}: All <span class="ms-arrow">▾</span>`;
+
+  const drop = document.createElement('div');
+  drop.className = 'ms-drop';
+
+  // "All" option
+  const allOpt = document.createElement('label');
+  allOpt.className = 'ms-opt all-opt';
+  allOpt.innerHTML = `<input type="checkbox" checked data-val="__all__"> All`;
+  drop.appendChild(allOpt);
+
+  // Individual options
+  options.forEach(opt => {
+    const lbl = document.createElement('label');
+    lbl.className = 'ms-opt';
+    lbl.innerHTML = `<input type="checkbox" data-val="${opt}"> ${opt}`;
+    drop.appendChild(lbl);
+  });
+
+  wrap.appendChild(btn);
+  wrap.appendChild(drop);
+
+  // Toggle dropdown
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    // Close all other dropdowns first
+    document.querySelectorAll('.ms-drop.open').forEach(d => { if(d!==drop) d.classList.remove('open'); });
+    drop.classList.toggle('open');
+  });
+
+  // Handle checkbox changes
+  drop.addEventListener('change', e => {
+    const cb = e.target;
+    const allCb = drop.querySelector('input[data-val="__all__"]');
+    const itemCbs = [...drop.querySelectorAll('input:not([data-val="__all__"])')];
+
+    if (cb.dataset.val === '__all__') {
+      // "All" toggled — uncheck everything else
+      itemCbs.forEach(c => c.checked = false);
+      cb.checked = true;
+    } else {
+      // Individual item toggled
+      allCb.checked = false;
+      // If nothing selected, re-check "All"
+      if (!itemCbs.some(c => c.checked)) {
+        allCb.checked = true;
+      }
+    }
+
+    // Determine selected values
+    const selected = allCb.checked ? [] : itemCbs.filter(c=>c.checked).map(c=>c.dataset.val);
+
+    // Update button label
+    if (selected.length === 0) {
+      btn.innerHTML = `${label}: All <span class="ms-arrow">▾</span>`;
+      btn.classList.remove('has-selection');
+    } else if (selected.length === 1) {
+      btn.innerHTML = `${label}: ${selected[0].length > 18 ? selected[0].slice(0,18)+'…' : selected[0]} <span class="ms-arrow">▾</span>`;
+      btn.classList.add('has-selection');
+    } else {
+      btn.innerHTML = `${label}: ${selected.length} selected <span class="ms-arrow">▾</span>`;
+      btn.classList.add('has-selection');
+    }
+
+    onChange(selected);
+  });
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', e => {
+  if (!e.target.closest('.ms-wrap')) {
+    document.querySelectorAll('.ms-drop.open').forEach(d => d.classList.remove('open'));
+  }
+});
+
 function setupAllExpandCollapse() {
   setupExpandCollapse('pp-expand','pp-collapse', PP.collapsed, ()=>PP_DATA.deals, renderPubPipe);
   setupExpandCollapse('pvp-expand','pvp-collapse', PVP.collapsed, ()=>PVP_DATA.deals, renderPrivPipe);
