@@ -229,28 +229,32 @@
     <button class="tab" data-view="priv-accounts">Private Sector - Accounts</button>
   </div>
 
-  <!-- ============ ARR VIEW ============ -->
+  <!-- ============ DASHBOARD VIEW ============ -->
   <div class="view active" id="view-arr">
-    <div class="kpi-row" id="arr-kpis"></div>
     <div class="chart-grid">
       <div class="card">
         <div class="card-head">
-          <span class="card-title">ARR by Sector</span>
+          <span class="card-title">Public Sector Factored ARR War Room Pipeline: 10/1/25-6/30/26</span>
         </div>
-        <div class="chart-wrap"><canvas id="arrSectorChart"></canvas></div>
+        <div class="chart-wrap" style="height:280px"><canvas id="dashPubPipe"></canvas></div>
       </div>
       <div class="card">
         <div class="card-head">
-          <span class="card-title">Top 10 Accounts by ARR</span>
+          <span class="card-title">Private Sector Total ARR War Room Pipeline: 10/1/25 - 6/30/26</span>
         </div>
-        <div class="chart-wrap"><canvas id="arrAccountChart"></canvas></div>
+        <div class="chart-wrap" style="height:280px"><canvas id="dashPrivPipe"></canvas></div>
       </div>
-      <div class="card card-full">
+      <div class="card">
         <div class="card-head">
-          <span class="card-title">ARR by Fiscal Period</span>
-          <div class="legend"><span class="l-pub">Public</span><span class="l-priv">Private</span></div>
+          <span class="card-title">ARR War Room: ARR as of TODAY</span>
         </div>
-        <div class="chart-wrap"><canvas id="arrPeriodChart"></canvas></div>
+        <div class="chart-wrap" style="height:280px"><canvas id="dashArrToday"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">ARR War Room: $15M ARR Target (6/30/26)</span>
+        </div>
+        <div class="chart-wrap" style="height:280px"><canvas id="dashArrTarget"></canvas></div>
       </div>
     </div>
   </div>
@@ -412,15 +416,9 @@ Chart.defaults.font.size = 11;
 // LOAD DATA
 // ===================================================================
 async function loadData() {
-  try {
-    const resp = await fetch('data/dashboard.json');
-    D = await resp.json();
-    $('#updated').textContent = 'Last refresh: ' + D.generated;
-    renderAll();
-  } catch(e) {
-    console.error('Failed to load data:', e);
-    document.body.innerHTML = '<div style="padding:4rem;text-align:center;color:#666;">Could not load data/dashboard.json<br>Make sure the file exists in the data/ folder.</div>';
-  }
+  D = {};
+  $('#updated').textContent = 'Data as of ' + new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  renderAll();
 }
 
 // ===================================================================
@@ -447,64 +445,132 @@ function makeChart(id, config) {
 function truncLabel(s, max=22) { return s.length > max ? s.slice(0,max)+'…' : s; }
 
 // ===================================================================
-// ARR VIEW
+// DASHBOARD CHARTS DATA
+// ===================================================================
+const DASH = {"arrToday": {"Public Sector": 5859949, "Private Sector": 2495660}, "arrTarget": {"Private Sector": 2994412, "Public Sector": 10848208}, "pubPipeChart": {"Air Force": {"Existing Business - Renewal": 310834, "New Business": 1422250, "Existing Business - Expansion": 900000}, "Navy": {"Existing Business - Renewal": 67500, "Existing Business - Expansion": 135000, "New Business": 1293750}, "Army": {"New Business": 957500}, "Partner/OEM": {"New Business": 188750}}, "privPipeChart": {"Tommy Hatton": {"New Business": 841550, "Existing Business - Expansion": 821560}, "Bret Kramer": {"New Business": 230000, "Existing Business - Expansion": 88700}, "Wayne Metcalfe": {"New Business": 290000}}};
+
+// ===================================================================
+// DASHBOARD VIEW
 // ===================================================================
 function renderARR() {
-  const a = D.arr;
-  const total = a.by_sector.Public.total_arr + a.by_sector.Private.total_arr;
-  const totalOpps = a.by_sector.Public.opp_count + a.by_sector.Private.opp_count;
-  const topAccount = a.by_parent[0];
+  const PUB_BLUE = '#4a90d9';
+  const PRIV_LIGHT = '#7ec8e3';
+  const TYPE_COLORS = {
+    'New Business': '#4a90d9',
+    'Existing Business - Expansion': '#9b7ed8',
+    'Existing Business - Renewal': '#a8d5e2',
+  };
 
-  $('#arr-kpis').innerHTML = `
-    <div class="kpi"><div class="kpi-value accent-c">${fmt(total)}</div><div class="kpi-label">Total Current ARR</div><div class="kpi-sub">${totalOpps} opportunities</div></div>
-    <div class="kpi"><div class="kpi-value pub-c">${fmt(a.by_sector.Public.total_arr)}</div><div class="kpi-label">Public Sector ARR</div><div class="kpi-sub">${a.by_sector.Public.opp_count} opps</div></div>
-    <div class="kpi"><div class="kpi-value priv-c">${fmt(a.by_sector.Private.total_arr)}</div><div class="kpi-label">Private Sector ARR</div><div class="kpi-sub">${a.by_sector.Private.opp_count} opps</div></div>
-    <div class="kpi"><div class="kpi-value warn-c">${fmt(topAccount.arr)}</div><div class="kpi-label">Largest Account</div><div class="kpi-sub">${truncLabel(topAccount.name, 28)}</div></div>
-  `;
-
-  // Sector donut
-  makeChart('arrSectorChart', {
-    type: 'doughnut',
-    data: {
-      labels: ['Public Sector', 'Private Sector'],
-      datasets: [{ data: [a.by_sector.Public.total_arr, a.by_sector.Private.total_arr],
-        backgroundColor: [PUB+'cc', PRIV+'cc'], borderWidth: 0, hoverOffset: 6 }]
-    },
-    options: { responsive:true, maintainAspectRatio:false, cutout:'60%',
-      plugins: { legend:{ position:'bottom', labels:{ padding:12, usePointStyle:true, pointStyleWidth:8, font:{size:11} } },
-        tooltip:{ callbacks:{ label: ctx => ' ' + ctx.label + ': ' + fmtFull(ctx.raw) } } } }
-  });
-
-  // Top accounts bar
-  const top10 = a.by_parent.slice(0,10);
-  makeChart('arrAccountChart', {
+  // 1. Public Sector Factored ARR Pipeline — stacked bar by Team
+  const pubTeams = Object.keys(DASH.pubPipeChart);
+  const pubTypes = [...new Set(pubTeams.flatMap(t => Object.keys(DASH.pubPipeChart[t])))];
+  makeChart('dashPubPipe', {
     type: 'bar',
     data: {
-      labels: top10.map(p => truncLabel(p.name, 20)),
-      datasets: [{ data: top10.map(p => p.arr),
-        backgroundColor: top10.map(p => p.sector==='Public' ? PUB+'77' : PRIV+'77'),
-        hoverBackgroundColor: top10.map(p => p.sector==='Public' ? PUB : PRIV),
-        borderRadius: 4, borderSkipped: false }]
-    },
-    options: { responsive:true, maintainAspectRatio:false, indexAxis:'y',
-      plugins: { legend:{display:false}, tooltip:{ callbacks:{ label:ctx => ' '+fmtFull(ctx.raw) } } },
-      scales: { x:{ ticks:{ callback:v => fmt(v) } } } }
-  });
-
-  // Period stacked bar
-  const periods = Object.keys(a.by_period);
-  makeChart('arrPeriodChart', {
-    type: 'bar',
-    data: {
-      labels: periods,
-      datasets: [
-        { label:'Public', data:periods.map(p => a.by_period[p].Public), backgroundColor:PUB+'88', borderRadius:3, borderSkipped:false },
-        { label:'Private', data:periods.map(p => a.by_period[p].Private), backgroundColor:PRIV+'88', borderRadius:3, borderSkipped:false },
-      ]
+      labels: pubTeams,
+      datasets: pubTypes.map(typ => ({
+        label: typ,
+        data: pubTeams.map(t => DASH.pubPipeChart[t][typ] || 0),
+        backgroundColor: TYPE_COLORS[typ] || '#888',
+        borderRadius: 2,
+        borderSkipped: false,
+      }))
     },
     options: { responsive:true, maintainAspectRatio:false,
-      plugins: { legend:{display:false}, tooltip:{ callbacks:{ label:ctx => ' '+ctx.dataset.label+': '+fmtFull(ctx.raw) } } },
-      scales: { x:{stacked:true}, y:{stacked:true, ticks:{ callback:v => fmt(v) } } } }
+      plugins: { legend:{ position:'right', labels:{ padding:10, usePointStyle:true, pointStyleWidth:8, font:{size:10} } },
+        tooltip:{ callbacks:{ label:ctx => ' '+ctx.dataset.label+': '+fmtFull(ctx.raw) } } },
+      scales: { x:{stacked:true}, y:{stacked:true, ticks:{ callback:v=>fmt(v) } } } }
+  });
+
+  // 2. Private Sector ARR Pipeline — stacked bar by Owner
+  const privOwners = Object.keys(DASH.privPipeChart);
+  const privTypes = [...new Set(privOwners.flatMap(o => Object.keys(DASH.privPipeChart[o])))];
+  makeChart('dashPrivPipe', {
+    type: 'bar',
+    data: {
+      labels: privOwners,
+      datasets: privTypes.map(typ => ({
+        label: typ,
+        data: privOwners.map(o => DASH.privPipeChart[o][typ] || 0),
+        backgroundColor: TYPE_COLORS[typ] || '#888',
+        borderRadius: 2,
+        borderSkipped: false,
+      }))
+    },
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{ position:'right', labels:{ padding:10, usePointStyle:true, pointStyleWidth:8, font:{size:10} } },
+        tooltip:{ callbacks:{ label:ctx => ' '+ctx.dataset.label+': '+fmtFull(ctx.raw) } } },
+      scales: { x:{stacked:true}, y:{stacked:true, ticks:{ callback:v=>fmt(v) } } } }
+  });
+
+  // 3. ARR as of TODAY donut
+  const todayTotal = Object.values(DASH.arrToday).reduce((a,v)=>a+v,0);
+  makeChart('dashArrToday', {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(DASH.arrToday),
+      datasets: [{ data: Object.values(DASH.arrToday),
+        backgroundColor: [PUB_BLUE, PRIV_LIGHT], borderWidth: 0, hoverOffset: 6 }]
+    },
+    options: { responsive:true, maintainAspectRatio:false, cutout:'62%',
+      plugins: {
+        legend:{ position:'right', labels:{ padding:10, usePointStyle:true, pointStyleWidth:8, font:{size:10} } },
+        tooltip:{ callbacks:{ label:ctx => ' '+ctx.label+': '+fmtFull(ctx.raw) } },
+      } },
+    plugins: [{
+      id:'centerText',
+      beforeDraw(chart) {
+        const {ctx, width, height} = chart;
+        ctx.save();
+        ctx.font = 'bold 18px "DM Sans", sans-serif';
+        ctx.fillStyle = '#1a1d26';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        const text = fmtFull(todayTotal);
+        const x = width/2 - 30;
+        const y = height/2;
+        ctx.fillText(text, x, y);
+        ctx.font = '10px "DM Sans", sans-serif';
+        ctx.fillStyle = '#6b7084';
+        ctx.fillText('Sum of Prod ARR', x, y - 20);
+        ctx.restore();
+      }
+    }]
+  });
+
+  // 4. $15M ARR Target donut
+  const targetTotal = Object.values(DASH.arrTarget).reduce((a,v)=>a+v,0);
+  makeChart('dashArrTarget', {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(DASH.arrTarget),
+      datasets: [{ data: Object.values(DASH.arrTarget),
+        backgroundColor: [PRIV_LIGHT, PUB_BLUE], borderWidth: 0, hoverOffset: 6 }]
+    },
+    options: { responsive:true, maintainAspectRatio:false, cutout:'62%',
+      plugins: {
+        legend:{ position:'right', labels:{ padding:10, usePointStyle:true, pointStyleWidth:8, font:{size:10} } },
+        tooltip:{ callbacks:{ label:ctx => ' '+ctx.label+': '+fmtFull(ctx.raw) } },
+      } },
+    plugins: [{
+      id:'centerText2',
+      beforeDraw(chart) {
+        const {ctx, width, height} = chart;
+        ctx.save();
+        ctx.font = 'bold 18px "DM Sans", sans-serif';
+        ctx.fillStyle = '#1a1d26';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        const text = fmtFull(targetTotal);
+        const x = width/2 - 30;
+        const y = height/2;
+        ctx.fillText(text, x, y);
+        ctx.font = '10px "DM Sans", sans-serif';
+        ctx.fillStyle = '#6b7084';
+        ctx.fillText('Sum of Factored ARR', x, y - 20);
+        ctx.restore();
+      }
+    }]
   });
 }
 
