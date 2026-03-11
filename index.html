@@ -1442,28 +1442,44 @@ function setupAllExpandCollapse() {
 // ===================================================================
 // CLICK-TO-EXPAND NOTES
 // ===================================================================
-const NOTES_TRUNC_LEN = 120;
+const NOTES_SHORT = 150;
+const NOTES_MED = 500;
 
 function notesHTML(text) {
   if (!text) return '<td class="notes-cell">—</td>';
   const escaped = text.replace(/"/g, '&quot;').replace(/</g, '&lt;');
-  if (text.length <= NOTES_TRUNC_LEN) {
+  if (text.length <= NOTES_SHORT) {
     return `<td class="notes-cell">${text}</td>`;
   }
-  const short = text.slice(0, NOTES_TRUNC_LEN);
-  return `<td class="notes-cell" data-full="${escaped}" data-short="${short.replace(/"/g, '&quot;')}" data-expanded="0">${short}<span class="notes-truncated">… more</span></td>`;
+  const short = text.slice(0, NOTES_SHORT);
+  return `<td class="notes-cell" data-full="${escaped}" data-short="${short.replace(/"/g, '&quot;')}" data-state="short">${short}<span class="notes-truncated">… more</span></td>`;
 }
 
 document.addEventListener('click', e => {
   const cell = e.target.closest('.notes-cell');
   if (!cell || !cell.dataset.full) return;
-  const isExpanded = cell.dataset.expanded === '1';
-  if (isExpanded) {
-    cell.innerHTML = cell.dataset.short + '<span class="notes-truncated">… more</span>';
-    cell.dataset.expanded = '0';
+  const full = cell.dataset.full;
+  const short = cell.dataset.short;
+  const state = cell.dataset.state;
+
+  if (state === 'short') {
+    // Expand to medium
+    if (full.length <= NOTES_MED) {
+      cell.innerHTML = full + '<span class="notes-truncated"> … less</span>';
+      cell.dataset.state = 'full';
+    } else {
+      const med = full.slice(0, NOTES_MED);
+      cell.innerHTML = med + '<span class="notes-truncated">… more</span>';
+      cell.dataset.state = 'med';
+    }
+  } else if (state === 'med') {
+    // Expand to full
+    cell.innerHTML = full + '<span class="notes-truncated"> … less</span>';
+    cell.dataset.state = 'full';
   } else {
-    cell.innerHTML = cell.dataset.full + '<span class="notes-truncated"> … less</span>';
-    cell.dataset.expanded = '1';
+    // Collapse back to short
+    cell.innerHTML = short + '<span class="notes-truncated">… more</span>';
+    cell.dataset.state = 'short';
   }
 });
 
