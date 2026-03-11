@@ -114,29 +114,15 @@
     max-width:300px!important;
     white-space:normal!important;
     word-wrap:break-word!important;
-    overflow:hidden!important;
+    overflow:visible!important;
     text-overflow:unset!important;
     font-size:0.7rem;
     color:#8b90a0;
     line-height:1.35;
-    max-height:3.5em;
     cursor:pointer;
     position:relative;
   }
-  .notes-cell.expanded {
-    max-height:none!important;
-    overflow:visible!important;
-  }
-  .notes-cell:not(.expanded)::after {
-    content:'… more';
-    position:absolute;
-    bottom:0;right:0;
-    padding:0 0.3rem 0 1rem;
-    background:linear-gradient(90deg,transparent,#fff 40%);
-    font-size:0.6rem;
-    color:var(--accent);
-    font-weight:500;
-  }
+  .notes-truncated { color:var(--accent);font-size:0.6rem;font-weight:500;margin-left:2px; }
   .money { text-align:right; }
 
   /* ClientSuccess styles */
@@ -735,7 +721,7 @@ function renderPubPipe() {
       <td style="font-size:0.7rem">${d.pgoStage}</td>
       <td style="font-size:0.7rem">${d.pwinStage}</td>
       <td class="money">${fmtFull(d.factoredArr)}</td>
-      <td class="notes-cell">${d.notes}</td>
+      ${notesHTML(d.notes)}
       <td>${d.closeDate}</td>
       <td>${d.contractStart||'—'}</td>
       <td>${d.contractEnd||'—'}</td>
@@ -875,7 +861,7 @@ function renderPrivPipe() {
       <td style="padding-left:3rem"><span class="opp-link">${d.account}</span></td>
       <td><span class="opp-link" title="${d.opp}">${d.opp}</span></td>
       <td class="money">${fmtFull(d.arr)}</td>
-      <td class="notes-cell">${d.notes}</td>
+      ${notesHTML(d.notes)}
       <td style="font-size:0.7rem">${d.stage}</td>
       <td>${d.closeDate}</td>
       <td>${ppForecastHTML(d.forecastCat)}</td>
@@ -1013,7 +999,7 @@ function renderPubLeads() {
       <td style="font-size:0.7rem">${d.source||'—'}</td>
       <td style="font-size:0.7rem">${d.title||'—'}</td>
       <td>${d.rating||'—'}</td>
-      <td class="notes-cell">${d.notes}</td>
+      ${notesHTML(d.notes)}
       <td>${d.branch||'—'}</td>
     </tr>`;
   });
@@ -1133,7 +1119,7 @@ function renderPrivLeads() {
       <td>${d.lastName}</td>
       <td style="font-size:0.7rem">${d.source||'—'}</td>
       <td style="font-size:0.7rem">${d.title||'—'}</td>
-      <td class="notes-cell">${d.notes}</td>
+      ${notesHTML(d.notes)}
     </tr>`;
   });
 
@@ -1456,9 +1442,29 @@ function setupAllExpandCollapse() {
 // ===================================================================
 // CLICK-TO-EXPAND NOTES
 // ===================================================================
+const NOTES_TRUNC_LEN = 120;
+
+function notesHTML(text) {
+  if (!text) return '<td class="notes-cell">—</td>';
+  const escaped = text.replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  if (text.length <= NOTES_TRUNC_LEN) {
+    return `<td class="notes-cell">${text}</td>`;
+  }
+  const short = text.slice(0, NOTES_TRUNC_LEN);
+  return `<td class="notes-cell" data-full="${escaped}" data-short="${short.replace(/"/g, '&quot;')}" data-expanded="0">${short}<span class="notes-truncated">… more</span></td>`;
+}
+
 document.addEventListener('click', e => {
   const cell = e.target.closest('.notes-cell');
-  if (cell) cell.classList.toggle('expanded');
+  if (!cell || !cell.dataset.full) return;
+  const isExpanded = cell.dataset.expanded === '1';
+  if (isExpanded) {
+    cell.innerHTML = cell.dataset.short + '<span class="notes-truncated">… more</span>';
+    cell.dataset.expanded = '0';
+  } else {
+    cell.innerHTML = cell.dataset.full + '<span class="notes-truncated"> … less</span>';
+    cell.dataset.expanded = '1';
+  }
 });
 
 loadData();
