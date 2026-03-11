@@ -39,7 +39,7 @@
   /* Tabs */
   .tabs { display:flex; gap:0; margin:0.8rem 0 1rem; border-bottom:2px solid var(--border); overflow-x:auto; -webkit-overflow-scrolling:touch; }
   .tabs::-webkit-scrollbar { height:0; }
-  .tab { padding:0.5rem 1rem; font-size:0.72rem; font-weight:500; color:var(--text-dim); background:none; border:none;
+  .tab { padding:0.5rem 1rem; font-size:1.0rem; font-weight:500; color:var(--text-dim); background:none; border:none;
     cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:all 0.15s; font-family:inherit; white-space:nowrap; flex-shrink:0; }
   .tab:hover { color:var(--text-mid); }
   .tab.active { color:var(--accent); border-bottom-color:var(--accent); }
@@ -598,17 +598,17 @@ const PP = {
 };
 
 const PP_COLS = [
-  {key:'opp',label:'Opportunity Name',w:'200px'},
+  {key:'opp',label:'Opportunity Name',w:'280px'},
   {key:'arr',label:'Amount (ARR)',cls:'money',numeric:true,w:'100px'},
-  {key:'pgoStage',label:'Pgo',w:'90px'},
-  {key:'pwinStage',label:'Pwin',w:'90px'},
+  {key:'pgoStage',label:'Pgo',w:'105px'},
+  {key:'pwinStage',label:'Pwin',w:'100px'},
   {key:'factoredArr',label:'Factored ARR',cls:'money',numeric:true,w:'100px'},
-  {key:'notes',label:'Next Steps / Latest Updates',w:'280px'},
-  {key:'closeDate',label:'Close Date',w:'85px'},
+  {key:'notes',label:'Next Steps / Latest Updates',w:'260px'},
+  {key:'closeDate',label:'Close Date',w:'80px'},
   {key:'contractStart',label:'Start',w:'75px'},
   {key:'contractEnd',label:'End',w:'75px'},
   {key:'forecastCat',label:'Category',w:'75px'},
-  {key:'forecastAdmin',label:'Category (Admin)',w:'75px'},
+  {key:'forecastAdmin',label:'Category (Admin)',w:'90px'},
 ];
 
 function ppPriorityHTML(p) {
@@ -765,13 +765,13 @@ const PVP = {
 
 const PVP_COLS = [
   {key:'account',label:'Account Name',w:'160px'},
-  {key:'opp',label:'Opportunity Name',w:'250px'},
+  {key:'opp',label:'Opportunity Name',w:'300px'},
   {key:'arr',label:'Amount (ARR)',cls:'money',numeric:true,w:'95px'},
-  {key:'notes',label:'Next Steps / Latest Updates',w:'280px'},
-  {key:'stage',label:'Stage',w:'110px'},
+  {key:'notes',label:'Next Steps / Latest Updates',w:'260px'},
+  {key:'stage',label:'Stage',w:'120px'},
   {key:'closeDate',label:'Close Date',w:'85px'},
   {key:'forecastCat',label:'Category',w:'80px'},
-  {key:'forecastAdmin',label:'Category (Admin)',w:'80px'},
+  {key:'forecastAdmin',label:'Category (Admin)',w:'90px'},
 ];
 
 function pvpGroupId(o,t) { if(t) return o+'||'+t; return o; }
@@ -893,13 +893,13 @@ const PL = {
 
 const PL_COLS = [
   {key:'company',label:'Company / Account',w:'200px'},
-  {key:'firstName',label:'First Name'},
-  {key:'lastName',label:'Last Name'},
-  {key:'source',label:'Lead Source'},
-  {key:'title',label:'Title',w:'220px'},
-  {key:'rating',label:'Rating'},
-  {key:'notes',label:'Next Steps / Latest Updates',w:'300px'},
-  {key:'branch',label:'Branch'},
+  {key:'firstName',label:'First Name',w:'100px'},
+  {key:'lastName',label:'Last Name',w:'100px'},
+  {key:'source',label:'Lead Source',w:'120px'},
+  {key:'title',label:'Title',w:'260px'},
+  {key:'rating',label:'Rating',w:'60px'},
+  {key:'notes',label:'Next Steps / Latest Updates',w:'280px'},
+  {key:'branch',label:'Branch',w:'80px'},
 ];
 
 function plGroupId(t,o,s) { if(s) return t+'||'+o+'||'+s; if(o) return t+'||'+o; return t; }
@@ -1024,10 +1024,10 @@ const PRL = {
 
 const PRL_COLS = [
   {key:'company',label:'Company / Account',w:'200px'},
-  {key:'firstName',label:'First Name'},
-  {key:'lastName',label:'Last Name'},
-  {key:'source',label:'Lead Source'},
-  {key:'title',label:'Title',w:'220px'},
+  {key:'firstName',label:'First Name',w:'100px'},
+  {key:'lastName',label:'Last Name',w:'110px'},
+  {key:'source',label:'Lead Source',w:'130px'},
+  {key:'title',label:'Title',w:'280px'},
   {key:'notes',label:'Next Steps / Latest Updates',w:'300px'},
 ];
 
@@ -1185,7 +1185,7 @@ function csSortableTable(prefix, data, cols, state, filterCfg) {
 
     // Header
     $(`#${prefix}-thead`).innerHTML='<tr>'+cols.map(c=>
-      `<th class="${state.sort.key===c.key?'sorted':''} ${c.cls||''}" data-key="${c.key}">${c.label}<span class="sa">${state.sort.key===c.key?(state.sort.dir>0?'▲':'▼'):'⇅'}</span></th>`
+      `<th class="${state.sort.key===c.key?'sorted':''} ${c.cls||''}" data-key="${c.key}" ${c.w?'style="width:'+c.w+'"':''}>${c.label}<span class="sa">${state.sort.key===c.key?(state.sort.dir>0?'▲':'▼'):'⇅'}</span></th>`
     ).join('')+'</tr>';
 
     // Body
@@ -1211,18 +1211,18 @@ function csSortableTable(prefix, data, cols, state, filterCfg) {
 // PUBLIC SECTOR ACCOUNTS
 // ===================================================================
 const PA_COLS = [
-  {key:'customer',label:'Customer',render:v=>`<td style="color:var(--text);font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${v}">${v}</td>`},
-  {key:'arr',label:'ARR',cls:'money',render:v=>`<td class="money">${fmtFull(v)}</td>`},
-  {key:'renewal',label:'Renewal',render:v=>`<td>${csRenewalHTML(v)}</td>`},
-  {key:'pulse',label:'Pulse',render:v=>`<td>${csPulseHTML(v)}</td>`},
-  {key:'lastEngaged',label:'Last Engaged',render:v=>`<td>${csLastEngagedHTML(v)}</td>`},
-  {key:'csm',label:'CSM'},
-  {key:'customerType',label:'Type',render:v=>`<td>${csTypeHTML(v)}</td>`},
-  {key:'branch',label:'Branch'},
-  {key:'relationshipType',label:'Relationship'},
-  {key:'platform',label:'Platform'},
-  {key:'cltv',label:'cLTV',cls:'money',render:v=>`<td class="money">${fmtFull(v)}</td>`},
-  {key:'fundingSource',label:'Funding'},
+  {key:'customer',label:'Customer',w:'200px',render:v=>`<td style="color:var(--text);font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${v}">${v}</td>`},
+  {key:'arr',label:'ARR',cls:'money',w:'90px',render:v=>`<td class="money">${fmtFull(v)}</td>`},
+  {key:'renewal',label:'Renewal',w:'140px',render:v=>`<td>${csRenewalHTML(v)}</td>`},
+  {key:'pulse',label:'Pulse',w:'110px',render:v=>`<td>${csPulseHTML(v)}</td>`},
+  {key:'lastEngaged',label:'Last Engaged',w:'120px',render:v=>`<td>${csLastEngagedHTML(v)}</td>`},
+  {key:'csm',label:'CSM',w:'100px'},
+  {key:'customerType',label:'Type',w:'75px',render:v=>`<td>${csTypeHTML(v)}</td>`},
+  {key:'branch',label:'Branch',w:'75px'},
+  {key:'relationshipType',label:'Relationship',w:'85px'},
+  {key:'platform',label:'Platform',w:'130px'},
+  {key:'cltv',label:'cLTV',cls:'money',w:'90px',render:v=>`<td class="money">${fmtFull(v)}</td>`},
+  {key:'fundingSource',label:'Funding',w:'80px'},
 ];
 
 const paState={sort:{key:'arr',dir:-1},search:'',filters:{}};
@@ -1247,17 +1247,17 @@ function initPubAccounts() {
 // PRIVATE SECTOR ACCOUNTS
 // ===================================================================
 const PRA_COLS = [
-  {key:'customer',label:'Customer',render:v=>`<td style="color:var(--text);font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${v}">${v}</td>`},
-  {key:'arr',label:'ARR',cls:'money',render:v=>`<td class="money">${fmtFull(v)}</td>`},
-  {key:'renewal',label:'Renewal',render:v=>`<td>${csRenewalHTML(v)}</td>`},
-  {key:'pulse',label:'Pulse',render:v=>`<td>${csPulseHTML(v)}</td>`},
-  {key:'successScore',label:'Score',render:v=>`<td>${csScoreHTML(v)}</td>`},
-  {key:'csm',label:'CSM'},
-  {key:'customerAsOf',label:'Customer Since'},
-  {key:'cltv',label:'cLTV',cls:'money',render:v=>`<td class="money">${fmtFull(v)}</td>`},
-  {key:'salesRep',label:'Sales Rep'},
-  {key:'licenseCount',label:'Licenses'},
-  {key:'daysSinceLaunch',label:'Days Since Launch'},
+  {key:'customer',label:'Customer',w:'200px',render:v=>`<td style="color:var(--text);font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${v}">${v}</td>`},
+  {key:'arr',label:'ARR',cls:'money',w:'80px',render:v=>`<td class="money">${fmtFull(v)}</td>`},
+  {key:'renewal',label:'Renewal',w:'140px',render:v=>`<td>${csRenewalHTML(v)}</td>`},
+  {key:'pulse',label:'Pulse',w:'110px',render:v=>`<td>${csPulseHTML(v)}</td>`},
+  {key:'successScore',label:'Score',w:'55px',render:v=>`<td>${csScoreHTML(v)}</td>`},
+  {key:'csm',label:'CSM',w:'110px'},
+  {key:'customerAsOf',label:'Customer Since',w:'100px'},
+  {key:'cltv',label:'cLTV',cls:'money',w:'80px',render:v=>`<td class="money">${fmtFull(v)}</td>`},
+  {key:'salesRep',label:'Sales Rep',w:'110px'},
+  {key:'licenseCount',label:'Licenses',w:'70px'},
+  {key:'daysSinceLaunch',label:'Days Since Launch',w:'80px'},
 ];
 
 const praState={sort:{key:'arr',dir:-1},search:'',filters:{}};
