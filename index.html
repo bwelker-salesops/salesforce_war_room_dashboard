@@ -768,14 +768,14 @@ const PVP = {
 };
 
 const PVP_COLS = [
-  {key:'account',label:'Account Name',w:'200px'},
-  {key:'opp',label:'Opportunity Name',w:'240px'},
-  {key:'arr',label:'Amount (ARR)',cls:'money',numeric:true},
-  {key:'notes',label:'Next Steps / Latest Updates',w:'300px'},
-  {key:'stage',label:'Stage'},
-  {key:'closeDate',label:'Close Date'},
-  {key:'forecastCat',label:'Category'},
-  {key:'forecastAdmin',label:'Category (Admin)'},
+  {key:'account',label:'Account Name',w:'160px'},
+  {key:'opp',label:'Opportunity Name',w:'250px'},
+  {key:'arr',label:'Amount (ARR)',cls:'money',numeric:true,w:'95px'},
+  {key:'notes',label:'Next Steps / Latest Updates',w:'280px'},
+  {key:'stage',label:'Stage',w:'110px'},
+  {key:'closeDate',label:'Close Date',w:'85px'},
+  {key:'forecastCat',label:'Category',w:'80px'},
+  {key:'forecastAdmin',label:'Category (Admin)',w:'80px'},
 ];
 
 function pvpGroupId(o,t) { if(t) return o+'||'+t; return o; }
@@ -822,13 +822,13 @@ function renderPrivPipe() {
     if(d.owner!==cO){
       cO=d.owner;cTy='';
       const od=deals.filter(x=>x.owner===cO);
-      h+=`<tr class="p-team ${oc?'collapsed':''}" data-th="${cO}"><td colspan="3"><span class="gt">${cO}</span></td><td class="money">${fmtFull(od.reduce((a,x)=>a+x.arr,0))}</td><td colspan="${cs-4}"></td></tr>`;
+      h+=`<tr class="p-team ${oc?'collapsed':''}" data-th="${cO}"><td colspan="2"><span class="gt">${cO}</span></td><td class="money">${fmtFull(od.reduce((a,x)=>a+x.arr,0))}</td><td colspan="${cs-3}"></td></tr>`;
     }
     if(d.type!==cTy){
       cTy=d.type;
       const tyd=deals.filter(x=>x.owner===cO&&x.type===cTy);
       const v=oc?' style="display:none"':'';
-      h+=`<tr class="p-owner ${tyc?'collapsed':''}" data-team="${cO}" data-oh="${tid}"${v}><td colspan="3" style="padding-left:1.8rem"><span class="go">${cTy}</span></td><td class="money">${fmtFull(tyd.reduce((a,x)=>a+x.arr,0))}</td><td colspan="${cs-4}"></td></tr>`;
+      h+=`<tr class="p-owner ${tyc?'collapsed':''}" data-team="${cO}" data-oh="${tid}"${v}><td colspan="2" style="padding-left:1.8rem"><span class="go">${cTy}</span></td><td class="money">${fmtFull(tyd.reduce((a,x)=>a+x.arr,0))}</td><td colspan="${cs-3}"></td></tr>`;
     }
 
     const rh=oc||tyc;
@@ -845,7 +845,7 @@ function renderPrivPipe() {
     </tr>`;
   });
 
-  h+=`<tr class="p-grand"><td colspan="3">Grand Total</td><td class="money">${fmtFull(tArr)}</td><td colspan="${cs-4}"></td></tr>`;
+  h+=`<tr class="p-grand"><td colspan="2">Grand Total</td><td class="money">${fmtFull(tArr)}</td><td colspan="${cs-3}"></td></tr>`;
   $('#pvp-tbody').innerHTML=h;
   $('#pvp-count').textContent=deals.length+' records';
 
