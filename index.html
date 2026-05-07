@@ -244,8 +244,13 @@
   <header>
     <div class="header-row">
       <h1>Business Review</h1>
-      <span class="updated" id="updated"></span>
-      <button id="refreshBtn" title="Reload dashboard data" style="background:none;border:1px solid var(--border);border-radius:4px;padding:2px 8px;font-size:0.7rem;color:var(--text-dim);cursor:pointer;margin-left:6px;vertical-align:middle;">&#x21bb; Refresh</button>
+      <div style="text-align:right;">
+        <span class="updated" id="updated"></span>
+        <div style="margin-top:3px;">
+          <button id="refreshBtn" title="Pull latest Salesforce data" style="background:none;border:1px solid var(--border);border-radius:4px;padding:2px 8px;font-size:0.68rem;color:var(--text-dim);cursor:pointer;">&#x21bb; Refresh</button>
+          <span id="refreshStatus" style="font-size:0.65rem;color:var(--text-dim);margin-left:4px;display:none;"></span>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -1566,9 +1571,88 @@ document.addEventListener('click', e => {
 
 loadData();
 
-document.getElementById('refreshBtn').addEventListener('click', () => location.reload(true));
+(function setupRefresh() {
+  const REPO = 'bwelker-salesops/salesforce_war_room_dashboard';
+  const WORKFLOW = 'refresh-dashboard.yml';
+  const btn = document.getElementById('refreshBtn');
+  const status = document.getElementById('refreshStatus');
 
-(function scheduleAutoRefresh() {
+  function showStatus(msg) { status.style.display = 'inline'; status.textContent = msg; }
+  function hideStatus() { status.style.display = 'none'; }
+
+  function getToken() {
+    let tok = localStorage.getItem('gh_pat');
+    if (!tok) {
+      tok = prompt('Enter a GitHub Personal Access Token (needs "repo" or "actions:write" scope).\nThis is saved in your browser only.');
+      if (tok) localStorage.setItem('gh_pat', tok.trim());
+    }
+    return tok ? tok.trim() : null;
+  }
+
+  async function ghFetch(path, opts = {}) {
+    const tok = getToken();
+    if (!tok) throw new Error('No token');
+    const r = await fetch(`https://api.github.com${path}`, {
+      ...opts,
+      headers: { Authorization: `token ${tok}`, Accept: 'application/vnd.github+json', ...opts.headers }
+    });
+    if (r.status === 401 || r.status === 403) {
+      localStorage.removeItem('gh_pat');
+      throw new Error('Invalid token — cleared. Try again.');
+    }
+    return r;
+  }
+
+  async function triggerAndWait() {
+    btn.disabled = true;
+    btn.style.opacity = '0.5';
+    try {
+      const before = new Date().toISOString();
+      showStatus('Triggering workflow...');
+      const resp = await ghFetch(`/repos/${REPO}/actions/workflows/${WORKFLOW}/dispatches`, {
+        method: 'POST',
+        body: JSON.stringify({ ref: 'main' })
+      });
+      if (!resp.ok) throw new Error(`Dispatch failed: ${resp.status}`);
+
+      showStatus('Waiting for run to start...');
+      let runId = null;
+      for (let i = 0; i < 15; i++) {
+        await new Promise(r => setTimeout(r, 2000));
+        const list = await ghFetch(`/repos/${REPO}/actions/workflows/${WORKFLOW}/runs?per_page=1`);
+        const data = await list.json();
+        const run = data.workflow_runs?.[0];
+        if (run && new Date(run.created_at) >= new Date(before)) { runId = run.id; break; }
+      }
+      if (!runId) throw new Error('Run did not start within 30s');
+
+      showStatus('Pulling Salesforce data...');
+      for (let i = 0; i < 60; i++) {
+        await new Promise(r => setTimeout(r, 3000));
+        const check = await ghFetch(`/repos/${REPO}/actions/runs/${runId}`);
+        const run = await check.json();
+        if (run.status === 'completed') {
+          if (run.conclusion === 'success') {
+            showStatus('Done — reloading...');
+            setTimeout(() => location.reload(true), 1500);
+            return;
+          }
+          throw new Error(`Workflow failed: ${run.conclusion}`);
+        }
+      }
+      throw new Error('Timed out waiting for workflow');
+    } catch (e) {
+      showStatus(e.message);
+      setTimeout(hideStatus, 5000);
+    } finally {
+      btn.disabled = false;
+      btn.style.opacity = '1';
+    }
+  }
+
+  btn.addEventListener('click', triggerAndWait);
+
+  // Auto-reload at 9:05am ET on weekdays
   function msUntilNextRefresh() {
     const now = new Date();
     const et = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
