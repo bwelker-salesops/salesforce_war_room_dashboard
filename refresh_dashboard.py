@@ -72,53 +72,36 @@ def fetch_report(instance_url, token, report_id):
 
 def extract_rows(report_json):
     """
-    Flatten a Salesforce tabular/summary report into a list of dicts.
+    Flatten a Salesforce tabular/summary/matrix report into a list of dicts.
     Each dict maps column label -> cell display value.
     """
     columns = report_json["reportMetadata"]["detailColumns"]
     col_info = report_json["reportExtendedMetadata"]["detailColumnInfo"]
     col_labels = [col_info[c]["label"] for c in columns]
 
+    fact_map = report_json.get("factMap", {})
+    report_format = report_json["reportMetadata"].get("reportFormat", "TABULAR")
+
+    print(f"    Report format: {report_format}")
+    print(f"    Columns: {col_labels}")
+    print(f"    factMap keys: {sorted(fact_map.keys())}")
+
     rows = []
 
-    def walk_groupings(grouping_data, fact_map_key_parts):
-        if "groupings" in grouping_data and grouping_data["groupings"]:
-            for g in grouping_data["groupings"]:
-                walk_groupings(g, fact_map_key_parts + [str(g["key"])])
-        else:
-            key = "_".join(fact_map_key_parts) if fact_map_key_parts else "T"
-            fm_key = f"{key}!T"
-            fact = report_json["factMap"].get(fm_key)
-            if not fact:
-                return
-            for row_data in fact["rows"]:
-                row = {}
-                for i, cell in enumerate(row_data["dataCells"]):
-                    row[col_labels[i]] = cell.get("label", cell.get("value", ""))
-                rows.append(row)
+    def extract_from_fact(fact):
+        if not fact or "rows" not in fact:
+            return
+        for row_data in fact["rows"]:
+            row = {}
+            for i, cell in enumerate(row_data["dataCells"]):
+                row[col_labels[i]] = cell.get("label", cell.get("value", ""))
+            rows.append(row)
 
-    if report_json["reportMetadata"].get("groupingsDown"):
-        gd = report_json.get("groupingsDown", {})
-        if gd and gd.get("groupings"):
-            for g in gd["groupings"]:
-                walk_groupings(g, [str(g["key"])])
-        else:
-            fact = report_json["factMap"].get("T!T")
-            if fact:
-                for row_data in fact["rows"]:
-                    row = {}
-                    for i, cell in enumerate(row_data["dataCells"]):
-                        row[col_labels[i]] = cell.get("label", cell.get("value", ""))
-                    rows.append(row)
-    else:
-        fact = report_json["factMap"].get("T!T")
-        if fact:
-            for row_data in fact["rows"]:
-                row = {}
-                for i, cell in enumerate(row_data["dataCells"]):
-                    row[col_labels[i]] = cell.get("label", cell.get("value", ""))
-                rows.append(row)
+    for fm_key, fact in fact_map.items():
+        if fm_key == "T!T" or fm_key.endswith("!T"):
+            extract_from_fact(fact)
 
+    print(f"    Extracted {len(rows)} detail rows")
     return rows, col_labels
 
 
