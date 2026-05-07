@@ -1581,12 +1581,13 @@ loadData();
   function hideStatus() { status.style.display = 'none'; }
 
   function getToken() {
-    let tok = localStorage.getItem('gh_pat');
-    if (!tok) {
-      tok = prompt('Enter a GitHub Personal Access Token (needs "repo" or "actions:write" scope).\nThis is saved in your browser only.');
-      if (tok) localStorage.setItem('gh_pat', tok.trim());
-    }
-    return tok ? tok.trim() : null;
+    return localStorage.getItem('gh_pat') || null;
+  }
+
+  function promptForToken() {
+    const tok = prompt('Enter a GitHub Personal Access Token to enable live refresh.\nThis is saved in your browser only and can be cleared anytime.');
+    if (tok) { localStorage.setItem('gh_pat', tok.trim()); return tok.trim(); }
+    return null;
   }
 
   async function ghFetch(path, opts = {}) {
@@ -1650,7 +1651,18 @@ loadData();
     }
   }
 
-  btn.addEventListener('click', triggerAndWait);
+  async function handleRefresh() {
+    if (getToken()) {
+      return triggerAndWait();
+    }
+    const tok = promptForToken();
+    if (tok) {
+      return triggerAndWait();
+    }
+    location.reload(true);
+  }
+
+  btn.addEventListener('click', handleRefresh);
 
   // Auto-reload at 9:05am ET on weekdays
   function msUntilNextRefresh() {
