@@ -245,6 +245,7 @@
     <div class="header-row">
       <h1>Business Review</h1>
       <span class="updated" id="updated"></span>
+      <button id="refreshBtn" title="Reload dashboard data" style="background:none;border:1px solid var(--border);border-radius:4px;padding:2px 8px;font-size:0.7rem;color:var(--text-dim);cursor:pointer;margin-left:6px;vertical-align:middle;">&#x21bb; Refresh</button>
     </div>
   </header>
 
@@ -1564,6 +1565,23 @@ document.addEventListener('click', e => {
 });
 
 loadData();
+
+document.getElementById('refreshBtn').addEventListener('click', () => location.reload(true));
+
+(function scheduleAutoRefresh() {
+  function msUntilNextRefresh() {
+    const now = new Date();
+    const et = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+    const target = new Date(et);
+    target.setHours(9, 5, 0, 0);
+    if (et >= target || et.getDay() === 0 || et.getDay() === 6) {
+      target.setDate(target.getDate() + (et >= target ? 1 : 0));
+      while (target.getDay() === 0 || target.getDay() === 6) target.setDate(target.getDate() + 1);
+    }
+    return target - et;
+  }
+  setTimeout(() => location.reload(true), msUntilNextRefresh());
+})();
 </script>
 </body>
 </html>
