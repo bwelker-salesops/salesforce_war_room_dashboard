@@ -72,8 +72,8 @@ def fetch_report(instance_url, token, report_id):
 
 def extract_rows(report_json):
     """
-    Flatten a Salesforce tabular/summary/matrix report into a list of dicts.
-    Each dict maps column label -> cell display value.
+    Flatten a Salesforce tabular/summary report into a list of dicts.
+    For summary reports, grouping field labels are injected into each row.
     """
     columns = report_json["reportMetadata"]["detailColumns"]
     col_info = report_json["reportExtendedMetadata"]["detailColumnInfo"]
@@ -81,28 +81,52 @@ def extract_rows(report_json):
 
     fact_map = report_json.get("factMap", {})
     report_format = report_json["reportMetadata"].get("reportFormat", "TABULAR")
+    groupings_down = report_json["reportMetadata"].get("groupingsDown", [])
+
+    grp_col_info = report_json["reportExtendedMetadata"].get("groupingColumnInfo", {})
+    grp_labels = [grp_col_info[g["name"]]["label"] for g in groupings_down]
 
     print(f"    Report format: {report_format}")
-    print(f"    Columns: {col_labels}")
-    print(f"    factMap keys: {sorted(fact_map.keys())}")
+    print(f"    Detail columns: {col_labels}")
+    print(f"    Grouping columns: {grp_labels}")
+    print(f"    factMap keys ({len(fact_map)}): {sorted(fact_map.keys())[:10]}...")
 
     rows = []
 
-    def extract_from_fact(fact):
-        if not fact or "rows" not in fact:
-            return
-        for row_data in fact["rows"]:
-            row = {}
-            for i, cell in enumerate(row_data["dataCells"]):
-                row[col_labels[i]] = cell.get("label", cell.get("value", ""))
-            rows.append(row)
+    def walk_groupings(groupings, depth, inherited):
+        for g in groupings:
+            current = dict(inherited)
+            current[grp_labels[depth]] = g.get("label", "")
+            if g.get("groupings"):
+                walk_groupings(g["groupings"], depth + 1, current)
+            else:
+                fm_key = f"{g['key']}!T"
+                fact = fact_map.get(fm_key)
+                if not fact or "rows" not in fact:
+                    continue
+                for row_data in fact["rows"]:
+                    row = dict(current)
+                    for i, cell in enumerate(row_data["dataCells"]):
+                        row[col_labels[i]] = cell.get("label", cell.get("value", ""))
+                    rows.append(row)
 
-    for fm_key, fact in fact_map.items():
-        if fm_key == "T!T" or fm_key.endswith("!T"):
-            extract_from_fact(fact)
+    gd = report_json.get("groupingsDown", {})
+    if gd and gd.get("groupings"):
+        walk_groupings(gd["groupings"], 0, {})
+    else:
+        fact = fact_map.get("T!T")
+        if fact and "rows" in fact:
+            for row_data in fact["rows"]:
+                row = {}
+                for i, cell in enumerate(row_data["dataCells"]):
+                    row[col_labels[i]] = cell.get("label", cell.get("value", ""))
+                rows.append(row)
 
+    all_labels = grp_labels + col_labels
     print(f"    Extracted {len(rows)} detail rows")
-    return rows, col_labels
+    if rows:
+        print(f"    Sample row keys: {list(rows[0].keys())}")
+    return rows, all_labels
 
 
 # ---------------------------------------------------------------------------
@@ -111,59 +135,66 @@ def extract_rows(report_json):
 # ---------------------------------------------------------------------------
 
 PUB_PIPE_COLS = {
+    # Grouping fields (from groupingsDown)
     "Team": "team",
     "Opportunity Owner": "owner",
     "Type": "type",
+    # Detail columns (from API response)
     "Priority (JH)": "priority",
     "Opportunity Name": "opp",
     "Amount (ARR)": "arr",
     "Pgo Stage": "pgoStage",
     "Pwin Stage": "pwinStage",
     "Factored ARR": "factoredArr",
-    "Notes": "notes",
+    "Next Steps / Latest Updates (new)": "notes",
     "Close Date": "closeDate",
     "Contract Start": "contractStart",
     "Contract End": "contractEnd",
     "Forecast Category": "forecastCat",
-    "Forecast (Admin)": "forecastAdmin",
+    "Forecast Category (Admin)": "forecastAdmin",
 }
 
 PRIV_PIPE_COLS = {
+    # Grouping fields (from groupingsDown)
     "Opportunity Owner": "owner",
     "Type": "type",
+    # Detail columns (from API response)
     "Account Name": "account",
     "Opportunity Name": "opp",
     "Amount (ARR)": "arr",
-    "Notes": "notes",
+    "Next Steps / Latest Updates (new)": "notes",
     "Stage": "stage",
     "Close Date": "closeDate",
     "Forecast Category": "forecastCat",
-    "Forecast (Admin)": "forecastAdmin",
+    "Forecast Category (Admin)": "forecastAdmin",
 }
 
 PUB_LEADS_COLS = {
-    "Team": "team",
+    # Grouping fields (from groupingsDown)
     "Lead Owner": "owner",
     "Lead Status": "status",
-    "Priority (JH)": "priority",
-    "Company": "company",
+    # Detail columns (from API response)
+    "Company / Account": "company",
     "First Name": "firstName",
     "Last Name": "lastName",
     "Lead Source": "source",
     "Title": "title",
-    "Rating": "rating",
-    "Notes": "notes",
+    "Rating (PubSec)": "rating",
+    "Next Steps / Latest Updates": "notes",
+    "Branch": "team",
 }
 
 PRIV_LEADS_COLS = {
+    # Grouping fields (from groupingsDown)
     "Lead Owner": "owner",
     "Lead Status": "status",
-    "Company": "company",
+    # Detail columns (from API response)
+    "Company / Account": "company",
     "First Name": "firstName",
     "Last Name": "lastName",
     "Lead Source": "source",
     "Title": "title",
-    "Notes": "notes",
+    "Next Steps / Latest Updates": "notes",
 }
 
 
