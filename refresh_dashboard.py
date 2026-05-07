@@ -41,8 +41,13 @@ def sf_authenticate():
     }).encode()
     req = Request(f"{login_url}/services/oauth2/token", data=payload, method="POST")
     req.add_header("Content-Type", "application/x-www-form-urlencoded")
-    with urlopen(req) as resp:
-        body = json.loads(resp.read())
+    try:
+        with urlopen(req) as resp:
+            body = json.loads(resp.read())
+    except Exception as e:
+        if hasattr(e, "read"):
+            print(f"  Auth error response: {e.read().decode()}")
+        raise
     return body["instance_url"], body["access_token"]
 
 
@@ -56,8 +61,13 @@ def fetch_report(instance_url, token, report_id):
     req = Request(url)
     req.add_header("Authorization", f"Bearer {token}")
     req.add_header("Accept", "application/json")
-    with urlopen(req) as resp:
-        return json.loads(resp.read())
+    try:
+        with urlopen(req) as resp:
+            return json.loads(resp.read())
+    except Exception as e:
+        if hasattr(e, "read"):
+            print(f"  Report API error: {e.read().decode()}")
+        raise
 
 
 def extract_rows(report_json):
