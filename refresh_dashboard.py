@@ -107,7 +107,7 @@ def extract_rows(report_json):
                 for row_data in fact["rows"]:
                     row = dict(current)
                     for i, cell in enumerate(row_data["dataCells"]):
-                        row[col_labels[i]] = cell.get("label", cell.get("value", ""))
+                        row[col_labels[i]] = cell.get("label") or cell.get("value", "")
                     rows.append(row)
 
     gd = report_json.get("groupingsDown", {})
@@ -119,7 +119,7 @@ def extract_rows(report_json):
             for row_data in fact["rows"]:
                 row = {}
                 for i, cell in enumerate(row_data["dataCells"]):
-                    row[col_labels[i]] = cell.get("label", cell.get("value", ""))
+                    row[col_labels[i]] = cell.get("label") or cell.get("value", "")
                 rows.append(row)
 
     all_labels = grp_labels + col_labels
